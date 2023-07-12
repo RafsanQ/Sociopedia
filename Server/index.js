@@ -45,6 +45,7 @@ app.post("/auth/register", upload.single("picture"), register);
 
 /* Routes */
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 /* Mongoose */
 const PORT = process.env.PORT || 6001;
