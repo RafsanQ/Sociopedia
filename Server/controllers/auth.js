@@ -40,3 +40,30 @@ export const register = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+// Login User
+export const login = async (req, res) => {
+    try{
+        const {email, password} = req.body;
+        const user = await User.findOne({ email: email });
+        if(!user){
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).json({ message: 'Invalid Credentials' });
+        }
+
+        // Create the token and store it in the .env file
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+        // Password should not be sent to the front end
+        delete user.password;
+
+        res.status(200).json({ token, user });
+
+    }catch(error){
+        res.status(500).json({ error: error.message });
+    }
+}
