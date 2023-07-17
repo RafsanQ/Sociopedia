@@ -1,13 +1,18 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router';
+import HomeView from './views/HomeView.vue';
+import profileView from './views/profileView.vue';
+import Navbar from './views/Navbar.vue';
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+        <RouterLink :to="{ name: 'about' }">About</RouterLink>
+        <RouterLink :to="{ name: 'login' }">Login</RouterLink>
+        <RouterLink :to="{ name: 'profileView' }">Profile View</RouterLink>
       </nav>
     </div>
   </header>
