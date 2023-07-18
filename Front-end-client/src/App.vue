@@ -7,6 +7,9 @@ import { useCentralStore } from './stores';
 
 
 const store = useCentralStore();
+const mode = store.mode;
+
+console.log(mode)
 
 </script>
 

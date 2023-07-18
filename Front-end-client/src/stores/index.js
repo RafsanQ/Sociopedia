@@ -9,7 +9,9 @@ export const useCentralStore = defineStore('centralStore', {
     }),
 
     getters: {
-
+        getMode: () => {
+            return this.mode;
+        }
     },
 
     actions: {
