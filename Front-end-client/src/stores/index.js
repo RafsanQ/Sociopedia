@@ -50,5 +50,8 @@ export const useCentralStore = defineStore('centralStore', {
 
             this.post = updatedPosts;
         }
+    },
+    persist: {
+        storage: sessionStorage 
     }
 })
