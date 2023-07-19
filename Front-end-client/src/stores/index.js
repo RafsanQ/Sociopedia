@@ -16,7 +16,6 @@ export const useCentralStore = defineStore('centralStore', {
 
     actions: {
         setMode() {
-            console.log("reached")
             this.mode = this.mode === 'light' ? 'dark' : 'light';
         },
 

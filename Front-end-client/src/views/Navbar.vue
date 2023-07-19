@@ -23,7 +23,7 @@ const alt = ref(themeProperties.pallete.background.alt);
 
 
 const getThemeChangeIcon = () => {
-  if(mode === 'dark') {
+  if(mode === 'light') {
     return 'fa:fas fa-moon'
   }
   else{
