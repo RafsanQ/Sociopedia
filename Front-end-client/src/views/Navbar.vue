@@ -26,28 +26,7 @@
 </template>
 
 <style scoped>
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-nav .logo {
-  padding: 1rem 6%;
-  background-color: #ffffff;
-}
-
-
-nav .logo h2 {
-  gap: 1.75rem;
-  font-weight: bold;
-  font-size: clamp(1rem, 2rem, 2.25rem);
-  color: #00A0BC;
-}
-
-nav .logo h2:hover {
-  filter: brightness(105%)
-}
 
 nav .searchbar {
   border-radius: 9px;
