@@ -12,17 +12,18 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { aliases, md } from 'vuetify/iconsets/md'
+import { aliases, fa } from 'vuetify/iconsets/fa'
+
 
 
 const vuetify = createVuetify({
   components,
   directives,
   icons: {
-    defaultSet: 'md',
+    defaultSet: 'fa',
     aliases,
     sets: {
-      md
+      fa,
     },
   },
 })

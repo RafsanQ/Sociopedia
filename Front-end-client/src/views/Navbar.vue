@@ -21,6 +21,20 @@ const primaryDark = ref(themeProperties.pallete.primary.dark);
 const background = ref(themeProperties.pallete.background.default);
 const alt = ref(themeProperties.pallete.background.alt);
 
+
+const getThemeChangeIcon = () => {
+  if(mode === 'dark') {
+    return 'fa:fas fa-moon'
+  }
+  else{
+    return 'fa:fas fa-sun'
+  }
+}
+
+const changeTheme = () =>{
+  store.setMode();
+}
+
 </script>
 
 <template>
@@ -41,13 +55,14 @@ const alt = ref(themeProperties.pallete.background.alt);
 
         <div v-show="isLargeScreen" class="searchbar">
           <input placeholder="Search..."/>
+          <v-btn icon="fa:fas fa-search" variant="plain" />
         </div>
-
+        
         <div v-show="isLargeScreen" class="navigation">
-          
+          <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" />
         </div>
       </nav>
-
+      
   </header>
 </template>
 
@@ -82,8 +97,12 @@ nav .searchbar {
   padding: 0.1rem 1.5rem;
 }
 
-nav .searchbar{
+nav .searchbar input{
+  outline: none;
+}
 
+nav .nagitaion {
+  gap: 2rem;
 }
 
 

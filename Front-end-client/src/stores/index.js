@@ -9,13 +9,14 @@ export const useCentralStore = defineStore('centralStore', {
     }),
 
     getters: {
-        getMode: () => {
+        getMode() {
             return this.mode;
         }
     },
 
     actions: {
-        setMode: () => {
+        setMode() {
+            console.log("reached")
             this.mode = this.mode === 'light' ? 'dark' : 'light';
         },
 
