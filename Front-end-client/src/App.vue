@@ -1,7 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
 import HomeView from './views/HomeView.vue';
-import profileView from './views/profileView.vue';
 import Navbar from './views/Navbar.vue';
 import { useCentralStore } from './stores';
 import { themeSettings } from './theme.js';
@@ -18,6 +17,8 @@ console.log(mode)
   <RouterView />
 </template>
 
-<style scoped>
+<style>
+
+
 
 </style>
