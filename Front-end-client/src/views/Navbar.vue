@@ -1,4 +1,9 @@
 <script setup>
+import { useMediaQuery } from '@vueuse/core'
+
+// Media query to check screen size
+const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+
 </script>
 
 <template>
@@ -17,7 +22,7 @@
           </RouterLink>
         </div>
 
-        <div class="searchbar">
+        <div v-show="isLargeScreen" class="searchbar">
           <input placeholder="Search"/>
         </div>
       </nav>

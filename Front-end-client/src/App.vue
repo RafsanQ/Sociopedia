@@ -1,9 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router';
+import { ref } from 'vue'
 import HomeView from './views/HomeView.vue';
 import Navbar from './views/Navbar.vue';
 import { useCentralStore } from './stores';
 import { themeSettings } from './theme.js';
+import { useMediaQuery } from '@vueuse/core'
 
 // Store settings
 const store = useCentralStore();
@@ -12,11 +14,18 @@ const mode = store.mode;
 
 // Theme settings
 const themeProperties = themeSettings(mode);
-const neutralLight = themeProperties.pallete.neutral.light;
-const dark = themeProperties.pallete.neutral.dark;
-const primaryLight = themeProperties.pallete.primary.light;
-const background = themeProperties.pallete.background.default;
-const alt = themeProperties.pallete.background.alt;
+const neutralLight = ref(themeProperties.pallete.neutral.light);
+const dark = ref(themeProperties.pallete.neutral.dark);
+const primaryLight = ref(themeProperties.pallete.primary.light);
+const primary = ref(themeProperties.pallete.primary.main);
+const primaryDark = ref(themeProperties.pallete.primary.dark);
+const background = ref(themeProperties.pallete.background.default);
+const alt = ref(themeProperties.pallete.background.alt);
+
+// Media query to check screen size
+const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+
+
 
 // // User Info
 // const user = store.user;
@@ -32,6 +41,7 @@ const alt = themeProperties.pallete.background.alt;
 </template>
 
 <style>
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -40,7 +50,7 @@ nav {
 
 nav .logo {
   padding: 1rem 6%;
-  background-color: v-bind('background')
+  background: -v-bind(alt);
 }
 
 
@@ -48,11 +58,11 @@ nav .logo h2 {
   gap: 1.75rem;
   font-weight: bold;
   font-size: clamp(1rem, 2rem, 2.25rem);
-  color: #00A0BC;
+  color: v-bind(primary);
 }
 
 nav .logo h2:hover {
-  filter: brightness(105%)
+  filter: brightness(90%)
 }
 
 
