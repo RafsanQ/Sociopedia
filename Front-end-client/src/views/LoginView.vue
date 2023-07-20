@@ -1,9 +1,11 @@
 <script setup>
+import { StyledHeader } from "../components/testheader.js"
+
 </script>
 
 <template>
   <div>
-    <h1>This is the Login page</h1>
+    <StyledHeader>This is the Login page</StyledHeader>
   </div>
 </template>
 

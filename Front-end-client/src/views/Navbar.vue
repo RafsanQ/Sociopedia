@@ -3,6 +3,9 @@ import { useMediaQuery } from '@vueuse/core'
 import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+
+
 
 
 // Media query to check screen size
@@ -21,6 +24,9 @@ const primaryDark = ref(themeProperties.pallete.primary.dark);
 const background = ref(themeProperties.pallete.background.default);
 const alt = ref(themeProperties.pallete.background.alt);
 
+console.log(background);
+console.log(alt);
+
 
 const getThemeChangeIcon = () => {
   if(mode === 'light') {
@@ -33,6 +39,7 @@ const getThemeChangeIcon = () => {
 
 const changeTheme = () =>{
   store.setMode();
+  
 }
 
 </script>
@@ -45,22 +52,22 @@ const changeTheme = () =>{
         <RouterLink :to="{ name: 'login' }">Login</RouterLink>
         <RouterLink :to="{ name: 'profileView', params: { userId: '12345' } }">Profile View</RouterLink> -->
         
-        <div class="logo">
-          <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: 'home' }">
-            <h2>
-              Sociopedia
-            </h2>
-          </RouterLink>
-        </div>
-
-        <div v-show="isLargeScreen" class="searchbar">
-          <input placeholder="Search..."/>
-          <v-btn icon="fa:fas fa-search" variant="plain" />
-        </div>
-        
-        <div v-show="isLargeScreen" class="navigation">
-          <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" />
-        </div>
+          <div class="logo">
+            <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: 'home' }">
+              <h2>
+                Sociopedia
+              </h2>
+            </RouterLink>
+          </div>
+          <div v-show="isLargeScreen" class="searchbar">
+            <input placeholder="Search..."/>
+            <v-btn icon="fa:fas fa-search" variant="plain" />
+          </div>
+          
+          <div v-show="isLargeScreen" class="navigation">
+            <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" font-size="25px"/>
+          
+          </div>
       </nav>
       
   </header>
@@ -71,11 +78,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: -v-bind(alt);
 }
 
 nav .logo {
   padding: 1rem 6%;
-  background: -v-bind(alt);
 }
 
 
@@ -101,9 +108,12 @@ nav .searchbar input{
   outline: none;
 }
 
-nav .nagitaion {
+nav .navigation {
   gap: 2rem;
 }
 
+nav .navigation button{
+  font-size: 25px;
+}
 
 </style>
