@@ -1,9 +1,11 @@
 <script setup>
-import { useMediaQuery } from '@vueuse/core'
 import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
+import { ThemeProvider } from 'vue3-styled-components'
 import { ref } from 'vue'
-import { StylizedNav } from '../components/stylizedNav.js';
+import { useMediaQuery } from '@vueuse/core'
+
+import { StyledNav, StyledLogoDiv, StyledLogoText } from '../components/stylizedNav.js';
 
 
 
@@ -13,8 +15,8 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
 const store = useCentralStore();
 const mode = store.mode;
-// Theme settings
 
+// Theme settings
 const themeProperties = themeSettings(mode);
 const neutralLight = ref(themeProperties.pallete.neutral.light);
 const dark = ref(themeProperties.pallete.neutral.dark);
@@ -24,11 +26,7 @@ const primaryDark = ref(themeProperties.pallete.primary.dark);
 const background = ref(themeProperties.pallete.background.default);
 const alt = ref(themeProperties.pallete.background.alt);
 
-console.log(background);
-console.log(alt);
-{/* <span class="material-symbols-outlined">
-dark_mode
-</span> */}
+
 
 const getThemeChangeIcon = () => {
   if(mode === 'light') {
@@ -40,37 +38,46 @@ const getThemeChangeIcon = () => {
 }
 
 const changeTheme = () =>{
-  store.setMode();
-  
+  store.setMode(); 
 }
 
 </script>
 
 <template>
   <header>
-      <StylizedNav>
-        <!-- <RouterLink :to="{ name: 'home' }">Home</RouterLink>
-        <RouterLink :to="{ name: 'about' }">About</RouterLink>
-        <RouterLink :to="{ name: 'login' }">Login</RouterLink>
-        <RouterLink :to="{ name: 'profileView', params: { userId: '12345' } }">Profile View</RouterLink> -->
+      <ThemeProvider :theme="{
+        neutralLight: themeProperties.pallete.neutral.light,
+        dark: themeProperties.pallete.neutral.dark,
+        primaryLight: themeProperties.pallete.primary.light,
+        primary: themeProperties.pallete.primary.main,
+        primaryDark: themeProperties.pallete.primary.dark,
+        background: themeProperties.pallete.background.default,
+        alt: themeProperties.pallete.background.alt
+      }">
+        <StyledNav>
+          <!-- <RouterLink :to="{ name: 'home' }">Home</RouterLink>
+          <RouterLink :to="{ name: 'about' }">About</RouterLink>
+          <RouterLink :to="{ name: 'login' }">Login</RouterLink>
+          <RouterLink :to="{ name: 'profileView', params: { userId: '12345' } }">Profile View</RouterLink> -->
         
-          <div class="logo">
-            <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: 'home' }">
-              <h2>
-                Sociopedia
-              </h2>
-            </RouterLink>
-          </div>
-          <div v-show="isLargeScreen" class="searchbar">
-            <input placeholder="Search..."/>
-            <v-btn icon="md:search" variant="plain" />
-          </div>
-          
-          <div v-show="isLargeScreen" class="navigation">
-            <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" font-size="25px"/>
-          
-          </div>
-      </StylizedNav>
+            <StyledLogoDiv>
+              <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: 'home' }">
+                <StyledLogoText>
+                  Sociopedia
+                </StyledLogoText>
+              </RouterLink>
+            </StyledLogoDiv>
+            <div v-show="isLargeScreen" class="searchbar">
+              <input placeholder="Search..."/>
+              <v-btn icon="md:search" variant="plain" />
+            </div>
+        
+            <div v-show="isLargeScreen" class="navigation">
+              <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" font-size="25px"/>
+        
+            </div>
+        </StyledNav>
+      </ThemeProvider>
       
   </header>
 </template>
@@ -82,7 +89,7 @@ const changeTheme = () =>{
   align-items: center;
   background: -v-bind(alt);
 } */
-
+/* 
 nav .logo {
   padding: 1rem 6%;
 }
@@ -116,6 +123,6 @@ nav .navigation {
 
 nav .navigation button{
   font-size: 25px;
-}
+} */
 
 </style>
