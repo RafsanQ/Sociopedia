@@ -3,7 +3,7 @@ import { useMediaQuery } from '@vueuse/core'
 import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
 import { ref } from 'vue'
-import { storeToRefs } from 'pinia'
+import { StylizedNav } from '../components/stylizedNav.js';
 
 
 
@@ -26,14 +26,16 @@ const alt = ref(themeProperties.pallete.background.alt);
 
 console.log(background);
 console.log(alt);
-
+{/* <span class="material-symbols-outlined">
+dark_mode
+</span> */}
 
 const getThemeChangeIcon = () => {
   if(mode === 'light') {
-    return 'fa:fas fa-moon'
+    return 'md: dark_mode'
   }
   else{
-    return 'fa:fas fa-sun'
+    return 'md: light_mode'
   }
 }
 
@@ -46,7 +48,7 @@ const changeTheme = () =>{
 
 <template>
   <header>
-      <nav>
+      <StylizedNav>
         <!-- <RouterLink :to="{ name: 'home' }">Home</RouterLink>
         <RouterLink :to="{ name: 'about' }">About</RouterLink>
         <RouterLink :to="{ name: 'login' }">Login</RouterLink>
@@ -61,25 +63,25 @@ const changeTheme = () =>{
           </div>
           <div v-show="isLargeScreen" class="searchbar">
             <input placeholder="Search..."/>
-            <v-btn icon="fa:fas fa-search" variant="plain" />
+            <v-btn icon="md:search" variant="plain" />
           </div>
           
           <div v-show="isLargeScreen" class="navigation">
             <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" font-size="25px"/>
           
           </div>
-      </nav>
+      </StylizedNav>
       
   </header>
 </template>
 
 <style scoped>
-nav {
+/* nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: -v-bind(alt);
-}
+} */
 
 nav .logo {
   padding: 1rem 6%;
