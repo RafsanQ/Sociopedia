@@ -41,6 +41,8 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 </template>
 
 <style>
-
+input{
+  outline: none;
+}
 
 </style>

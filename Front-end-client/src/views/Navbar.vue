@@ -5,7 +5,13 @@ import { ThemeProvider } from 'vue3-styled-components'
 import { ref } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 
-import { StyledNav, StyledLogoDiv, StyledLogoText } from '../components/stylizedNav.js';
+import { 
+  StyledNav,
+  StyledLogoDiv,
+  StyledLogoText,
+  SearchBarDiv,
+  RightPanel
+} from '../components/stylizedNav.js';
 
 
 
@@ -67,15 +73,15 @@ const changeTheme = () =>{
                 </StyledLogoText>
               </RouterLink>
             </StyledLogoDiv>
-            <div v-show="isLargeScreen" class="searchbar">
+            <SearchBarDiv v-show="isLargeScreen">
               <input placeholder="Search..."/>
-              <v-btn icon="md:search" variant="plain" />
-            </div>
+              <v-btn icon="md:search" variant="plain" color="" />
+            </SearchBarDiv>
         
-            <div v-show="isLargeScreen" class="navigation">
+            <RightPanel v-show="isLargeScreen">
               <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" font-size="25px"/>
         
-            </div>
+            </RightPanel>
         </StyledNav>
       </ThemeProvider>
       

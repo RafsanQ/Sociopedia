@@ -6,7 +6,7 @@ export const StyledNav = styled("nav")`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: -v-bind(alt);
+    background: ${props => props.theme.alt};
 `;
 
 export const StyledLogoDiv = styled("div")`
@@ -25,5 +25,14 @@ export const StyledLogoText = styled("h2")`
 `;
 
 export const SearchBarDiv = styled("div")`
-
+    background: ${props => props.theme.neutralLight};
+    border-radius: 9px;
+    gap: 3rem;
+    padding: 0.1rem 1.5rem;
 `;
+
+export const RightPanel = styled("div")`
+    gap: 2rem;
+`;
+
+
