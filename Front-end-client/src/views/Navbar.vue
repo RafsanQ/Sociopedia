@@ -2,6 +2,7 @@
 import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
 import { ThemeProvider } from 'vue3-styled-components'
+import ProfileMenu from '../components/profileMenu.vue'
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue';
 
@@ -83,7 +84,9 @@ const changeTheme = () =>{
         
             <RightPanel v-show="isLargeScreen">
               <v-btn  icon="md: dark_mode" variant="plain" @click="changeTheme()" font-size="25px"/>
-        
+              <v-btn icon="md: chat" variant="plain"></v-btn>
+              <v-btn icon="md: notifications" variant="plain"></v-btn>
+              <ProfileMenu></ProfileMenu>
             </RightPanel>
         </StyledNav>
       </ThemeProvider>
@@ -92,46 +95,5 @@ const changeTheme = () =>{
 </template>
 
 <style scoped>
-/* nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: -v-bind(alt);
-} */
-/* 
-nav .logo {
-  padding: 1rem 6%;
-}
-
-
-nav .logo h2 {
-  gap: 1.75rem;
-  font-weight: bold;
-  font-size: clamp(1rem, 2rem, 2.25rem);
-  color: v-bind(primary);
-}
-
-nav .logo h2:hover {
-  filter: brightness(90%)
-}
-
-nav .searchbar {
-  background: v-bind(neutralLight);
-  border-radius: 9px;
-  gap: 3rem;
-  padding: 0.1rem 1.5rem;
-}
-
-nav .searchbar input{
-  outline: none;
-}
-
-nav .navigation {
-  gap: 2rem;
-}
-
-nav .navigation button{
-  font-size: 25px;
-} */
 
 </style>
