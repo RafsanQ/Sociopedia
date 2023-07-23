@@ -67,7 +67,10 @@ export default {
 <style scoped>
 .text-center{
     display: inline;
-    padding-right: 20px;
+    padding-left: 5px;
+    padding-right: 25px;
+    cursor: pointer;
+
 }
 
 </style>
