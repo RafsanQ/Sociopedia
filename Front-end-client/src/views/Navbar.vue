@@ -2,8 +2,8 @@
 import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
 import { ThemeProvider } from 'vue3-styled-components'
-import { ref } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
+import { ref } from 'vue';
 
 import { 
   StyledNav,
@@ -13,24 +13,23 @@ import {
   RightPanel
 } from '../components/stylizedNav.js';
 
-
-
-
 // Media query to check screen size
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
 const store = useCentralStore();
-const mode = store.mode;
+
 
 // Theme settings
-const themeProperties = themeSettings(mode);
-const neutralLight = ref(themeProperties.pallete.neutral.light);
-const dark = ref(themeProperties.pallete.neutral.dark);
-const primaryLight = ref(themeProperties.pallete.primary.light);
-const primary = ref(themeProperties.pallete.primary.main);
-const primaryDark = ref(themeProperties.pallete.primary.dark);
-const background = ref(themeProperties.pallete.background.default);
-const alt = ref(themeProperties.pallete.background.alt);
+const themeProperties = ref(themeSettings(store.mode));
+
+
+const neutralLight = ref(themeProperties.value.pallete.neutral.light);
+const dark = ref(themeProperties.value.pallete.neutral.dark);
+const primaryLight = ref(themeProperties.value.pallete.primary.light);
+const primary = ref(themeProperties.value.pallete.primary.main);
+const primaryDark = ref(themeProperties.value.pallete.primary.dark);
+const background = ref(themeProperties.value.pallete.background.default);
+const alt = ref(themeProperties.value.pallete.background.alt);
 
 
 
@@ -44,7 +43,9 @@ const getThemeChangeIcon = () => {
 }
 
 const changeTheme = () =>{
-  store.setMode(); 
+  console.log(store.mode);
+  store.setMode();
+  console.log(store.mode)
 }
 
 </script>
@@ -52,13 +53,13 @@ const changeTheme = () =>{
 <template>
   <header>
       <ThemeProvider :theme="{
-        neutralLight: themeProperties.pallete.neutral.light,
-        dark: themeProperties.pallete.neutral.dark,
-        primaryLight: themeProperties.pallete.primary.light,
-        primary: themeProperties.pallete.primary.main,
-        primaryDark: themeProperties.pallete.primary.dark,
-        background: themeProperties.pallete.background.default,
-        alt: themeProperties.pallete.background.alt
+        neutralLight: neutralLight,
+        dark: dark,
+        primaryLight: primaryLight,
+        primary: primary,
+        primaryDark: primaryDark,
+        background: background,
+        alt: alt
       }">
         <StyledNav>
           <!-- <RouterLink :to="{ name: 'home' }">Home</RouterLink>
@@ -77,9 +78,11 @@ const changeTheme = () =>{
               <input placeholder="Search..."/>
               <v-btn icon="md:search" variant="plain" color="" />
             </SearchBarDiv>
+
+            
         
             <RightPanel v-show="isLargeScreen">
-              <v-btn  :icon="getThemeChangeIcon()" variant="plain" @click="changeTheme()" font-size="25px"/>
+              <v-btn  icon="md: dark_mode" variant="plain" @click="changeTheme()" font-size="25px"/>
         
             </RightPanel>
         </StyledNav>
