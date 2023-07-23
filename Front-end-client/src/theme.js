@@ -51,7 +51,8 @@ export const themeSettings = (mode) => {
                 background:{
                     default: colorTokens.grey[900],
                     alt: colorTokens.grey[800]
-            }
+                },
+                fontColor: 'white'
         } : {
             // Light Theme settings
             primary: {
@@ -69,7 +70,9 @@ export const themeSettings = (mode) => {
             background:{
                 default: colorTokens.grey[10],
                 alt: colorTokens.grey[0]
-            }}
+            },
+            fontColor: 'black'
+        }
         },
         typography: {
             fontFamily: ["Rubik", "sans-serif"].join(","),

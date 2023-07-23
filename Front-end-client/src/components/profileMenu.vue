@@ -1,20 +1,49 @@
+<script setup>
+import { RouterLink } from 'vue-router';
+import { useCentralStore } from '../stores';
+import { ref } from 'vue';
+import { themeSettings } from '../theme.js';
+
+
+
+const store = useCentralStore();
+
+const themeProperties = ref(themeSettings(store.mode));
+
+
+let neutralLight = themeProperties.value.pallete.neutral.light;
+let dark = themeProperties.value.pallete.neutral.dark;
+let primaryLight = themeProperties.value.pallete.primary.light;
+let primary = themeProperties.value.pallete.primary.main;
+let primaryDark = themeProperties.value.pallete.primary.dark;
+let background = themeProperties.value.pallete.background.default;
+let alt = themeProperties.value.pallete.background.alt;
+
+let fontColor = themeProperties.value.pallete.fontColor;
+
+</script>
+
+
 <template>
     <div class="text-center">
       <v-menu open-on-hover>
         <template v-slot:activator="{ props }">
           <v-btn
             icon="md: account_circle"
-            variant="plain"
+            :color="fontColor" 
+            variant="tonal"
             v-bind="props"
           >
             
           </v-btn>
         </template>
   
-        <v-list>
+        <v-list v-bind:style="{ 'background-color': neutralLight }">
           <v-list-item v-for="(item, index) in items" :key="index">
-            <v-icon style="display: inline;">{{ item.icon }}</v-icon>
-            <v-list-item-title style="display: inline;"><span>{{ item.title }}</span></v-list-item-title>
+            <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: item.routeName, params: item.routeParams }">
+              <v-icon :color="fontColor" style="display: inline; margin-right: 5px;">{{ item.icon }}</v-icon>
+              <v-list-item-title v-bind:style="{display: 'inline', color: fontColor}">{{ item.title }}</v-list-item-title>
+            </RouterLink>
             
           </v-list-item>
         </v-list>
@@ -26,10 +55,10 @@
 export default {
     data: () => ({
     items: [
-        { title: 'View Profile', routeName: 'profileView/', icon: 'md: person'},
-        { title: 'Change Theme', routeName: 'profileView/', icon: 'md: display_settings' },
-        { title: 'Account Settings', routeName: 'profileView/', icon: 'md: settings' },
-        { title: 'Log out', routeName: 'logout/', icon: 'md: logout' },
+        { title: 'View Profile', routeName: 'profileView', routeParams: {userId: '12345'}, icon: 'md: person'},
+        { title: 'Change Theme', routeName: 'home', routeParams: {}, icon: 'md: display_settings' },
+        { title: 'Account Settings', routeName: 'home', routeParams: {}, icon: 'md: settings' },
+        { title: 'Log out', routeName: 'home', routeParams: {}, icon: 'md: logout' },
     ],
     }),
 }
@@ -39,5 +68,6 @@ export default {
 .text-center{
     display: inline;
 }
+
 </style>
 

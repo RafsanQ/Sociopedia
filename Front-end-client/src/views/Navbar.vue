@@ -24,30 +24,32 @@ const store = useCentralStore();
 const themeProperties = ref(themeSettings(store.mode));
 
 
-const neutralLight = ref(themeProperties.value.pallete.neutral.light);
-const dark = ref(themeProperties.value.pallete.neutral.dark);
-const primaryLight = ref(themeProperties.value.pallete.primary.light);
-const primary = ref(themeProperties.value.pallete.primary.main);
-const primaryDark = ref(themeProperties.value.pallete.primary.dark);
-const background = ref(themeProperties.value.pallete.background.default);
-const alt = ref(themeProperties.value.pallete.background.alt);
+let neutralLight = themeProperties.value.pallete.neutral.light;
+let dark = themeProperties.value.pallete.neutral.dark;
+let primaryLight = themeProperties.value.pallete.primary.light;
+let primary = themeProperties.value.pallete.primary.main;
+let primaryDark = themeProperties.value.pallete.primary.dark;
+let background = themeProperties.value.pallete.background.default;
+let alt = themeProperties.value.pallete.background.alt;
 
+let fontColor = themeProperties.value.pallete.fontColor;
 
 
 const getThemeChangeIcon = () => {
-  if(mode === 'light') {
-    return 'md: dark_mode'
+  if(store.mode === 'light') {
+    return 'md: dark_mode';
   }
   else{
-    return 'md: light_mode'
+    return 'md: light_mode';
   }
 }
 
 const changeTheme = () =>{
   console.log(store.mode);
   store.setMode();
-  console.log(store.mode)
+  console.log(store.mode);
 }
+
 
 </script>
 
@@ -83,9 +85,9 @@ const changeTheme = () =>{
             
         
             <RightPanel v-show="isLargeScreen">
-              <v-btn  icon="md: dark_mode" variant="plain" @click="changeTheme()" font-size="25px"/>
-              <v-btn icon="md: chat" variant="plain"></v-btn>
-              <v-btn icon="md: notifications" variant="plain"></v-btn>
+              <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn>
+              <v-btn icon="md: chat" :color="fontColor" variant="plain"></v-btn>
+              <v-btn icon="md: notifications" :color="fontColor" variant="plain"></v-btn>
               <ProfileMenu></ProfileMenu>
             </RightPanel>
         </StyledNav>
