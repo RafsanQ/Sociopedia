@@ -28,14 +28,14 @@ let fontColor = themeProperties.value.pallete.fontColor;
     <div class="text-center">
       <v-menu open-on-hover>
         <template v-slot:activator="{ props }">
-          <v-btn
+          <v-icon
             icon="md: account_circle"
             :color="fontColor" 
             variant="tonal"
             v-bind="props"
           >
             
-          </v-btn>
+          </v-icon>
         </template>
   
         <v-list v-bind:style="{ 'background-color': neutralLight }">
@@ -67,6 +67,7 @@ export default {
 <style scoped>
 .text-center{
     display: inline;
+    padding-right: 20px;
 }
 
 </style>
