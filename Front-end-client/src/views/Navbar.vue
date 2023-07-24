@@ -2,7 +2,7 @@
 import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
 import { ThemeProvider } from 'vue3-styled-components'
-import ProfileMenu from '../components/profileMenu.vue'
+import NavDrawerMobile from '../components/navDrawerMobile.vue'
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue';
 
@@ -11,7 +11,7 @@ import {
   StyledLogoDiv,
   StyledLogoText,
   SearchBarDiv,
-  RightPanel
+  RightPanel,
 } from '../components/stylizedNav.js';
 
 // Media query to check screen size
@@ -90,6 +90,9 @@ const changeTheme = () =>{
               <v-btn icon="md: notifications" :color="fontColor" variant="plain"></v-btn>
               <ProfileMenu></ProfileMenu>
             </RightPanel>
+
+            <NavDrawerMobile v-show="!isLargeScreen" />
+
         </StyledNav>
       </ThemeProvider>
       
