@@ -35,6 +35,7 @@ let drawerVisible = ref(false);
         <div
             v-show="drawerVisible"
             class="right-drawer"
+            
         >
             <v-list-item v-for="(item, index) in items" :key="index">
                 <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: item.routeName, params: item.routeParams }">

@@ -36,7 +36,7 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 </script>
 
 <template>
-  <Navbar />
+  <Navbar :render-searchbar="false"/>
   <RouterView />
 </template>
 

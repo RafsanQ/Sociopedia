@@ -3,6 +3,7 @@ import { useCentralStore } from '../stores';
 import { themeSettings } from '../theme.js';
 import { ThemeProvider } from 'vue3-styled-components'
 import NavDrawerMobile from '../components/navDrawerMobile.vue'
+import ProfileMenu from '../components/profileMenu.vue';
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue';
 
@@ -51,6 +52,13 @@ const changeTheme = () =>{
 }
 
 
+const props = defineProps({
+  renderSearchbar: {
+    type: Boolean,
+    default: true
+  }
+})
+
 </script>
 
 <template>
@@ -77,7 +85,7 @@ const changeTheme = () =>{
                 </StyledLogoText>
               </RouterLink>
             </StyledLogoDiv>
-            <SearchBarDiv v-show="isLargeScreen">
+            <SearchBarDiv v-if="renderSearchbar" v-show="isLargeScreen" >
               <input placeholder="Search..."/>
               <v-btn icon="md:search" variant="plain" color="" />
             </SearchBarDiv>

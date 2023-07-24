@@ -21,6 +21,8 @@ let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
+
+
 </script>
 
 
@@ -30,8 +32,8 @@ let fontColor = themeProperties.value.pallete.fontColor;
         <template v-slot:activator="{ props }">
           <v-icon
             icon="md: account_circle"
-            :color="fontColor" 
-            variant="tonal"
+            :color="fontColor"  
+            darken
             v-bind="props"
           >
             
