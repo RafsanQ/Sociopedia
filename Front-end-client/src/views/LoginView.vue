@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import { StyledHeader } from "../components/testheader.js"
+
+
+import Navbar from "./Navbar.vue";
+
 
 
 
@@ -8,8 +11,9 @@ import { StyledHeader } from "../components/testheader.js"
 
 <template>
   <div>
-    <!-- <StyledHeader>This is the Login page</StyledHeader> -->
+    <Navbar :render-searchbar="false"/>
 
+    <h2>This is the Login Page</h2>
   </div>
 </template>
 
