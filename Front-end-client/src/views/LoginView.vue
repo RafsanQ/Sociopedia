@@ -8,8 +8,9 @@ import { useCentralStore } from '../stores';
 
 
 import Navbar from '../components/Navbar/Navbar.vue';
-import LoginForm from '../components/Forms/LoginForm.vue';
 import RegisterForm from "../components/Forms/RegisterForm.vue";
+import LoginForm from "../components/Forms/LoginForm.vue";
+
 import {
   Background
 } from '../components/stylizedComponents.js';

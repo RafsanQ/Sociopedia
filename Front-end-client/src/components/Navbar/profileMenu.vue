@@ -64,7 +64,7 @@ export default {
     data: () => ({
     items: [
         { title: 'View Profile', routeName: 'profileView', routeParams: {userId: '12345'}, icon: 'md: person'},
-        { title: 'Change Theme', routeName: 'home', routeParams: {}, icon: 'md: display_settings' },
+        { title: 'Change Theme', routeName: 'themeChanger', routeParams: {}, icon: 'md: display_settings' },
         { title: 'Account Settings', routeName: 'home', routeParams: {}, icon: 'md: settings' },
         { title: 'Log out', routeName: 'home', routeParams: {}, icon: 'md: logout' },
     ],

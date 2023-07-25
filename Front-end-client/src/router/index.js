@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutViewVue from '../views/AboutView.vue'
 import LoginView from '../views/LoginView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import ThemeChangerView from '../views/ThemeChangerView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       path: '/profileView/:userId',
       name: 'profileView',
       component: ProfileView
+    },
+    {
+      path: '/themechanger/',
+      name: 'themeChanger',
+      component: ThemeChangerView
     }
   ]
 })

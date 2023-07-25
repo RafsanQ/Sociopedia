@@ -15,7 +15,7 @@ import {
 </script>
 
 <template>
-    <h3>login Form</h3>
+    <h3>Login Form</h3>
 </template>
 
 
