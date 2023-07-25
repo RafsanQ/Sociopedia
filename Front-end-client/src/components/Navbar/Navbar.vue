@@ -90,9 +90,11 @@ const props = defineProps({
         
             <RightPanel v-if="!isLoginPage" v-show="isLargeScreen">
               <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn>
-              <v-btn icon="md: chat" :color="fontColor" variant="plain"></v-btn>
-              <v-btn icon="md: notifications" :color="fontColor" variant="plain"></v-btn>
-              <v-btn icon="md: info" :color="fontColor" variant="plain"></v-btn>
+              <v-btn icon="md: chat" :color="fontColor" variant="plain" />
+              <v-btn icon="md: notifications" :color="fontColor" variant="plain" />
+              <RouterLink :to="{ name: 'about' }">
+                <v-btn icon="md: info" :color="fontColor" variant="plain" />
+              </RouterLink>
               <ProfileMenu></ProfileMenu>
             </RightPanel>
 
