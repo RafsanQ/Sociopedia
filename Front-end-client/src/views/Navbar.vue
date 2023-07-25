@@ -18,6 +18,7 @@ import {
 // Media query to check screen size
 const isLargeScreen = useMediaQuery('(min-width: 800px)')
 
+// Store
 const store = useCentralStore();
 
 
