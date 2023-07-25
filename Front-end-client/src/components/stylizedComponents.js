@@ -13,3 +13,4 @@ export const Background = styled('div')`
     borderRadius: 1.5rem;
     background-color: ${props => props.theme.background};
 `;
+
