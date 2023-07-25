@@ -1,13 +1,18 @@
 <script setup>
 import { ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
+
 import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../theme.js';
 import { useCentralStore } from '../stores';
 
 
 import Navbar from '../components/Navbar/Navbar.vue';
-
+import LoginForm from '../components/Forms/LoginForm.vue';
+import RegisterForm from "../components/Forms/RegisterForm.vue";
+import {
+  Background
+} from '../components/stylizedComponents.js';
 
 
 
@@ -24,7 +29,7 @@ const themeProperties = ref(themeSettings(store.mode));
 
 
 let neutralLight = themeProperties.value.pallete.neutral.light;
-let dark = themeProperties.value.pallete.neutral.dark;
+let neutralDark = themeProperties.value.pallete.neutral.da;
 let primaryLight = themeProperties.value.pallete.primary.light;
 let primary = themeProperties.value.pallete.primary.main;
 let primaryDark = themeProperties.value.pallete.primary.dark;
@@ -32,6 +37,8 @@ let background = themeProperties.value.pallete.background.default;
 let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
+
+
 
 
 
@@ -43,7 +50,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
     <ThemeProvider :theme="{
         neutralLight: neutralLight,
-        dark: dark,
+        neutralDark: neutralDark,
         primaryLight: primaryLight,
         primary: primary,
         primaryDark: primaryDark,
@@ -51,10 +58,9 @@ let fontColor = themeProperties.value.pallete.fontColor;
         alt: alt,
         fontColor: fontColor
     }">
-      <Card>
+      <Background>
         
-      </Card>
-
+      </Background>
 
     </ThemeProvider>
 
