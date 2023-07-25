@@ -11,7 +11,7 @@ import Navbar from "./Navbar.vue";
 
 <template>
   <div>
-    <Navbar :render-searchbar="false"/>
+    <Navbar :isLoginPage="true"/>
 
     <h2>This is the Login Page</h2>
   </div>

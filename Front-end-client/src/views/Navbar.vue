@@ -16,7 +16,7 @@ import {
 } from '../components/stylizedNav.js';
 
 // Media query to check screen size
-const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+const isLargeScreen = useMediaQuery('(min-width: 800px)')
 
 const store = useCentralStore();
 
@@ -53,9 +53,9 @@ const changeTheme = () =>{
 
 
 const props = defineProps({
-  renderSearchbar: {
+  isLoginPage: {
     type: Boolean,
-    default: true
+    default: false
   }
 })
 
@@ -73,11 +73,6 @@ const props = defineProps({
         alt: alt
       }">
         <StyledNav>
-          <!-- <RouterLink :to="{ name: 'home' }">Home</RouterLink>
-          <RouterLink :to="{ name: 'about' }">About</RouterLink>
-          <RouterLink :to="{ name: 'login' }">Login</RouterLink>
-          <RouterLink :to="{ name: 'profileView', params: { userId: '12345' } }">Profile View</RouterLink> -->
-        
             <StyledLogoDiv>
               <RouterLink style="text-decoration: none; color: inherit;" :to="{ name: 'home' }">
                 <StyledLogoText>
@@ -85,17 +80,18 @@ const props = defineProps({
                 </StyledLogoText>
               </RouterLink>
             </StyledLogoDiv>
-            <SearchBarDiv v-if="renderSearchbar" v-show="isLargeScreen" >
+            <SearchBarDiv v-if="!isLoginPage" v-show="isLargeScreen" >
               <input placeholder="Search..."/>
               <v-btn icon="md:search" variant="plain" color="" />
             </SearchBarDiv>
 
             
         
-            <RightPanel v-show="isLargeScreen">
+            <RightPanel v-if="!isLoginPage" v-show="isLargeScreen">
               <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn>
               <v-btn icon="md: chat" :color="fontColor" variant="plain"></v-btn>
               <v-btn icon="md: notifications" :color="fontColor" variant="plain"></v-btn>
+              <v-btn icon="md: info" :color="fontColor" variant="plain"></v-btn>
               <ProfileMenu></ProfileMenu>
             </RightPanel>
 

@@ -30,14 +30,20 @@ let fontColor = themeProperties.value.pallete.fontColor;
     <div class="text-center">
       <v-menu open-on-hover>
         <template v-slot:activator="{ props }">
-          <v-icon
-            icon="md: account_circle"
-            :color="fontColor"  
-            darken
+          <v-btn
+          prepend-icon="md: account_circle"
+            :color="alt"  
+            elevation="0" 
+            varient="plain"
+            density="compact"
+            size="x-large"
             v-bind="props"
           >
-            
-          </v-icon>
+            <template v-slot:prepend>
+              <v-icon :color="fontColor"></v-icon>
+            </template>
+            {{ store.user }}
+          </v-btn>
         </template>
   
         <v-list v-bind:style="{ 'background-color': neutralLight }">
