@@ -12,5 +12,6 @@ export const Background = styled('div')`
     margin: auto;
     borderRadius: 1.5rem;
     background-color: ${props => props.theme.background};
+    align-items: center;
 `;
 

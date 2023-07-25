@@ -1,15 +1,28 @@
-// import styled from "vue3-styled-components";
-// import { useMediaQuery } from "@vueuse/core";
+import styled from "vue3-styled-components";
+import { useMediaQuery } from "@vueuse/core";
 
 
-// const isLargeScreen = useMediaQuery('(min-width: 800px)')
+const isLargeScreen = useMediaQuery('(min-width: 800px)')
 
 
-// export const Card = styled('div')`
-//     width: 100%;
-//     height: 100%;
-//     padding: 2rem;
-//     margin: auto;
-//     borderRadius: 1.5rem;
-//     background-color: ${props => props.theme.alt};
-// `;
+export const CenteredForm = styled('form')`
+    width: 40%;
+    background-color: ${props => props.theme.alt}
+    padding: 50px;
+    border-radius: 10px;
+    margin: auto;
+    align-items: center;
+`;
+
+export const StyledInput = styled('input')`
+    display: block;
+    border: 1px dotted ${props => props.theme.fontColor};
+    border-radius: 2px;
+    padding: 0.5rem;
+    margin: 2rem auto;
+    color: ${props => props.theme.fontColor};
+    width: clamp(80%, 70%, 50%);
+    &:focus {
+        border: 1px solid ${props => props.theme.fontColor};
+    }
+`;
