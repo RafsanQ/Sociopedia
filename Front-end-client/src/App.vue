@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router';
 import { ref } from 'vue'
 import HomeView from './views/HomeView.vue';
-import Navbar from './views/Navbar.vue';
+import Navbar from './components/Navbar/Navbar.vue';
 import { useCentralStore } from './stores';
 import { themeSettings } from './theme.js';
 import { useMediaQuery } from '@vueuse/core'

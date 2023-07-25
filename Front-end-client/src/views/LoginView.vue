@@ -6,10 +6,8 @@ import { themeSettings } from '../theme.js';
 import { useCentralStore } from '../stores';
 
 
-import Navbar from "./Navbar.vue";
-import { 
-  Card
-} from "../components/stylizedFormComponents.js";
+import Navbar from '../components/Navbar/Navbar.vue';
+
 
 
 

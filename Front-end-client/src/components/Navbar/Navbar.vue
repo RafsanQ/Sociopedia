@@ -1,9 +1,9 @@
 <script setup>
-import { useCentralStore } from '../stores';
-import { themeSettings } from '../theme.js';
+import { useCentralStore } from '../../stores';
+import { themeSettings } from '../../theme.js';
 import { ThemeProvider } from 'vue3-styled-components'
-import NavDrawerMobile from '../components/navDrawerMobile.vue'
-import ProfileMenu from '../components/profileMenu.vue';
+import NavDrawerMobile from './navDrawerMobile.vue'
+import ProfileMenu from './profileMenu.vue';
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue';
 
@@ -13,7 +13,7 @@ import {
   StyledLogoText,
   SearchBarDiv,
   RightPanel,
-} from '../components/stylizedNav.js';
+} from './stylizedNavComponents.js';
 
 // Media query to check screen size
 const isLargeScreen = useMediaQuery('(min-width: 800px)')

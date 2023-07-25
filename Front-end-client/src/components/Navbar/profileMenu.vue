@@ -1,8 +1,8 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import { useCentralStore } from '../stores';
+import { useCentralStore } from '../../stores';
+import { themeSettings } from '../../theme.js';
 import { ref } from 'vue';
-import { themeSettings } from '../theme.js';
 
 
 
