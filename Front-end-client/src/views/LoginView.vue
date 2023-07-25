@@ -38,9 +38,8 @@ let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
-
-
-
+// Toggle to show the login or register forms
+const showLoginForm = ref(true);
 
 </script>
 
@@ -59,7 +58,15 @@ let fontColor = themeProperties.value.pallete.fontColor;
         fontColor: fontColor
     }">
       <Background>
-        
+        <LoginForm v-show="showLoginForm">
+          
+        </LoginForm>
+
+        <RegisterForm v-show="!showLoginForm">
+
+        </RegisterForm>
+
+        <p @click="showLoginForm = !showLoginForm">Create an account</p>
       </Background>
 
     </ThemeProvider>
