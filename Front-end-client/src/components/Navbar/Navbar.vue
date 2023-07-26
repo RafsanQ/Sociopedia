@@ -38,20 +38,10 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
-const getThemeChangeIcon = () => {
-  if(store.mode === 'light') {
-    return 'md: dark_mode';
-  }
-  else{
-    return 'md: light_mode';
-  }
-}
+// User Info
+const user = store.user;
+const fullName = `${user.firstName} ${user.lastName}`;
 
-const changeTheme = () =>{
-  console.log(store.mode);
-  store.setMode();
-  console.log(store.mode);
-}
 
 
 const props = defineProps({
@@ -101,7 +91,14 @@ const props = defineProps({
               <ProfileMenu></ProfileMenu>
             </RightPanel>
 
-            <NavDrawerMobile v-show="!isLargeScreen" />
+            <RightPanel v-if="isLoginPage" class="themeChangerButton">
+              <RouterLink style="text-decoration: none; color: inherit;" to="/themechanger">
+                <v-btn variant="plain" prepend-icon="md: display_settings" :color="fontColor">Theme</v-btn>
+              </RouterLink>
+              <br/>
+            </RightPanel>
+
+            <NavDrawerMobile v-if="!isLoginPage" v-show="!isLargeScreen" />
 
         </StyledNav>
       </ThemeProvider>
@@ -110,5 +107,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-
+.themeChangerButton{
+  margin-right: 5%;
+}
 </style>

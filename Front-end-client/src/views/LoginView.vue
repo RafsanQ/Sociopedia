@@ -40,7 +40,7 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 // Toggle to show the login or register forms
-const showLoginForm = ref(false);
+const showLoginForm = ref(true);
 
 // This function will be sent as a prop to the forms to be called when changing the form.
 const changeForm = () => {
