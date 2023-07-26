@@ -27,6 +27,10 @@ export const StyledInput = styled('input')`
     &:focus {
         border: 1px solid ${props => props.theme.fontColor};
     }
+
+    &::file-selector-button {
+        color: black;
+    }
 `;
 
 export const StyledSmallInput= styled('input')`
