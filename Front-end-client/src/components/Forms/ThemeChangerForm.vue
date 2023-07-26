@@ -81,7 +81,7 @@ async function handleThemeChange(){
             v-model="mode"
             hide-details
             inset
-            :label="mode"
+            :label="mode.charAt(0).toUpperCase() + mode.slice(1)"
             false-value="light"
             true-value="dark"
             @change="handleThemeChange"
@@ -92,7 +92,7 @@ async function handleThemeChange(){
             v-model="mode"
             hide-details
             inset
-            :label="mode"
+            :label="mode.charAt(0).toUpperCase() + mode.slice(1)"
             false-value="light"
             true-value="dark"
             :loading="primary"
