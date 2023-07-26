@@ -33,14 +33,15 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 // Theme Loading Stuff
-let isLoading = false;
+let isLoading = ref(false);
 
 
-let model = ref(store.mode);
+let isOnRight = ref(store.mode);
 
-function handleThemeChange(){
-    store.setMode;
+async function handleThemeChange(){
+    isLoading.value = true;
 
+    store.setMode();
 } 
 
 
@@ -60,18 +61,28 @@ function handleThemeChange(){
     <CenteredForm class="body">
         <StyledText> We have two defined themes for this website. </StyledText>
 
-        <!-- <v-switch
-          loading="warning"
-          :model-value="true"
-          label="Dark"
-        ></v-switch> -->
-
-        <v-switch
-            v-model="model"
-            
+        <!-- Regular Switch -->
+        <v-switch v-show="!isLoading"
+            v-model="isOnRight"
+            hide-details
             inset
-            :label="`${model.toString()}`"
-        ></v-switch>
+            :label="`Current Theme: ${isOnRight.toString().toUpperCase()}`"
+            false-value="light"
+            true-value="dark"
+            @change="handleThemeChange"
+        />
+
+        <!-- Switch to show that it is loading -->
+        <v-switch v-show="isLoading"
+            v-model="isOnRight"
+            hide-details
+            inset
+            :label="`Current Theme: ${isOnRight.toString().toUpperCase()}`"
+            false-value="light"
+            true-value="dark"
+            :loading="primaryDark"
+            @change="handleThemeChange"
+        />
       
     </CenteredForm>
   </ThemeProvider>
