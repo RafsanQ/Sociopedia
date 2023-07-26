@@ -93,7 +93,7 @@ const props = defineProps({
 
             <RightPanel v-if="isLoginPage" class="themeChangerButton">
               <RouterLink style="text-decoration: none; color: inherit;" to="/themechanger">
-                <v-btn variant="plain" prepend-icon="md: display_settings" :color="fontColor">Theme</v-btn>
+                <v-btn variant="plain" icon="md: display_settings" :color="fontColor">Theme</v-btn>
               </RouterLink>
               <br/>
             </RightPanel>
