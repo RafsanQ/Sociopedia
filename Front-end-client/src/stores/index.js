@@ -19,7 +19,6 @@ export const useCentralStore = defineStore('centralStore', () => {
     const setMode = () => {
         
         if(mode.value === 'light'){
-            console.log("running");
             mode.value = 'dark';
         }
         else{

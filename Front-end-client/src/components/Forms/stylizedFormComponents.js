@@ -6,13 +6,14 @@ const isLargeScreen = useMediaQuery('(min-width: 800px)')
 
 
 export const CenteredForm = styled('form')`
-    width: 40%;
+    width: clamp(70%, 70%, 40%);
     background-color: ${props => props.theme.alt}
     padding: 50px;
     border-radius: 10px;
-    margin: 15% auto;
+    margin: 2% auto;
     align-items: center;
     text-align: center;
+    justify-content: center;
     color: ${props => props.theme.fontColor};
 `;
 

@@ -43,20 +43,20 @@ let isLoading = ref(false);
 
 
 
-let isOnRight = ref(store.mode);
+let mode = ref(store.mode);
 
 async function handleThemeChange(){
-    isLoading.value = true;
+  const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    const delay = ms => new Promise(res => setTimeout(res, ms));
+  await delay(100);
 
-    await delay(1000);
+  isLoading.value = true;
 
-    store.setMode();
+  store.setMode();
 
-    await delay(1000);
+  await delay(1000);
 
-    router.go();
+  router.go();
 } 
 
 
@@ -73,26 +73,26 @@ async function handleThemeChange(){
         alt: alt,
         fontColor: fontColor
   }">
-    <CenteredForm class="body">
+    <CenteredForm>
         <StyledText> We have two defined themes for this website. </StyledText>
-
+        <br>
         <!-- Regular Switch -->
-        <v-switch v-show="!isLoading"
-            v-model="isOnRight"
+        <v-switch class="switch-center"  v-show="!isLoading"
+            v-model="mode"
             hide-details
             inset
-            :label="`Current Theme: ${isOnRight.toString().toUpperCase()}`"
+            :label="mode"
             false-value="light"
             true-value="dark"
             @change="handleThemeChange"
         />
 
         <!-- Switch to show that it is loading -->
-        <v-switch v-show="isLoading"
-            v-model="isOnRight"
+        <v-switch class="switch-center" v-show="isLoading"
+            v-model="mode"
             hide-details
             inset
-            :label="`Current Theme: ${isOnRight.toString().toUpperCase()}`"
+            :label="mode"
             false-value="light"
             true-value="dark"
             :loading="primary"
@@ -106,9 +106,8 @@ async function handleThemeChange(){
 
 
 <style scoped>
-.body{
-    max-width: 20%;
-    align-items: center;
-    text-align: center;
+.switch-center {
+  display: flex;
+  justify-content: center;
 }
 </style>
