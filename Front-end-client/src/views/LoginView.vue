@@ -68,7 +68,7 @@ const changeForm = () => {
           
         </SignInForm>
 
-        <RegisterForm v-show="!showLoginForm">
+        <RegisterForm v-show="!showLoginForm" :changeForm="changeForm">
 
         </RegisterForm>
 

@@ -6,16 +6,67 @@ import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
 
 
-import {
-  Background
-} from '../stylizedComponents.js';
 
+import {
+  CenteredForm,
+  StyledInput,
+  StyledSubmitButton,
+  StyledText,
+  StyledTextButton
+} from './stylizedFormComponents.js';
+
+const props = defineProps(['changeForm'])
+
+// Store
+const store = useCentralStore();
+
+// Theme settings
+const themeProperties = ref(themeSettings(store.mode));
+let neutralLight = themeProperties.value.pallete.neutral.light;
+let neutralDark = themeProperties.value.pallete.neutral.dark;
+let primaryLight = themeProperties.value.pallete.primary.light;
+let primary = themeProperties.value.pallete.primary.main;
+let primaryDark = themeProperties.value.pallete.primary.dark;
+let background = themeProperties.value.pallete.background.default;
+let alt = themeProperties.value.pallete.background.alt;
+
+let fontColor = themeProperties.value.pallete.fontColor;
+
+
+// The user object that will be sent on login
+const userForm = {email: "", password: ""};
+
+function attemptLogin(){
+
+} 
 
 
 </script>
 
 <template>
-    <h3>Register Form</h3>
+  <ThemeProvider :theme="{
+        neutralLight: neutralLight,
+        neutralDark: neutralDark,
+        primaryLight: primaryLight,
+        primary: primary,
+        primaryDark: primaryDark,
+        background: background,
+        alt: alt,
+        fontColor: fontColor
+  }">
+    <CenteredForm>
+      <StyledText>Welcome to Sociopedio. The best social media platform.</StyledText>
+      <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
+      <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
+
+      <StyledSubmitButton variant="tonal">
+        Register
+      </StyledSubmitButton>
+
+      <StyledText>Already have an account?</StyledText> <br>
+      <StyledTextButton @click="props.changeForm">Sign in</StyledTextButton>
+    </CenteredForm>
+  </ThemeProvider>
 </template>
 
 
