@@ -10,7 +10,7 @@ export const CenteredForm = styled('form')`
     background-color: ${props => props.theme.alt}
     padding: 50px;
     border-radius: 10px;
-    margin: auto;
+    margin: 15% auto;
     align-items: center;
     color: ${props => props.theme.fontColor};
 `;
@@ -22,7 +22,7 @@ export const StyledInput = styled('input')`
     padding: 0.5rem;
     margin: 2rem auto;
     color: ${props => props.theme.fontColor};
-    width: clamp(80%, 70%, 50%);
+    width: clamp(90%, 70%, 50%);
     &:focus {
         border: 1px solid ${props => props.theme.fontColor};
     }
@@ -31,7 +31,7 @@ export const StyledInput = styled('input')`
 export const StyledSubmitButton = styled('button')`
     display: block;
     border-radius: 7px;
-    width: clamp(80%, 70%, 50%);
+    width: clamp(90%, 70%, 50%);
     padding: 0.5em 1em;
     background-color: ${props => props.theme.primary};
     color: black;
@@ -49,3 +49,20 @@ export const StyledSubmitButton = styled('button')`
         filter: brightness(100%);
     }
 `;
+
+export const StyledText = styled('p')`
+    display: inline;
+    padding: 0 1em;
+`;
+
+export const StyledTextButton = styled('p')`
+    display: inline;
+    padding: 0 1em;
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(130%);
+        text-decoration: underline;
+    }
+`;
+

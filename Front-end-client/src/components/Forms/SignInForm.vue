@@ -10,7 +10,9 @@ import { useCentralStore } from '../../stores';
 import {
   CenteredForm,
   StyledInput,
-  StyledSubmitButton
+  StyledSubmitButton,
+  StyledText,
+  StyledTextButton
 } from './stylizedFormComponents.js';
 
 // Store
@@ -51,12 +53,16 @@ function attemptLogin(){
         fontColor: fontColor
   }">
     <CenteredForm>
+      <StyledText>Welcome to Sociopedio. The best social media platform.</StyledText>
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
 
       <StyledSubmitButton variant="tonal">
         Sign in
       </StyledSubmitButton>
+
+      <StyledText>New here?</StyledText> <br>
+      <StyledTextButton>Create an account</StyledTextButton>
     </CenteredForm>
   </ThemeProvider>
 </template>

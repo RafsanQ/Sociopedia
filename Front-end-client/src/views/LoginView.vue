@@ -67,7 +67,7 @@ const showLoginForm = ref(true);
 
         </RegisterForm>
 
-        <p @click="showLoginForm = !showLoginForm">Create an account</p>
+        <!-- <p @click="showLoginForm = !showLoginForm">Create an account</p> -->
       </Background>
 
     </ThemeProvider>
