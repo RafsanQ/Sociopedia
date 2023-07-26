@@ -32,19 +32,14 @@ let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
+// Theme Loading Stuff
+let isLoading = false;
 
-// The user object that will be sent on login
-const userForm = {
-  firstName: "",
-  lastName: "",
-  location: "",
-  occupation: "",
-  email: "",
-  password: "",
-  picture: null
-};
 
-function handleRegister(){
+let model = ref(store.mode);
+
+function handleThemeChange(){
+    store.setMode;
 
 } 
 
@@ -62,25 +57,22 @@ function handleRegister(){
         alt: alt,
         fontColor: fontColor
   }">
-    <CenteredForm>
-      <StyledText>
-        Welcome to Sociopedio. The best social media platform.
-      </StyledText>
-      <br/>
-      <br/>
-      <StyledSmallInput type="text" placeholder="First Name" v-model="userForm.firstName" required />
-      <StyledSmallInput type="text" placeholder="Last Name" v-model="userForm.lastName" required />
-      <StyledInput type="text" placeholder="Location" v-model="userForm.location" required />
-      <StyledInput type="text" placeholder="Occupation" v-model="userForm.occupation" required />
-      <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
-      <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
-      <ImageUploadFielInput type="file" placeholder="Profile Picture" v-model="userForm.picture">Profile Picture:</ImageUploadFielInput>
-      <StyledSubmitButton @click="handleRegister" variant="tonal">
-        Register
-      </StyledSubmitButton>
+    <CenteredForm class="body">
+        <StyledText> We have two defined themes for this website. </StyledText>
 
-      <StyledText>Already have an account?</StyledText> <br>
-      <StyledTextButton @click="props.changeForm">Sign in</StyledTextButton>
+        <!-- <v-switch
+          loading="warning"
+          :model-value="true"
+          label="Dark"
+        ></v-switch> -->
+
+        <v-switch
+            v-model="model"
+            
+            inset
+            :label="`${model.toString()}`"
+        ></v-switch>
+      
     </CenteredForm>
   </ThemeProvider>
 </template>
@@ -88,5 +80,8 @@ function handleRegister(){
 
 
 <style scoped>
-
+.body{
+    max-width: 20%;
+    align-items: center;
+}
 </style>

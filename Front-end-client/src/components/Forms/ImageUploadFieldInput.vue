@@ -1,7 +1,7 @@
 <template>
     <div class="body">
         <StyledText class="text"><slot /></StyledText>
-        <StyledInput class="inputFile" type="file" accept="image/jpeg" @change=uploadImage />
+        <StyledInput class="inputFile" type="file" accept="image/*" @change=uploadImage />
         <img :src="previewImage" class="uploading-image" />
     </div>
  </template>

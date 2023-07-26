@@ -9,7 +9,7 @@ import { ThemeProvider } from 'vue3-styled-components'
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue';
 
-
+import ThemeChangerForm from '../components/Forms/ThemeChangerForm.vue';
 
 // Store
 const store = useCentralStore();
@@ -45,7 +45,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
         alt: alt
     }">
         <Background>
-            This is the theme changer page
+            <ThemeChangerForm></ThemeChangerForm>
         </Background>
     </ThemeProvider>
 
