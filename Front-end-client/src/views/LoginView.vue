@@ -9,7 +9,7 @@ import { useCentralStore } from '../stores';
 
 import Navbar from '../components/Navbar/Navbar.vue';
 import RegisterForm from "../components/Forms/RegisterForm.vue";
-import SignInFOrm from "../components/Forms/signInFOrm.vue";
+import SignInForm from "../components/Forms/signInFOrm.vue";
 
 import {
   Background
@@ -42,6 +42,11 @@ let fontColor = themeProperties.value.pallete.fontColor;
 // Toggle to show the login or register forms
 const showLoginForm = ref(true);
 
+// This function will be sent as a prop to the forms to be called when changing the form.
+const changeForm = () => {
+  showLoginForm.value = !showLoginForm.value;
+}
+
 </script>
 
 <template>
@@ -59,15 +64,14 @@ const showLoginForm = ref(true);
         fontColor: fontColor
     }">
       <Background>
-        <SignInFOrm v-show="showLoginForm">
+        <SignInForm v-show="showLoginForm" :changeForm="changeForm">
           
-        </SignInFOrm>
+        </SignInForm>
 
         <RegisterForm v-show="!showLoginForm">
 
         </RegisterForm>
 
-        <!-- <p @click="showLoginForm = !showLoginForm">Create an account</p> -->
       </Background>
 
     </ThemeProvider>

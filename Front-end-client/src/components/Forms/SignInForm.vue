@@ -15,6 +15,8 @@ import {
   StyledTextButton
 } from './stylizedFormComponents.js';
 
+const props = defineProps(['changeForm'])
+
 // Store
 const store = useCentralStore();
 
@@ -62,7 +64,7 @@ function attemptLogin(){
       </StyledSubmitButton>
 
       <StyledText>New here?</StyledText> <br>
-      <StyledTextButton>Create an account</StyledTextButton>
+      <StyledTextButton @click="props.changeForm">Create an account</StyledTextButton>
     </CenteredForm>
   </ThemeProvider>
 </template>
