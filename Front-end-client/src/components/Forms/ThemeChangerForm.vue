@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
+
 import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
@@ -16,6 +17,11 @@ import {
 import ImageUploadFielInput from './ImageUploadFieldInput.vue'
 
 const props = defineProps(['changeForm'])
+
+
+// For Routing stuff and refresh
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 // Store
 const store = useCentralStore();
@@ -36,12 +42,17 @@ let fontColor = themeProperties.value.pallete.fontColor;
 let isLoading = ref(false);
 
 
+
 let isOnRight = ref(store.mode);
 
 async function handleThemeChange(){
     isLoading.value = true;
 
+
+
     store.setMode();
+
+    router.go();
 } 
 
 
@@ -80,7 +91,7 @@ async function handleThemeChange(){
             :label="`Current Theme: ${isOnRight.toString().toUpperCase()}`"
             false-value="light"
             true-value="dark"
-            :loading="primaryDark"
+            :loading="primary"
             @change="handleThemeChange"
         />
       
@@ -94,5 +105,6 @@ async function handleThemeChange(){
 .body{
     max-width: 20%;
     align-items: center;
+    text-align: center;
 }
 </style>
