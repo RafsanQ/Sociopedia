@@ -9,7 +9,8 @@ import { useCentralStore } from '../../stores';
 
 import {
   CenteredForm,
-  StyledInput
+  StyledInput,
+  StyledSubmitButton
 } from './stylizedFormComponents.js';
 
 // Store
@@ -29,7 +30,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 
 // The user object that will be sent on login
-const userForm = {email: null, password: null};
+const userForm = {email: "", password: ""};
 
 function attemptLogin(){
 
@@ -50,9 +51,12 @@ function attemptLogin(){
         fontColor: fontColor
   }">
     <CenteredForm>
-      <StyledInput type="email" placeholder="Email" />
-      <StyledInput type="password" placeholder="Password" />
+      <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
+      <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
 
+      <StyledSubmitButton variant="tonal">
+        Sign in
+      </StyledSubmitButton>
     </CenteredForm>
   </ThemeProvider>
 </template>
