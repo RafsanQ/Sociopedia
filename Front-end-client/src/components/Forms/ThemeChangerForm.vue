@@ -48,9 +48,13 @@ let isOnRight = ref(store.mode);
 async function handleThemeChange(){
     isLoading.value = true;
 
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
+    await delay(1000);
 
     store.setMode();
+
+    await delay(1000);
 
     router.go();
 } 
