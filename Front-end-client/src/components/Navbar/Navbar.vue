@@ -12,11 +12,12 @@ import {
   StyledLogoDiv,
   StyledLogoText,
   SearchBarDiv,
+  SearchBar,
   RightPanel,
 } from './stylizedNavComponents.js';
 
 // Media query to check screen size
-const isLargeScreen = useMediaQuery('(min-width: 800px)')
+const isLargeScreen = useMediaQuery('(min-width: 1300px)')
 
 // Store
 const store = useCentralStore();
@@ -71,7 +72,8 @@ const props = defineProps({
         primary: primary,
         primaryDark: primaryDark,
         background: background,
-        alt: alt
+        alt: alt,
+        fontColor
       }">
         <StyledNav>
             <StyledLogoDiv>
@@ -81,15 +83,16 @@ const props = defineProps({
                 </StyledLogoText>
               </RouterLink>
             </StyledLogoDiv>
+
             <SearchBarDiv v-if="!isLoginPage" v-show="isLargeScreen" >
-              <input placeholder="Search..."/>
-              <v-btn icon="md:search" variant="plain" color="" />
+              <SearchBar placeholder="Search..." color="white"/>
+              <v-btn icon="md:search" variant="plain"/>
             </SearchBarDiv>
 
             
         
             <RightPanel v-if="!isLoginPage" v-show="isLargeScreen">
-              <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn>
+              <!-- <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn> -->
               <v-btn icon="md: chat" :color="fontColor" variant="plain" />
               <v-btn icon="md: notifications" :color="fontColor" variant="plain" />
               <RouterLink :to="{ name: 'about' }">

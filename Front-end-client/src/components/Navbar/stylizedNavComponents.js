@@ -28,8 +28,17 @@ export const SearchBarDiv = styled("div")`
     background: ${props => props.theme.neutralLight};
     border-radius: 9px;
     gap: 3rem;
-    padding: 0.1rem 1.5rem;
+    margin: auto;
+    text-align: center;
+    padding: 0rem clamp(0.4rem, 0.4rem, 0.1rem);
+    width: clamp(50%, 70%, 30%);
+    color: ${props => props.theme.fontColor};
 `;
+
+export const SearchBar = styled("input")`
+    width: clamp(90%, 90%, 30%);
+`;
+
 
 export const RightPanel = styled("div")`
     gap: 2rem;
