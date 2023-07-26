@@ -10,6 +10,7 @@ import { useCentralStore } from '../../stores';
 import {
   CenteredForm,
   StyledInput,
+  StyledSmallInput,
   StyledSubmitButton,
   StyledText,
   StyledTextButton
@@ -34,9 +35,17 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 
 // The user object that will be sent on login
-const userForm = {email: "", password: ""};
+const userForm = {
+  firstName: "",
+  lastName: "",
+  location: "",
+  occupation: "",
+  email: "",
+  password: "",
+  picture: null
+};
 
-function attemptLogin(){
+function handleRegister(){
 
 } 
 
@@ -55,11 +64,18 @@ function attemptLogin(){
         fontColor: fontColor
   }">
     <CenteredForm>
-      <StyledText>Welcome to Sociopedio. The best social media platform.</StyledText>
+      <StyledText>
+        Welcome to Sociopedio. The best social media platform.
+      </StyledText>
+      <br/>
+      <StyledSmallInput type="text" placeholder="First Name" v-model="userForm.firstName" required />
+      <StyledSmallInput type="text" placeholder="Last Name" v-model="userForm.lastName" required />
+      <StyledInput type="text" placeholder="Location" v-model="userForm.location" required />
+      <StyledInput type="text" placeholder="Occupation" v-model="userForm.occupation" required />
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
 
-      <StyledSubmitButton variant="tonal">
+      <StyledSubmitButton @click="handleRegister" variant="tonal">
         Register
       </StyledSubmitButton>
 

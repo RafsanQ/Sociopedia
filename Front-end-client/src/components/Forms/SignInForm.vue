@@ -36,7 +36,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 // The user object that will be sent on login
 const userForm = {email: "", password: ""};
 
-function attemptLogin(){
+function handleLogin(){
 
 } 
 
@@ -59,7 +59,7 @@ function attemptLogin(){
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
 
-      <StyledSubmitButton variant="tonal">
+      <StyledSubmitButton @click="handleLogin" variant="tonal">
         Sign in
       </StyledSubmitButton>
 

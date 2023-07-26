@@ -12,6 +12,7 @@ export const CenteredForm = styled('form')`
     border-radius: 10px;
     margin: 15% auto;
     align-items: center;
+    text-align: center;
     color: ${props => props.theme.fontColor};
 `;
 
@@ -19,14 +20,28 @@ export const StyledInput = styled('input')`
     display: block;
     border: 1px dotted ${props => props.theme.fontColor};
     border-radius: 7px;
-    padding: 0.5rem;
-    margin: 2rem auto;
+    padding: 1rem;
+    margin: 2% auto;
     color: ${props => props.theme.fontColor};
     width: clamp(90%, 70%, 50%);
     &:focus {
         border: 1px solid ${props => props.theme.fontColor};
     }
 `;
+
+export const StyledSmallInput= styled('input')`
+    display: inline;
+    border: 1px dotted ${props => props.theme.fontColor};
+    border-radius: 7px;
+    padding: 1rem;
+    margin: 1% 1.5%;
+    color: ${props => props.theme.fontColor};
+    width: clamp(43.5%, 40%, 20%);
+    &:focus {
+        border: 1px solid ${props => props.theme.fontColor};
+    }
+`;
+
 
 export const StyledSubmitButton = styled('button')`
     display: block;
@@ -57,7 +72,7 @@ export const StyledText = styled('p')`
 
 export const StyledTextButton = styled('p')`
     display: inline;
-    padding: 0 1em;
+    padding: 1em;
     cursor: pointer;
 
     &:hover {
