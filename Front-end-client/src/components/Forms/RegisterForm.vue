@@ -50,6 +50,7 @@ function getPicture(value){
 
 function handleRegister(){
   console.log(userForm);
+  store.register(userForm);
 } 
 
 

@@ -12,12 +12,12 @@ const writeFile = async (fileName, content) => {
     }catch(e){
         console.error(e);
     }
-
+}
 //     fs.writeFileSync(filePath, base64Image, err => {
 //         if (err) console.log('File not written', err);
 //         else console.log('File written');
 //     });
-}
+// }
 
 // Register User
 export const register = async (req, res) => {

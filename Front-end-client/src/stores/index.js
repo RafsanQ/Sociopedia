@@ -35,6 +35,18 @@ export const useCentralStore = defineStore('centralStore', () => {
         this.token.value = null;
     }
 
+    const register = async (userForm) => {
+        await fetch("http://localhost:3001/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: JSON.stringify(userForm)
+            
+        })
+    }
+
     const setFriends = (action) => {
         if(this.user.value){
             this.user.value.friends = action.payload.friends;
@@ -60,7 +72,7 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
 
-    return { mode, user, token, count, setMode, setLogin, setLogout, setFriends, setPosts, setPost };
+    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, setPosts, setPost };
 },{
     persist: sessionStorage,
   },)
