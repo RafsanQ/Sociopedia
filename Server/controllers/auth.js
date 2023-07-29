@@ -1,24 +1,59 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js"
+import fs from 'fs';
+import path from 'path';
+
+
+const writeFile = (filePath, content) => {
+    console.log({content})
+
+    let base64Image = content.split(';base64,').pop();
+    fs.writeFileSync('newPic.png', base64Image, err => {
+        if (err) console.log(err);
+        else console.log('File written');
+    });
+
+    
+}
 
 // Register User
 export const register = async (req, res) => {
     try{
-        const {
+        let {
             firstName, 
             lastName,
             email,
             password,
             picturePath,
+            picture,
             friends,
             location,
             occupation
         } = req.body;
 
+        console.log({
+            firstName, 
+            lastName,
+            email,
+            password,
+            picturePath,
+            picture,
+            friends,
+            location,
+            occupation
+        });
+
+        // Store the picture on to the disk
+        picturePath = '/public/assets/newPicture.png';
+        
+        writeFile(picturePath, picture);
+        
         // Encrypt the password with salt
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
+
+
 
         // Create new user that will be stored
         const newUser = new User({
