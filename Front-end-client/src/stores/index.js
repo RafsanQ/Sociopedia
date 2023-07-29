@@ -12,8 +12,7 @@ export const useCentralStore = defineStore('centralStore', () => {
     const mode = ref('light');
     const user = ref(null);
     const token = ref(null);
-
-    const count = ref(1);
+    const posts = ref([]);
 
 
     const setMode = () => {
@@ -46,18 +45,18 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
     
     const setPosts = (action) => {
-        this.posts = action.payload.posts;
+        this.posts.value = action.payload.posts;
     }
 
     const setPost = (action) => {
-        const updatedPosts = this.posts.map((post) => {
+        const updatedPosts = this.posts.value.map((post) => {
             if(post._id === action.payload.post_id) {
                 return action.payload.post;
             }
             return post;
         })
 
-        this.post = updatedPosts;
+        this.post.value = updatedPosts;
     }
 
 
