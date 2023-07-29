@@ -34,8 +34,9 @@
                  const reader = new FileReader();
                  reader.readAsDataURL(image);
                  reader.onload = e =>{
-                     this.previewImage = e.target.result;
-                     console.log(this.previewImage);
+                    this.previewImage = e.target.result;
+                    // console.log(this.previewImage);
+                    this.$emit('picture', this.previewImage);
                  };
              }
          }

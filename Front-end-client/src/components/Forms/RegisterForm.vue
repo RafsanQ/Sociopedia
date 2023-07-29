@@ -44,8 +44,12 @@ const userForm = {
   picture: null
 };
 
-function handleRegister(){
+function getPicture(value){
+  userForm.picture = value;
+}
 
+function handleRegister(){
+  console.log(userForm);
 } 
 
 
@@ -62,7 +66,7 @@ function handleRegister(){
         alt: alt,
         fontColor: fontColor
   }">
-    <CenteredForm>
+    <CenteredForm @submit.prevent="handleRegister">
       <StyledText>
         Welcome to Sociopedio. The best social media platform.
       </StyledText>
@@ -74,8 +78,8 @@ function handleRegister(){
       <StyledInput type="text" placeholder="Occupation" v-model="userForm.occupation" required />
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
-      <ImageUploadFielInput type="file" placeholder="Profile Picture" v-model="userForm.picture">Profile Picture:</ImageUploadFielInput>
-      <StyledSubmitButton @click="handleRegister" variant="tonal">
+      <ImageUploadFielInput type="file" placeholder="Profile Picture" @picture="getPicture" >Profile Picture:</ImageUploadFielInput>
+      <StyledSubmitButton variant="tonal">
         Register
       </StyledSubmitButton>
 
