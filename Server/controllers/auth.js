@@ -1,20 +1,22 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js"
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
 
-const writeFile = (filePath, content) => {
-    console.log({content})
-
+const writeFile = async (fileName, content) => {
     let base64Image = content.split(';base64,').pop();
-    fs.writeFileSync('newPic.png', base64Image, err => {
-        if (err) console.log(err);
-        else console.log('File written');
-    });
+    try{
+        await fs.writeFile(fileName, base64Image, {encoding: 'base64'});
+    }catch(e){
+        console.error(e);
+    }
 
-    
+//     fs.writeFileSync(filePath, base64Image, err => {
+//         if (err) console.log('File not written', err);
+//         else console.log('File written');
+//     });
 }
 
 // Register User
@@ -45,9 +47,9 @@ export const register = async (req, res) => {
         });
 
         // Store the picture on to the disk
-        picturePath = '/public/assets/newPicture.png';
+        const pictureName = 'newPicture.png';
         
-        writeFile(picturePath, picture);
+        writeFile(pictureName, picture);
         
         // Encrypt the password with salt
         const salt = await bcrypt.genSalt();
