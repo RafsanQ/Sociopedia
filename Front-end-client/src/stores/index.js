@@ -50,7 +50,7 @@ export const useCentralStore = defineStore('centralStore', () => {
             toast.success('Login successful');
         }
         else {
-            toast.error('Login unsuccessful');
+            toast.error(responseData.message);
         }
 
         // this.user.value = action.payload.user;

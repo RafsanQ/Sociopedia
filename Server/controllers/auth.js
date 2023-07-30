@@ -100,7 +100,7 @@ export const login = async (req, res) => {
 
         const isMatch = await bcrypt.compare(password, user.password);
         if(!isMatch){
-            return res.status(402).json({ message: 'Invalid Credentials' });
+            return res.status(402).json({ message: 'Invalid Password' });
         }
 
         // Create the token and store it in the .env file
