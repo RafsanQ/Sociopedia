@@ -82,9 +82,7 @@ export const register = async (req, res) => {
 
         // Store the picture on to the disk
         const pictureName = email + '.png';
-        
         await writeFile(pictureName, picture);
-
         moveFile(pictureName, 'public/assets/profilepictures/'+pictureName);
 
         res.status(201).json(savedUser);
