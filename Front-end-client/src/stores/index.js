@@ -87,6 +87,7 @@ export const useCentralStore = defineStore('centralStore', () => {
                 const delay = ms => new Promise(res => setTimeout(res, ms));
                 await delay(100);
 
+                location.reload();
                 
             }
 
