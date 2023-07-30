@@ -3,6 +3,9 @@ import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import { ref } from "vue";
 
+
+
+const toast = useToast();
 export const useCentralStore = defineStore('centralStore', () => {
     // state: () => ({
     //     mode: 'light',
@@ -38,6 +41,7 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
     const register = async (userForm) => {
+        
         try{
             const response = await fetch("http://localhost:3001/auth/register", {
                 method: "POST",
@@ -45,12 +49,32 @@ export const useCentralStore = defineStore('centralStore', () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(userForm)
-                
-                
-
             });
-            const toast = useToast();
-            let instance = toast.success('You did it!');
+
+            
+            
+
+            if(response.status == 200 || response.status == 201){
+                let instance = toast.success('Registration successful');
+            }
+
+            else if(response.status == 400){
+                let instance = toast.error('Email Already Registered');
+            }
+
+            else{
+                let instance = toast.error('Server Error');
+            }
+
+            
+
+            // if(response.status == 201){
+            //     let instance = toast.success('Registration successful');
+            // }
+            // else {
+            //     const toast = useToast();
+            //     let instance = toast.error('Registration unsuccessful');
+            // }
             
         }catch(error){
             return error;

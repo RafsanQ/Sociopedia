@@ -31,38 +31,29 @@ const moveFile = (oldPath, newPath) => {
 
 // Register User
 export const register = async (req, res) => {
+
+    let {
+        firstName, 
+        lastName,
+        email,
+        password,
+        picturePath,
+        picture,
+        friends,
+        location,
+        occupation
+    } = req.body;
+
+
+    // If email already Registered
+    let user = await User.findOne({ email: email });
+    if (user) return res.status(400).send("Email already exists")
+
     try{
-        let {
-            firstName, 
-            lastName,
-            email,
-            password,
-            picturePath,
-            picture,
-            friends,
-            location,
-            occupation
-        } = req.body;
-
-        console.log({
-            firstName, 
-            lastName,
-            email,
-            password,
-            picturePath,
-            picture,
-            friends,
-            location,
-            occupation
-        });
-
-        
         
         // Encrypt the password with salt
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
-
-
 
         // Create new user that will be stored
         const newUser = new User({
