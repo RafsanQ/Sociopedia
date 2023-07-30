@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
+// import fetch from 'cross-fetch';
 import { ref } from "vue";
 
 
@@ -30,9 +31,30 @@ export const useCentralStore = defineStore('centralStore', () => {
         }
     }
 
-    const setLogin = (action) => {
-        this.user.value = action.payload.user;
-        this.token.value = action.payload.token;
+    const setLogin = async (userForm) => {
+
+        const response = await fetch("http://localhost:3001/auth/login", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userForm)
+        })
+
+        const responseData = await response.json();
+
+        if(response.status == 200 || response.status == 201){
+            user.value = responseData.user;
+            token.value = responseData.token;
+
+            toast.success('Login successful');
+        }
+        else {
+            toast.error('Login unsuccessful');
+        }
+
+        // this.user.value = action.payload.user;
+        // this.token.value = action.payload.token;
     }
 
     const setLogout = () => {
@@ -50,10 +72,7 @@ export const useCentralStore = defineStore('centralStore', () => {
                 },
                 body: JSON.stringify(userForm)
             });
-
             
-            
-
             if(response.status == 200 || response.status == 201){
                 let instance = toast.success('Registration successful');
             }
@@ -66,16 +85,6 @@ export const useCentralStore = defineStore('centralStore', () => {
                 let instance = toast.error('Server Error');
             }
 
-            
-
-            // if(response.status == 201){
-            //     let instance = toast.success('Registration successful');
-            // }
-            // else {
-            //     const toast = useToast();
-            //     let instance = toast.error('Registration unsuccessful');
-            // }
-            
         }catch(error){
             return error;
         }

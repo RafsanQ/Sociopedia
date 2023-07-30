@@ -53,7 +53,7 @@ export const register = async (req, res) => {
     // Picture Name and path
     const pictureName = email + '.png';
     picturePath = 'public/assets/profilepictures/' + pictureName;
-    
+
     try{
         
         // Encrypt the password with salt
@@ -91,14 +91,16 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try{
         const {email, password} = req.body;
+        console.log({email, password});
         const user = await User.findOne({ email: email });
+        
         if(!user){
-            return res.status(400).json({ message: 'User not found' });
+            return res.status(401).json({ message: 'User not found' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if(!isMatch){
-            return res.status(400).json({ message: 'Invalid Credentials' });
+            return res.status(402).json({ message: 'Invalid Credentials' });
         }
 
         // Create the token and store it in the .env file
@@ -106,10 +108,11 @@ export const login = async (req, res) => {
 
         // Password should not be sent to the front end
         delete user.password;
-
+        console.log({user, token});
         res.status(200).json({ token, user });
 
     }catch(error){
+        console.log(error);
         res.status(500).json({ error: error.message });
     }
 }

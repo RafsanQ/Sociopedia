@@ -37,7 +37,8 @@ let fontColor = themeProperties.value.pallete.fontColor;
 const userForm = {email: "", password: ""};
 
 function handleLogin(){
-
+  // console.log('handling login', userForm);
+  store.setLogin(userForm);
 } 
 
 
@@ -54,12 +55,12 @@ function handleLogin(){
         alt: alt,
         fontColor: fontColor
   }">
-    <CenteredForm>
+    <CenteredForm @submit.prevent="handleLogin">
       <StyledText>Welcome to Sociopedio. The best social media platform.</StyledText>
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
 
-      <StyledSubmitButton @click="handleLogin" variant="tonal">
+      <StyledSubmitButton variant="tonal">
         Sign in
       </StyledSubmitButton>
 
