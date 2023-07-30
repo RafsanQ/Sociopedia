@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 import { ref } from "vue";
 
 export const useCentralStore = defineStore('centralStore', () => {
@@ -36,15 +38,25 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
     const register = async (userForm) => {
-        await fetch("http://localhost:3001/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-              },
-              body: JSON.stringify(userForm)
+        try{
+            const response = await fetch("http://localhost:3001/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userForm)
+                
+                
+
+            });
+            const toast = useToast();
+            let instance = toast.success('You did it!');
             
-        })
+        }catch(error){
+            return error;
+        }
+        
+        
     }
 
     const setFriends = (action) => {

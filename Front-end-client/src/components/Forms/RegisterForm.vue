@@ -44,12 +44,13 @@ const userForm = {
   picture: null
 };
 
+let errorFound = ref(false);
+
 function getPicture(value){
   userForm.picture = value;
 }
 
 function handleRegister(){
-  console.log(userForm);
   store.register(userForm);
 } 
 
@@ -86,6 +87,9 @@ function handleRegister(){
 
       <StyledText>Already have an account?</StyledText> <br>
       <StyledTextButton @click="props.changeForm">Sign in</StyledTextButton>
+
+      <h2 v-show="errorFound">Error Found</h2>
+
     </CenteredForm>
   </ThemeProvider>
 </template>
