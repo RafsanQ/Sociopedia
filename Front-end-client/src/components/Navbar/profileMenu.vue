@@ -42,7 +42,9 @@ let fontColor = themeProperties.value.pallete.fontColor;
             <template v-slot:prepend>
               <v-icon :color="fontColor"></v-icon>
             </template>
-            {{ store.user }}
+            <div class="userName">
+              <slot></slot>
+            </div>
           </v-btn>
         </template>
   
@@ -79,6 +81,13 @@ export default {
     padding-right: 25px;
     cursor: pointer;
 
+}
+
+.userName{
+  letter-spacing: normal;
+  text-transform: none;
+  font-stretch: condensed;
+  color: v-bind(fontColor);
 }
 
 </style>

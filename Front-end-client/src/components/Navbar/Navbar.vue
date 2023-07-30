@@ -75,7 +75,7 @@ const props = defineProps({
             </StyledLogoDiv>
 
             <SearchBarDiv v-if="!isLoginPage" v-show="isLargeScreen" >
-              <SearchBar placeholder="Search..." color="white"/>
+              <SearchBar class="searchBarInput" placeholder="Search..." />
               <v-btn icon="md:search" variant="plain"/>
             </SearchBarDiv>
 
@@ -88,7 +88,7 @@ const props = defineProps({
               <RouterLink :to="{ name: 'about' }">
                 <v-btn icon="md: info" :color="fontColor" variant="plain" />
               </RouterLink>
-              <ProfileMenu></ProfileMenu>
+              <ProfileMenu>{{ fullName }}</ProfileMenu>
             </RightPanel>
 
             <RightPanel v-if="isLoginPage" class="themeChangerButton">
@@ -110,4 +110,9 @@ const props = defineProps({
 .themeChangerButton{
   margin-right: 5%;
 }
+
+.searchBarInput{
+  color: v-bind(fontColor);
+}
+
 </style>
