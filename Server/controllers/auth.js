@@ -49,6 +49,11 @@ export const register = async (req, res) => {
     let user = await User.findOne({ email: email });
     if (user) return res.status(400).send("Email already exists")
 
+
+    // Picture Name and path
+    const pictureName = email + '.png';
+    picturePath = 'public/assets/profilepictures/' + pictureName;
+    
     try{
         
         // Encrypt the password with salt
@@ -72,9 +77,9 @@ export const register = async (req, res) => {
         const savedUser = await newUser.save();
 
         // Store the picture on to the disk
-        const pictureName = email + '.png';
+        
         await writeFile(pictureName, picture);
-        moveFile(pictureName, 'public/assets/profilepictures/'+pictureName);
+        moveFile(pictureName, picturePath);
 
         res.status(201).json(savedUser);
     }catch(error){
