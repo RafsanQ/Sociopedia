@@ -9,7 +9,7 @@ import { useCentralStore } from '../stores';
 
 import Navbar from '../components/Navbar/Navbar.vue';
 import RegisterForm from "../components/Forms/RegisterForm.vue";
-import SignInForm from "../components/Forms/signInFOrm.vue";
+import LoginForm from "../components/Forms/LoginForm.vue";
 
 import {
   Background
@@ -64,13 +64,11 @@ const changeForm = () => {
         fontColor: fontColor
     }">
       <Background>
-        <SignInForm v-show="showLoginForm" :changeForm="changeForm">
+        <LoginForm v-show="showLoginForm" :changeForm="changeForm" />
           
-        </SignInForm>
 
-        <RegisterForm v-show="!showLoginForm" :changeForm="changeForm">
+        <RegisterForm v-show="!showLoginForm" :changeForm="changeForm" />
 
-        </RegisterForm>
 
       </Background>
 
