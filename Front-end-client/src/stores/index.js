@@ -1,12 +1,19 @@
 import { defineStore } from 'pinia';
 import {useToast} from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
-// import fetch from 'cross-fetch';
+
 import { ref } from "vue";
 
+// For Routing stuff and refresh
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 
+// For toast Notifications and messages
 const toast = useToast();
+
+
+
 export const useCentralStore = defineStore('centralStore', () => {
     // state: () => ({
     //     mode: 'light',
@@ -74,15 +81,21 @@ export const useCentralStore = defineStore('centralStore', () => {
             });
             
             if(response.status == 200 || response.status == 201){
-                let instance = toast.success('Registration successful');
+                toast.success('Registration successful');
+                console.log('Here');
+                // Wait 0.1s
+                const delay = ms => new Promise(res => setTimeout(res, ms));
+                await delay(100);
+
+                
             }
 
             else if(response.status == 400){
-                let instance = toast.error('Email Already Registered');
+                toast.error('Email Already Registered');
             }
 
             else{
-                let instance = toast.error('Server Error');
+                toast.error('Server Error');
             }
 
         }catch(error){

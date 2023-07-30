@@ -36,10 +36,10 @@ let fontColor = themeProperties.value.pallete.fontColor;
 // The user object that will be sent on login
 const userForm = {email: "", password: ""};
 
-function handleLogin(){
+async function handleLogin(){
   // console.log('handling login', userForm);
-  store.setLogin(userForm);
-} 
+  await store.setLogin(userForm);
+}
 
 
 </script>

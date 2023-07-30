@@ -41,8 +41,6 @@ let fontColor = themeProperties.value.pallete.fontColor;
 // Theme Loading Stuff
 let isLoading = ref(false);
 
-
-
 let mode = ref(store.mode);
 
 async function handleThemeChange(){
