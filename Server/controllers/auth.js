@@ -1,14 +1,14 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js"
-import fs from 'fs/promises';
+import fs from 'fs';
 import path from 'path';
 
 
 const writeFile = async (fileName, content) => {
     let base64Image = content.split(';base64,').pop();
     try{
-        await fs.writeFile(fileName, base64Image, {encoding: 'base64'});
+        await fs.promises.writeFile(fileName, base64Image, {encoding: 'base64'});
     }catch(e){
         console.error(e);
     }
@@ -18,6 +18,16 @@ const writeFile = async (fileName, content) => {
 //         else console.log('File written');
 //     });
 // }
+
+
+const moveFile = (oldPath, newPath) => {
+    fs.rename(oldPath, newPath, function (err) {
+        if (err) throw err
+        console.log('Successful')
+    })
+}
+
+
 
 // Register User
 export const register = async (req, res) => {
@@ -46,10 +56,7 @@ export const register = async (req, res) => {
             occupation
         });
 
-        // Store the picture on to the disk
-        const pictureName = 'newPicture.png';
         
-        writeFile(pictureName, picture);
         
         // Encrypt the password with salt
         const salt = await bcrypt.genSalt();
@@ -72,6 +79,14 @@ export const register = async (req, res) => {
         });
 
         const savedUser = await newUser.save();
+
+        // Store the picture on to the disk
+        const pictureName = email + '.png';
+        
+        await writeFile(pictureName, picture);
+
+        moveFile(pictureName, 'public/assets/profilepictures/'+pictureName);
+
         res.status(201).json(savedUser);
     }catch(error){
         res.status(500).json({ error: error.message });
