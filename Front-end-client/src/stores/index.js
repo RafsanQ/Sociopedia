@@ -55,6 +55,12 @@ export const useCentralStore = defineStore('centralStore', () => {
             token.value = responseData.token;
 
             toast.success('Login successful');
+
+            // Wait 0.1s
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            await delay(100);
+            
+            location.reload();
         }
         else {
             toast.error(responseData.message);
@@ -82,7 +88,7 @@ export const useCentralStore = defineStore('centralStore', () => {
             
             if(response.status == 200 || response.status == 201){
                 toast.success('Registration successful');
-                console.log('Here');
+                
                 // Wait 0.1s
                 const delay = ms => new Promise(res => setTimeout(res, ms));
                 await delay(100);

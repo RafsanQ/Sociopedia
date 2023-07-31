@@ -15,6 +15,9 @@ import {
 } from '../components/stylizedComponents.js';
 
 
+// For Routing stuff and refresh
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 
 // Media query to check screen size
@@ -23,6 +26,12 @@ const isLargeScreen = useMediaQuery('(min-width: 800px)')
 // Store
 const store = useCentralStore();
 
+const user = store.user;
+const token = store.token;
+
+if(user && token){
+  router.push('/home')
+}
 
 // Theme settings
 const themeProperties = ref(themeSettings(store.mode));
