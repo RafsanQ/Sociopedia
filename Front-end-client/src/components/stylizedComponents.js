@@ -15,3 +15,12 @@ export const Background = styled('div')`
     align-items: center;
 `;
 
+export const ColumnDiv = styled('div')`
+    padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    width: clamp(30%, 30%, 0%);
+    margin: 2% auto;
+    align-items: left;
+    text-align: left;
+    color: ${props => props.theme.fontColor};
+`;

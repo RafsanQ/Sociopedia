@@ -7,6 +7,7 @@ const props = defineProps({
 
 const size = props.size;
 const imgSrc = 'http://localhost:3001/assets/profilepictures/' + props.email + '.png';
+console.log(imgSrc);
 
 </script>
 

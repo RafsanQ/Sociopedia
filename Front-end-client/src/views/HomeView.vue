@@ -11,7 +11,8 @@ import RegisterForm from "../components/Forms/RegisterForm.vue";
 import LoginForm from "../components/Forms/LoginForm.vue";
 
 import {
-  Background
+  Background,
+  ColumnDiv
 } from '../components/stylizedComponents.js';
 
 import {
@@ -68,15 +69,36 @@ if(!user && !token){
   }">
     <Background>
       <div class="container">
-        <WidgetWrapper>
+
+
+        <ColumnDiv class="leftColumn">
+          <WidgetWrapper>
+            <div>
+              <UserImageWidget :email="user.email" size="50px"/>
+            </div>
+          </WidgetWrapper>
+        </ColumnDiv>
         
-        </WidgetWrapper>
-        <WidgetWrapper>
-          
-        </WidgetWrapper>
-        <WidgetWrapper>
-          
-        </WidgetWrapper>
+        
+        <ColumnDiv class="centreColumn">
+          <WidgetWrapper>
+            centre
+          </WidgetWrapper>
+            
+          <WidgetWrapper>
+            centre
+          </WidgetWrapper>
+        </ColumnDiv>
+
+        <ColumnDiv class="rightColumn">
+          <WidgetWrapper>
+            right
+          </WidgetWrapper>
+
+          <WidgetWrapper>
+            right
+          </WidgetWrapper>
+        </ColumnDiv>
 
       </div>
       
@@ -87,8 +109,10 @@ if(!user && !token){
 <style>
 .container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
+  text-align: center;
+  justify-content: center;
 }
+
+
 </style>
