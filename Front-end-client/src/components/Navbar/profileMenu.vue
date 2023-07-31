@@ -28,7 +28,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 const handleLogOut = () => {
   store.setLogout();
-  router.go('/');
+  router.push('/');
 }
 
 
