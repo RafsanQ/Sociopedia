@@ -104,7 +104,7 @@ function isSignedIn(){
               <br/>
             </RightPanel>
 
-            <NavDrawerMobile v-if="!isLoginPage" v-show="!isLargeScreen" />
+            <NavDrawerMobile v-if="isSignedIn()" v-show="!isLargeScreen" />
 
         </StyledNav>
       </ThemeProvider>
