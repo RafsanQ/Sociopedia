@@ -1,6 +1,6 @@
 <template>
     <div class="body">
-        <StyledText class="text"><slot /></StyledText>
+        <StyledText v-if="showText" class="text"><slot /></StyledText>
         <StyledInput class="inputFile" type="file" accept="image/*" @change=uploadImage />
         <img :src="previewImage" class="uploading-image" />
     </div>
@@ -20,8 +20,18 @@
             StyledTextButton,
             StyledInput
          },
-         setup(){
-            
+         props: {
+            width: {
+                type: String,
+                default: '50%'
+            },
+            showText: {
+                type: Boolean,
+                default: false
+            }
+         },
+         setup(props){
+            const width = props.width;
          },
          data(){
              return{
@@ -57,7 +67,7 @@
 
     .body .inputFile{
         display: inline;
-        width: 50%;
+        width: v-bind(width)
     }
 
     .body .uploading-image{

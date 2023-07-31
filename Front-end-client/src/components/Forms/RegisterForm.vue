@@ -80,7 +80,7 @@ function handleRegister(){
       <StyledInput type="text" placeholder="Occupation" v-model="userForm.occupation" required />
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
-      <ImageUploadFielInput type="file" placeholder="Profile Picture" @picture="getPicture" >Profile Picture:</ImageUploadFielInput>
+      <ImageUploadFielInput type="file" placeholder="Profile Picture" showText @picture="getPicture" >Profile Picture:</ImageUploadFielInput>
       <StyledSubmitButton variant="tonal">
         Register
       </StyledSubmitButton>

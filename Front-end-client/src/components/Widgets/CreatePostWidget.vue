@@ -6,6 +6,7 @@ import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
 
 import ProfileImageWidget from "./ProfileImageWidget.vue";
+import ImageUploadFieldInput from "../Forms/ImageUploadFieldInput.vue";
 
 import {
     WidgetWrapper,
@@ -39,8 +40,15 @@ let fontColor = themeProperties.value.pallete.fontColor;
 <template>
     <div class="container">
         <ProfileImageWidget :email="user.email" size="60px"/>
-        <textarea class="postText" placeholder="What's on your mind..." />
+        <textarea class="postText" placeholder="What's on your mind..." ></textarea>
     </div>
+    <br>
+    <div class="mediaInput">
+        <ImageUploadFieldInput  width="95%" />
+    </div>
+    
+    
+    
 </template>
 
 
@@ -62,5 +70,11 @@ let fontColor = themeProperties.value.pallete.fontColor;
     width: clamp(80%, 80%, 30%);
     color: v-bind(fontColor);
     resize: none;
+}
+.mediaInput{
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 100%;
 }
 </style>
