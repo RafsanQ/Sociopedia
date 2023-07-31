@@ -5,6 +5,8 @@ import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
 
+import UserImageWidget from "./UserImageWidget.vue";
+
 import {
     WidgetWrapper,
     StyledInput
@@ -16,6 +18,7 @@ const router = useRouter()
 
 // Store
 const store = useCentralStore();
+const user = store.user;
 
 // Theme settings
 const themeProperties = ref(themeSettings(store.mode));
@@ -34,13 +37,30 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 
 <template>
-    <div>
-        <h2>Post Form</h2>
+    <div class="container">
+        <UserImageWidget :email="user.email" size="60px"/>
+        <textarea class="postText" placeholder="What's on your mind..." />
     </div>
 </template>
 
 
 
 <style scoped>
-
+.container{
+    text-align: left;
+}
+.postText{
+    display: inline;
+    background: v-bind(neutralLight);
+    border-radius: 9px;
+    gap: 3rem;
+    
+    margin: 0 1rem 0 1rem;
+    float: left;
+    text-align: left;
+    padding: clamp(0.4rem, 0.4rem, 0.1rem);
+    width: clamp(80%, 80%, 30%);
+    color: v-bind(fontColor);
+    resize: none;
+}
 </style>

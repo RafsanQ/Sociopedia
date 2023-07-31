@@ -31,6 +31,7 @@ export const CentralCard = styled('div')`
     border-radius: 0.75rem;
     width: clamp(100%, 100%, 50%);
     height: auto;
+    overflow: auto;
     border-radius: 10px;
     margin: 2% 1%;
     align-items: center;

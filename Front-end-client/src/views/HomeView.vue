@@ -110,7 +110,7 @@ if(!user && !token){
         
         
         <ColumnDiv class="centreColumn">
-          <CentralCard >
+          <CentralCard>
             <CreatePostWidget />
           </CentralCard>
             
