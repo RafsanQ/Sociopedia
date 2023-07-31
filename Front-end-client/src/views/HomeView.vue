@@ -9,10 +9,12 @@ import { useCentralStore } from '../stores';
 
 import RegisterForm from "../components/Forms/RegisterForm.vue";
 import LoginForm from "../components/Forms/LoginForm.vue";
+import CreatePostWidget from "../components/Widgets/CreatePostWidget.vue";
 
 import {
   Background,
-  ColumnDiv
+  ColumnDiv,
+  CentralCard
 } from '../components/stylizedComponents.js';
 
 import {
@@ -108,13 +110,13 @@ if(!user && !token){
         
         
         <ColumnDiv class="centreColumn">
-          <WidgetWrapper>
-            centre
-          </WidgetWrapper>
+          <CentralCard >
+            <CreatePostWidget />
+          </CentralCard>
             
-          <WidgetWrapper>
+          <CentralCard>
             centre
-          </WidgetWrapper>
+          </CentralCard>
         </ColumnDiv>
 
         <ColumnDiv class="rightColumn">

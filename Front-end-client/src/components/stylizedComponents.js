@@ -16,12 +16,24 @@ export const Background = styled('div')`
 `;
 
 export const ColumnDiv = styled('div')`
-    padding: 1.5rem 1.5rem 0.75rem 1.5rem;
+    padding: 1.5rem;
     border-radius: 0.75rem;
-    width: clamp(60%, 50%, 30%);
+    width: 40%;
     height: auto;
-    margin: 2% auto;
     align-items: center;
     text-align: center;
+    color: ${props => props.theme.fontColor};
+`;
+
+export const CentralCard = styled('div')`
+    padding: 1.5rem;
+    background-color: ${props => props.theme.alt};
+    border-radius: 0.75rem;
+    width: clamp(100%, 100%, 50%);
+    height: auto;
+    border-radius: 10px;
+    margin: 2% 1%;
+    align-items: center;
+    text-align: left;
     color: ${props => props.theme.fontColor};
 `;

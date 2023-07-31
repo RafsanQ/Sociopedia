@@ -1,8 +1,4 @@
 import styled from "vue3-styled-components";
-import { useMediaQuery } from "@vueuse/core";
-
-
-const isLargeScreen = useMediaQuery('(min-width: 800px)')
 
 
 export const CenteredForm = styled('form')`

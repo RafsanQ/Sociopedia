@@ -8,11 +8,7 @@ import { useCentralStore } from '../../stores';
 
 import {
   CenteredForm,
-  StyledInput,
-  StyledSmallInput,
-  StyledSubmitButton,
   StyledText,
-  StyledTextButton
 } from './stylizedFormComponents.js';
 import ImageUploadFielInput from './ImageUploadFieldInput.vue'
 
