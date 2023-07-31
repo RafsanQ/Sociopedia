@@ -143,6 +143,16 @@ if(!user && !token){
   justify-content: center;
 }
 
+
+.leftColumn, .rightColumn{
+  max-width: 20%;
+}
+
+
+.centreColumn{
+  min-width: 50%;
+}
+
 .inline{
   display: inline;
   margin: 1%;

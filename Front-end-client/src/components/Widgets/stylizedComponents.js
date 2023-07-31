@@ -6,7 +6,7 @@ export const WidgetWrapper = styled('div')`
     padding: 1.5rem;
     background-color: ${props => props.theme.alt};
     border-radius: 0.75rem;
-    width: clamp(80%, 80%, 30%);
+    width: clamp(100%, 90%, 50%);
     height: auto;
     border-radius: 10px;
     margin: 2% auto;

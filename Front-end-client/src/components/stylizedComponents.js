@@ -33,7 +33,7 @@ export const CentralCard = styled('div')`
     height: auto;
     overflow: auto;
     border-radius: 10px;
-    margin: 2% 1%;
+    margin: 1% 1%;
     align-items: center;
     text-align: left;
     color: ${props => props.theme.fontColor};
