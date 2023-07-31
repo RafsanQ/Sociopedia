@@ -14,6 +14,12 @@ import {
   Background
 } from '../components/stylizedComponents.js';
 
+import {
+  WidgetWrapper
+} from '../components/Widgets/stylizedComponents';
+
+import UserImageWidget from '../components/Widgets/UserImageWidget.vue'
+
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
 const router = useRouter()
@@ -61,11 +67,28 @@ if(!user && !token){
     fontColor
   }">
     <Background>
+      <div class="container">
+        <WidgetWrapper>
+        
+        </WidgetWrapper>
+        <WidgetWrapper>
+          
+        </WidgetWrapper>
+        <WidgetWrapper>
+          
+        </WidgetWrapper>
+
+      </div>
       
     </Background>
   </ThemeProvider>
 </template>
 
 <style>
-
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 </style>
