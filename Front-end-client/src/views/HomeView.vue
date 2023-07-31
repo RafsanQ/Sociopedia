@@ -79,6 +79,8 @@ if(!user && !token){
               <p>{{ user.friends.length }} Friends</p>
             </div>
             <br>
+            <v-divider/>
+            <br>
             <div>
               <v-icon class="inline">location_on</v-icon>
               <p class="normalText inline">{{ user.location }}</p>
@@ -89,6 +91,7 @@ if(!user && !token){
               <p class="normalText inline">{{ user.occupation }}</p>
             </div>
             <br>
+            <v-divider/>
             <br>
             <div>
               <p class="normalText inline">Who has viewed your profile</p>
@@ -133,7 +136,7 @@ if(!user && !token){
 <style>
 .container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
   justify-content: center;
 }
