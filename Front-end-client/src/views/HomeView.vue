@@ -75,7 +75,31 @@ if(!user && !token){
           <WidgetWrapper>
             <div>
               <UserImageWidget :email="user.email" size="50px"/>
+              <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+              <p>{{ user.friends.length }} Friends</p>
             </div>
+            <br>
+            <div>
+              <v-icon class="inline">location_on</v-icon>
+              <p class="normalText inline">{{ user.location }}</p>
+            </div>
+            <br>
+            <div>
+              <v-icon class="inline">work</v-icon>
+              <p class="normalText inline">{{ user.occupation }}</p>
+            </div>
+            <br>
+            <br>
+            <div>
+              <p class="normalText inline">Who has viewed your profile</p>
+              <h5 class="figureInline">{{ user.viewedProfile }}</h5>
+            </div>
+            <br>
+            <div style="{width: 100%;}">
+              <p class="normalText inline">Impressions on your post</p>
+              <h5 class="figureInline">{{ user.impressions }}</h5>
+            </div>
+
           </WidgetWrapper>
         </ColumnDiv>
         
@@ -114,5 +138,21 @@ if(!user && !token){
   justify-content: center;
 }
 
+.inline{
+  display: inline;
+  margin: 1%;
+}
+
+
+.normalText{
+  padding: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.figureInline{
+  display: inline;
+  text-align: justify;
+  margin: 8%;
+}
 
 </style>

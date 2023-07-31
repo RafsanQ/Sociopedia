@@ -22,6 +22,8 @@ console.log(imgSrc);
 .box {
     width: v-bind(size);
     height: v-bind(size);
+    float: left;
+    margin: 0% 10% 0% 1%;
 }
 
 .image{

@@ -18,9 +18,10 @@ export const Background = styled('div')`
 export const ColumnDiv = styled('div')`
     padding: 1.5rem 1.5rem 0.75rem 1.5rem;
     border-radius: 0.75rem;
-    width: clamp(30%, 30%, 0%);
+    width: clamp(60%, 50%, 30%);
+    height: auto;
     margin: 2% auto;
-    align-items: left;
-    text-align: left;
+    align-items: center;
+    text-align: center;
     color: ${props => props.theme.fontColor};
 `;
