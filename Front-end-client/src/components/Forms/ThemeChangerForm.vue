@@ -16,12 +16,13 @@ import {
 } from './stylizedFormComponents.js';
 import ImageUploadFielInput from './ImageUploadFieldInput.vue'
 
-const props = defineProps(['changeForm'])
-
 
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
 const router = useRouter()
+
+
+const props = defineProps(['changeForm'])
 
 // Store
 const store = useCentralStore();

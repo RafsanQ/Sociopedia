@@ -5,6 +5,10 @@ import { useCentralStore } from '../../stores';
 import { themeSettings } from '../../theme.js';
 import { ref } from 'vue';
 
+// For Routing stuff and refresh
+import { useRouter } from 'vue-router';
+const router = useRouter()
+
 
 
 const store = useCentralStore();
