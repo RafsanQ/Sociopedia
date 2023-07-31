@@ -22,20 +22,48 @@ const router = useRouter()
 // Store
 const store = useCentralStore();
 
+
+// Theme settings
+const themeProperties = ref(themeSettings(store.mode));
+
+
+let neutralLight = themeProperties.value.pallete.neutral.light;
+let dark = themeProperties.value.pallete.neutral.dark;
+let primaryLight = themeProperties.value.pallete.primary.light;
+let primary = themeProperties.value.pallete.primary.main;
+let primaryDark = themeProperties.value.pallete.primary.dark;
+let background = themeProperties.value.pallete.background.default;
+let alt = themeProperties.value.pallete.background.alt;
+
+let fontColor = themeProperties.value.pallete.fontColor;
+
+
+
+// Check if Signed in
 const user = store.user;
 const token = store.token;
 
-
 if(!user && !token){
-  router.push('/')
+  router.push('/')    // If not redirect to login page
 }
 
 </script>
 
 <template>
-  <div>
-    <h1>This is the home page</h1>
-  </div>
+  <ThemeProvider :theme="{
+    neutralLight,
+    dark,
+    primaryLight,
+    primary,
+    primaryDark,
+    background,
+    alt,
+    fontColor
+  }">
+    <Background>
+      
+    </Background>
+  </ThemeProvider>
 </template>
 
 <style>

@@ -91,7 +91,6 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try{
         const {email, password} = req.body;
-        console.log({email, password});
         const user = await User.findOne({ email: email });
         
         if(!user){
@@ -108,7 +107,7 @@ export const login = async (req, res) => {
 
         // Password should not be sent to the front end
         delete user.password;
-        console.log({user, token});
+
         res.status(200).json({ token, user });
 
     }catch(error){

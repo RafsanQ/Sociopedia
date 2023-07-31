@@ -38,8 +38,9 @@ let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
-let fullName = '';
+
 // User Info
+let fullName = '';
 if(isSignedIn){
   const user = store.user;
   if(user)
@@ -63,13 +64,13 @@ function isSignedIn(){
 <template>
   <header>
       <ThemeProvider :theme="{
-        neutralLight: neutralLight,
-        dark: dark,
-        primaryLight: primaryLight,
-        primary: primary,
-        primaryDark: primaryDark,
-        background: background,
-        alt: alt,
+        neutralLight,
+        dark,
+        primaryLight,
+        primary,
+        primaryDark,
+        background,
+        alt,
         fontColor
       }">
         <StyledNav>
