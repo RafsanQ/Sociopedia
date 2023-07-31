@@ -4,6 +4,10 @@ import { useCentralStore } from '../../stores';
 import { themeSettings } from '../../theme.js';
 import { ref } from 'vue';
 
+// For Routing stuff and refresh
+import { useRouter } from 'vue-router';
+const router = useRouter()
+
 
 
 const store = useCentralStore();
@@ -21,6 +25,11 @@ let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
+
+const handleLogOut = () => {
+  store.setLogout();
+  router.go('/');
+}
 
 
 </script>
@@ -56,6 +65,12 @@ let fontColor = themeProperties.value.pallete.fontColor;
             </RouterLink>
             
           </v-list-item>
+
+          <!-- Log Out option -->
+          <v-list-item style="cursor: pointer;" @click="handleLogOut">
+            <v-icon :color="fontColor" style="{display: inline, 'margin-right': 5px}">md: logout</v-icon>
+            <v-list-item-title v-bind:style="{display: 'inline', color: fontColor}">Log out</v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-menu>
     </div>
@@ -68,7 +83,7 @@ export default {
         { title: 'View Profile', routeName: 'profileView', routeParams: {userId: '12345'}, icon: 'md: person'},
         { title: 'Change Theme', routeName: 'themeChanger', routeParams: {}, icon: 'md: display_settings' },
         { title: 'Account Settings', routeName: 'home', routeParams: {}, icon: 'md: settings' },
-        { title: 'Log out', routeName: 'home', routeParams: {}, icon: 'md: logout' },
+        // { title: 'Log out', routeName: 'login', routeParams: {}, icon: 'md: logout' },
     ],
     }),
 }

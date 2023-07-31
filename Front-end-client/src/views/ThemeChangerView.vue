@@ -1,5 +1,4 @@
 <script setup>
-import Navbar from '../components/Navbar/Navbar.vue';
 import { Background } from '../components/stylizedComponents.js';
 
 
@@ -34,7 +33,6 @@ let fontColor = themeProperties.value.pallete.fontColor;
     
 <template>
     
-    <Navbar />
     <ThemeProvider :theme="{
         neutralLight: neutralLight,
         dark: dark,

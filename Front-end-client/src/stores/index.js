@@ -65,8 +65,8 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
     const setLogout = () => {
-        this.user.value = null;
-        this.token.value = null;
+        user.value = null;
+        token.value = null;
     }
 
     const register = async (userForm) => {
@@ -133,5 +133,5 @@ export const useCentralStore = defineStore('centralStore', () => {
 
     return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, setPosts, setPost };
 },{
-    persist: sessionStorage,
+    persist: true,
   },)

@@ -7,7 +7,6 @@ import { themeSettings } from '../theme.js';
 import { useCentralStore } from '../stores';
 
 
-import Navbar from '../components/Navbar/Navbar.vue';
 import RegisterForm from "../components/Forms/RegisterForm.vue";
 import LoginForm from "../components/Forms/LoginForm.vue";
 
@@ -51,7 +50,7 @@ const changeForm = () => {
 
 <template>
   <div>
-    <Navbar :isLoginPage="true"/>
+    
 
     <ThemeProvider :theme="{
         neutralLight: neutralLight,

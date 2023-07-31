@@ -37,19 +37,25 @@ let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
-
+let fullName = '';
 // User Info
-const user = store.user;
-const fullName = `${user.firstName} ${user.lastName}`;
+if(isSignedIn){
+  const user = store.user;
+  if(user)
+    fullName = `${user.firstName} ${user.lastName}`;
+}
 
 
+function isSignedIn(){
+  return (store.user != null && store.token != null);
+}
 
-const props = defineProps({
-  isLoginPage: {
-    type: Boolean,
-    default: false
-  }
-})
+// const props = defineProps({
+//   isLoginPage: {
+//     type: Boolean,
+//     default: false
+//   }
+// })
 
 </script>
 
@@ -74,14 +80,14 @@ const props = defineProps({
               </RouterLink>
             </StyledLogoDiv>
 
-            <SearchBarDiv v-if="!isLoginPage" v-show="isLargeScreen" >
+            <SearchBarDiv v-if="isSignedIn()" v-show="isLargeScreen" >
               <SearchBar class="searchBarInput" placeholder="Search..." />
               <v-btn icon="md:search" variant="plain"/>
             </SearchBarDiv>
 
             
         
-            <RightPanel v-if="!isLoginPage" v-show="isLargeScreen">
+            <RightPanel v-if="isSignedIn()" v-show="isLargeScreen">
               <!-- <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn> -->
               <v-btn icon="md: chat" :color="fontColor" variant="plain" />
               <v-btn icon="md: notifications" :color="fontColor" variant="plain" />
@@ -91,7 +97,7 @@ const props = defineProps({
               <ProfileMenu>{{ fullName }}</ProfileMenu>
             </RightPanel>
 
-            <RightPanel v-if="isLoginPage" class="themeChangerButton">
+            <RightPanel v-if="!isSignedIn()" class="themeChangerButton">
               <RouterLink style="text-decoration: none; color: inherit;" to="/themechanger">
                 <v-btn variant="plain" icon="md: display_settings" :color="fontColor">Theme</v-btn>
               </RouterLink>

@@ -27,15 +27,13 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
 
 
-// User Info
-const user = store.user;
-const fullName = `${user.firstName} ${user.lastName}`;
 
 
 
 </script>
 
 <template>
+  <Navbar />
   <RouterView />
 </template>
 
