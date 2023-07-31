@@ -21,7 +21,7 @@ import {
   WidgetWrapper
 } from '../components/Widgets/stylizedComponents';
 
-import UserImageWidget from '../components/Widgets/UserImageWidget.vue'
+import ProfileImageWidget from '../components/Widgets/ProfileImageWidget.vue'
 
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
@@ -76,7 +76,7 @@ if(!user && !token){
         <ColumnDiv class="leftColumn">
           <WidgetWrapper>
             <div>
-              <UserImageWidget :email="user.email" size="50px"/>
+              <ProfileImageWidget :email="user.email" size="50px"/>
               <h3>{{ user.firstName }} {{ user.lastName }}</h3>
               <p>{{ user.friends.length }} Friends</p>
             </div>

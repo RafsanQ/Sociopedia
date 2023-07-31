@@ -5,7 +5,7 @@ import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
 
-import UserImageWidget from "./UserImageWidget.vue";
+import ProfileImageWidget from "./ProfileImageWidget.vue";
 
 import {
     WidgetWrapper,
@@ -38,7 +38,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 <template>
     <div class="container">
-        <UserImageWidget :email="user.email" size="60px"/>
+        <ProfileImageWidget :email="user.email" size="60px"/>
         <textarea class="postText" placeholder="What's on your mind..." />
     </div>
 </template>
