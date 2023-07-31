@@ -17,7 +17,8 @@ import {
 } from './stylizedNavComponents.js';
 
 // Media query to check screen size
-const isLargeScreen = useMediaQuery('(min-width: 1300px)')
+const isLargeScreen = useMediaQuery('(min-width: 1400px)')
+const isSmallScreen = useMediaQuery('(min-width: 1010px)')
 
 // Store
 const store = useCentralStore();
@@ -80,7 +81,7 @@ function isSignedIn(){
               </RouterLink>
             </StyledLogoDiv>
 
-            <SearchBarDiv v-if="isSignedIn()" v-show="isLargeScreen" >
+            <SearchBarDiv v-if="isSignedIn()" v-show="isSmallScreen" >
               <SearchBar class="searchBarInput" placeholder="Search..." />
               <v-btn icon="md:search" variant="plain"/>
             </SearchBarDiv>

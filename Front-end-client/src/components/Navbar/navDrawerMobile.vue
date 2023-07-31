@@ -24,6 +24,12 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 let drawerVisible = ref(false);
 
+
+const handleLogOut = () => {
+  store.setLogout();
+  router.push('/');
+}
+
 </script>
 
 
@@ -43,6 +49,10 @@ let drawerVisible = ref(false);
                     <v-list-item-title v-bind:style="{display: 'inline', color: fontColor}">{{ item.title }}</v-list-item-title>
                 </RouterLink>
             </v-list-item>
+            <v-list-item style="cursor: pointer;" @click="handleLogOut">
+                <v-icon :color="fontColor" style="{display: inline, 'margin-right': 5px}">md: logout</v-icon>
+                <v-list-item-title v-bind:style="{display: 'inline', color: fontColor}">Log out</v-list-item-title>
+            </v-list-item>
         </div>
         
     </div>
@@ -55,7 +65,6 @@ export default {
         { title: 'View Profile', routeName: 'profileView', routeParams: {userId: '12345'}, icon: 'md: person'},
         { title: 'Change Theme', routeName: 'themeChanger', routeParams: {}, icon: 'md: display_settings' },
         { title: 'Account Settings', routeName: 'home', routeParams: {}, icon: 'md: settings' },
-        { title: 'Log out', routeName: 'home', routeParams: {}, icon: 'md: logout' },
     ],
     }),
 }
