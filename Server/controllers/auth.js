@@ -1,31 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js"
-import fs from 'fs';
-import path from 'path';
 
-
-const writeFile = async (fileName, content) => {
-    let base64Image = content.split(';base64,').pop();
-    try{
-        await fs.promises.writeFile(fileName, base64Image, {encoding: 'base64'});
-    }catch(e){
-        console.error(e);
-    }
-}
-//     fs.writeFileSync(filePath, base64Image, err => {
-//         if (err) console.log('File not written', err);
-//         else console.log('File written');
-//     });
-// }
-
-
-const moveFile = (oldPath, newPath) => {
-    fs.rename(oldPath, newPath, function (err) {
-        if (err) throw err
-        console.log('Successful')
-    })
-}
+import { writeFile, moveFile } from "./fileInputOutput.js";
 
 
 

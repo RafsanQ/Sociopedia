@@ -1,5 +1,9 @@
+import { writeFile, moveFile } from "./fileInputOutput.js";
+
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+
+import crypto from 'crypto';
 
 // Create
 export const createPost = async (req, res) => {
@@ -9,7 +13,10 @@ export const createPost = async (req, res) => {
 
         const user = await User.findById(userId);
 
-        const _id = 1;
+        // Randomly generated string
+        const _id = crypto.randomBytes(32).toString('hex');
+
+
         const mediaPath = '/assets/posts/' + '/' + _id;
 
         console.log({

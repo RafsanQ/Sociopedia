@@ -3,7 +3,6 @@ import { createPost, getFeedPosts, getUserPosts, likePost } from '../controllers
 
 import { varifyToken } from "../middleware/auth.js";
 
-
 const router = express.Router();
 
 // Read
