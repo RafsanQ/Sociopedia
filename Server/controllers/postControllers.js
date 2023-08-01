@@ -1,14 +1,15 @@
-import { writeFile, moveFile } from "./fileInputOutput.js";
+import { writeFile, moveFile, getStorageFormate } from "./fileInputOutput.js";
 
 import Post from "../models/Post.js";
 import User from "../models/User.js";
 
 import crypto from 'crypto';
 
+
+
 // Create
 export const createPost = async (req, res) => {
     try{
-        console.log("Here");
         const { userId, text, media } = req.body;
 
         const user = await User.findById(userId);
@@ -16,13 +17,19 @@ export const createPost = async (req, res) => {
         // Randomly generated string
         const _id = crypto.randomBytes(32).toString('hex');
 
+        // Get Media type from the media object
+        let mediaType = media.split(';base64,').shift();
 
-        const mediaPath = '/assets/posts/' + '/' + _id;
+        mediaType = mediaType.replace('data:', '').split('/').shift();
 
+        const mediaPath = '/assets/posts/' + mediaType + '/' + _id + getStorageFormate(mediaType);
+
+        
         console.log({
             _id, userId, text, media, mediaPath
         });
 
+        return;
         const newPost = new Post({
             _id,
             userId, 

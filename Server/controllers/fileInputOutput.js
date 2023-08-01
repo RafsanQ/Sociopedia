@@ -16,3 +16,10 @@ export const moveFile = (oldPath, newPath) => {
         console.log('Successful')
     })
 }
+
+export const getStorageFormate = (mediaType) =>{
+    if(mediaType == 'image') return '.png';
+    else if(mediaType == 'video') return '.mp4';
+    else if(mediaType == 'audio') return '.mp3';
+    else return '';
+}
