@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
+import { useToast } from 'vue-toast-notification';
 
 import ProfileImageWidget from "./ProfileImageWidget.vue";
 import MediaUploadFieldInput from "../Forms/MediaUploadFieldInput.vue";
@@ -21,6 +22,8 @@ import {
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
 const router = useRouter()
+
+const toast = useToast();
 
 // Store
 const store = useCentralStore();
@@ -40,27 +43,44 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 
 // Form properties
-let post = {
-    text: "",
-    mediaType: "",
-    media: null
-}
-
+let text = "";
 
 // To catch the uploaded media
-let media = ref(null);
+let media = null;
 function getMedia(value){
-    media.value = value;
+    media = value;
 }
 
 // Input Type selector
 let inputType = ref('image');
-function selectInputType(value){
-    inputType.value = value;
+function selectInputType(newValue){
+    inputType.value = newValue;
 }
 
-function handlePost(){
-    console.log("handing post");
+async function handlePost(){
+    try{
+        const response = await fetch("http://localhost:3001/posts/create",{
+            method: 'POST',
+            headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${store.token}`
+                },
+            body: JSON.stringify({
+                userId: user._id,
+                text,
+                media
+            })
+        })
+
+        if(response.status == 403){
+            toast.error("Invalid Token");
+        }
+
+    }catch(error){
+        console.log(error);
+    }
+    
+
 }
 
 </script>
@@ -69,7 +89,7 @@ function handlePost(){
 <template>
     <div class="container">
         <ProfileImageWidget :email="user.email" size="60px"/>
-        <textarea class="postText" placeholder="What's on your mind..." ></textarea>
+        <textarea class="postText" v-model="text" placeholder="What's on your mind..." ></textarea>
     </div>
     <br>
     <div class="mediaInput">

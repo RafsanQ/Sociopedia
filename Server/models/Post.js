@@ -2,6 +2,11 @@ import { Timestamp } from "mongodb";
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
+    _id: {
+        type: String,
+        require: true,
+        unique: true
+    },
     userId: {
         type: String,
         required: true
@@ -15,7 +20,7 @@ const PostSchema = new mongoose.Schema({
         required: true
     },
     location: String,
-    description: String,
+    text: String,
     mediaPath: String,
     userPicturePath: String,
     likes: {
@@ -26,7 +31,7 @@ const PostSchema = new mongoose.Schema({
         type: Array,
         default: []
     }
-}, { Timestamp: true });
+}, { Timestamp: true, _id: false });
 
 const Post = mongoose.model('Post', PostSchema);
 

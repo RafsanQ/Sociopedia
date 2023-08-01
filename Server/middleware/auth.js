@@ -9,7 +9,7 @@ export const varifyToken = async (req, res, next) => {
         }
 
         // Remove Bearer if it exists in the header
-        if(token.startswith("Bearer ")){
+        if(token.startsWith("Bearer ")){
             token = token.slice(7, token.length).trimLeft();
         }
 

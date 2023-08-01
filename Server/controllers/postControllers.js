@@ -4,16 +4,27 @@ import User from "../models/User.js";
 // Create
 export const createPost = async (req, res) => {
     try{
-        const { userId, description, picturePath } = req.body;
+        console.log("Here");
+        const { userId, text, media } = req.body;
+
         const user = await User.findById(userId);
+
+        const _id = 1;
+        const mediaPath = '/assets/posts/' + '/' + _id;
+
+        console.log({
+            _id, userId, text, media, mediaPath
+        });
+
         const newPost = new Post({
+            _id,
             userId, 
             firstName: user.firstName,
             lastName: user.location,
             location: user.location,
-            description,
+            text,
             userPicturePath: user.picturePath,
-            picturePath,
+            mediaPath,
             likes: {},
             comments: []
         })
@@ -22,7 +33,8 @@ export const createPost = async (req, res) => {
         const post = await Post.find();
         res.status(201).json(post);
     }catch(error) {
-        res.status(409).json({ message: error.message });
+        console.log(error);
+        res.status(500).json({ message: error.message });
     }
 }
 
