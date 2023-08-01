@@ -10,7 +10,6 @@ import {
   CenteredForm,
   StyledText,
 } from './stylizedFormComponents.js';
-import ImageUploadFielInput from './ImageUploadFieldInput.vue'
 
 
 // For Routing stuff and refresh

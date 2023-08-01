@@ -6,7 +6,7 @@ import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
 
 import ProfileImageWidget from "./ProfileImageWidget.vue";
-import ImageUploadFieldInput from "../Forms/ImageUploadFieldInput.vue";
+import MediaUploadFieldInput from "../Forms/MediaUploadFieldInput.vue";
 
 import {
     WidgetWrapper,
@@ -44,7 +44,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
     </div>
     <br>
     <div class="mediaInput">
-        <ImageUploadFieldInput  width="95%" />
+        <MediaUploadFieldInput  width="95%" />
     </div>
     
     

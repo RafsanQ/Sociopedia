@@ -1,8 +1,8 @@
 <template>
     <div class="body">
         <StyledText v-if="showText" class="text"><slot /></StyledText>
-        <StyledInput class="inputFile" type="file" accept="image/*" @change=uploadImage />
-        <img :src="previewImage" class="uploading-image" />
+        <StyledInput class="inputFile" type="file" :accept="`${inputType}/*`" @change=uploadImage />
+        <img :src="previewImage" class="uploading-media" />
     </div>
  </template>
  
@@ -28,10 +28,14 @@
             showText: {
                 type: Boolean,
                 default: false
+            },
+            inputType: {
+                String,
+                default: 'image'
             }
          },
          setup(props){
-            const width = props.width;
+            
          },
          data(){
              return{
@@ -46,7 +50,7 @@
                  reader.onload = e =>{
                     this.previewImage = e.target.result;
                     // console.log(this.previewImage);
-                    this.$emit('picture', this.previewImage);
+                    this.$emit('inputMedia', this.previewImage);
                  };
              }
          }
@@ -70,7 +74,7 @@
         width: v-bind(width)
     }
 
-    .body .uploading-image{
+    .body .uploading-media{
         display: block;
         width: 90%;
         height: auto;

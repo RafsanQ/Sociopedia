@@ -13,7 +13,7 @@ import {
   StyledText,
   StyledTextButton
 } from './stylizedFormComponents.js';
-import ImageUploadFielInput from './ImageUploadFieldInput.vue'
+import MediaUploadFieldInput from './MediaUploadFieldInput.vue'
 
 const props = defineProps(['changeForm'])
 
@@ -80,7 +80,7 @@ function handleRegister(){
       <StyledInput type="text" placeholder="Occupation" v-model="userForm.occupation" required />
       <StyledInput type="email" placeholder="Email" v-model="userForm.email" required />
       <StyledInput type="password" placeholder="Password" v-model="userForm.password" required />
-      <ImageUploadFielInput type="file" placeholder="Profile Picture" showText @picture="getPicture" >Profile Picture:</ImageUploadFielInput>
+      <MediaUploadFieldInput type="file" placeholder="Profile Picture" showText @inputMedia="getPicture" >Profile Picture:</MediaUploadFieldInput>
       <StyledSubmitButton variant="tonal">
         Register
       </StyledSubmitButton>
