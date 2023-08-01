@@ -4,6 +4,7 @@ const navProps = {theme: Object};
 
 export const StyledNav = styled("nav")`
     display: flex;
+    max-height: 10vh;
     justify-content: space-between;
     align-items: center;
     background: ${props => props.theme.alt};
