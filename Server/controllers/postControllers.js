@@ -18,18 +18,20 @@ export const createPost = async (req, res) => {
         const _id = crypto.randomBytes(32).toString('hex');
 
         // Get Media type from the media object
-        let mediaType = media.split(';base64,').shift();
+        let mediaType = '';
+        let fileName = '';
+        let mediaPath = '';
+        if(media) {
+            mediaType = media.split(';base64,').shift();
 
-        mediaType = mediaType.replace('data:', '').split('/').shift();
+            mediaType = mediaType.replace('data:', '').split('/').shift();
 
-        const mediaPath = '/assets/posts/' + mediaType + '/' + _id + getStorageFormate(mediaType);
+            fileName = _id + getStorageFormate(mediaType);
+            mediaPath = 'public/assets/posts/' + mediaType + '/' + fileName;
+        }
+        
 
         
-        console.log({
-            _id, userId, text, media, mediaPath
-        });
-
-        return;
         const newPost = new Post({
             _id,
             userId, 
@@ -43,6 +45,13 @@ export const createPost = async (req, res) => {
             comments: []
         })
         await newPost.save();
+
+        // Store the media data
+        if(media){
+            await writeFile(fileName, media);
+            moveFile(fileName, mediaPath);
+        }
+        
 
         const post = await Post.find();
         res.status(201).json(post);
