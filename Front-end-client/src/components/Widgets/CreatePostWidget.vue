@@ -8,10 +8,15 @@ import { useCentralStore } from '../../stores';
 import ProfileImageWidget from "./ProfileImageWidget.vue";
 import MediaUploadFieldInput from "../Forms/MediaUploadFieldInput.vue";
 
+
 import {
     WidgetWrapper,
     StyledInput
 } from './stylizedComponents.js';
+
+import {
+    StyledSubmitButton
+} from '../Forms/stylizedFormComponents';
 
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
@@ -34,9 +39,28 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
+// Form properties
+let post = {
+    text: "",
+    mediaType: "",
+    media: null
+}
+
+
+// To catch the uploaded media
 let media = ref(null);
 function getMedia(value){
     media.value = value;
+}
+
+// Input Type selector
+let inputType = ref('image');
+function selectInputType(value){
+    inputType.value = value;
+}
+
+function handlePost(){
+    console.log("handing post");
 }
 
 </script>
@@ -49,21 +73,46 @@ function getMedia(value){
     </div>
     <br>
     <div class="mediaInput">
-        <MediaUploadFieldInput width="95%" @inputMedia="getMedia" />
+        <MediaUploadFieldInput :inputType="inputType" width="95%" @inputMedia="getMedia" />
     </div>
-
-
-    
-    
+    <div class="buttons">
+        <v-btn prepend-icon="image" variant="plain" @click="selectInputType('image')">
+            Image
+        </v-btn>
+        <v-btn prepend-icon="movie" variant="plain" @click="selectInputType('video')">
+            Video
+        </v-btn>
+        <v-btn prepend-icon="mic" variant="plain" @click="selectInputType('audio')">
+            Audio
+        </v-btn>
+        <StyledSubmitButton class="submitButton" @click="handlePost">
+            Post
+        </StyledSubmitButton>
+    </div>
     
 </template>
 
 
 
 <style scoped>
+
+.buttons{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.buttons .submitButton{
+    max-width: 25%;
+    margin: 0;
+    color: white;
+}
+
 .container{
     text-align: left;
 }
+
 .postText{
     display: inline;
     background: v-bind(neutralLight);

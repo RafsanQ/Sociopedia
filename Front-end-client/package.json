@@ -18,7 +18,8 @@
     "vue-router": "^4.2.2",
     "vue-toast-notification": "^3.1.1",
     "vue3-styled-components": "^1.2.1",
-    "vuetify": "^3.3.9"
+    "vuetify": "^3.3.9",
+    "vuetify-audio": "^0.3.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

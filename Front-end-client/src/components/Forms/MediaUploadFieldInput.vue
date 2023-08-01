@@ -2,7 +2,9 @@
     <div class="body">
         <StyledText v-if="showText" class="text"><slot /></StyledText>
         <StyledInput class="inputFile" type="file" :accept="`${inputType}/*`" @change=uploadImage />
-        <img :src="previewImage" class="uploading-media" />
+        <img v-if="inputType == 'image'" :src="previewImage" class="uploading-media" />
+        <video v-if="inputType == 'video'" :src="previewImage" class="uploading-media" controls />
+        <audio v-if="inputType == 'audio'" :src="previewImage" class="uploading-media" controls></audio>
     </div>
  </template>
  
@@ -18,7 +20,7 @@
          components: {
             StyledText,
             StyledTextButton,
-            StyledInput
+            StyledInput,
          },
          props: {
             width: {
