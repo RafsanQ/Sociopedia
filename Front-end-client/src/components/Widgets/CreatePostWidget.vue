@@ -49,7 +49,7 @@ function getMedia(value){
     </div>
     <br>
     <div class="mediaInput">
-        <MediaUploadFieldInput  width="95%" @@inputMedia="getMedia" />
+        <MediaUploadFieldInput width="95%" @inputMedia="getMedia" />
     </div>
 
 
