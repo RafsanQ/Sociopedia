@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import { error } from 'console';
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
 import { register } from './controllers/auth.js';
 import { createPost } from './controllers/postControllers.js';
@@ -52,6 +53,7 @@ app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 /* Routes */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 /* Mongoose */
 const PORT = process.env.PORT || 6001;
