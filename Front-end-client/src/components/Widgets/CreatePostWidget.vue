@@ -34,6 +34,11 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
+let media = ref(null);
+function getMedia(value){
+    media.value = value;
+}
+
 </script>
 
 
@@ -44,8 +49,10 @@ let fontColor = themeProperties.value.pallete.fontColor;
     </div>
     <br>
     <div class="mediaInput">
-        <MediaUploadFieldInput  width="95%" />
+        <MediaUploadFieldInput  width="95%" @@inputMedia="getMedia" />
     </div>
+
+
     
     
     
