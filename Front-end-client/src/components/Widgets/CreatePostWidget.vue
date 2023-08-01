@@ -72,7 +72,18 @@ async function handlePost(){
             })
         })
 
-        if(response.status == 403){
+        if(response.status == 200 || response.status == 201){
+            toast.success("Post Created");
+
+            // Wait 0.1s
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            await delay(100);
+
+            // Refresh
+            router.go();
+        }
+
+        else if(response.status == 403){
             toast.error("Invalid Token");
         }
 
@@ -143,6 +154,8 @@ async function handlePost(){
     float: left;
     text-align: left;
     padding: clamp(0.4rem, 0.4rem, 0.1rem);
+    padding-top: 2%; 
+    padding-left: 2%;
     width: clamp(80%, 80%, 30%);
     color: v-bind(fontColor);
     resize: none;
