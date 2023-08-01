@@ -48,13 +48,14 @@ let text = "";
 // To catch the uploaded media
 let media = null;
 function getMedia(value){
-    media = value;
+    media.value = value;
 }
 
 // Input Type selector
 let inputType = ref('image');
 function selectInputType(newValue){
     inputType.value = newValue;
+    media = null;
 }
 
 async function handlePost(){
@@ -90,8 +91,6 @@ async function handlePost(){
     }catch(error){
         console.log(error);
     }
-    
-
 }
 
 </script>
@@ -107,20 +106,19 @@ async function handlePost(){
         <MediaUploadFieldInput :inputType="inputType" width="95%" @inputMedia="getMedia" />
     </div>
     <div class="buttons">
-        <v-btn prepend-icon="image" variant="plain" @click="selectInputType('image')">
+        <v-btn id="imageButton" prepend-icon="image" :variant="inputType == 'image' ? 'tonal':'plain'" @click="selectInputType('image')">
             Image
         </v-btn>
-        <v-btn prepend-icon="movie" variant="plain" @click="selectInputType('video')">
+        <v-btn id="videoButton" prepend-icon="movie" :variant="inputType == 'video' ? 'tonal':'plain'" @click="selectInputType('video')">
             Video
         </v-btn>
-        <v-btn prepend-icon="mic" variant="plain" @click="selectInputType('audio')">
+        <v-btn id="audioButton" prepend-icon="mic" :variant="inputType == 'audio' ? 'tonal':'plain'" @click="selectInputType('audio')">
             Audio
         </v-btn>
         <StyledSubmitButton class="submitButton" @click="handlePost">
             Post
         </StyledSubmitButton>
     </div>
-    
 </template>
 
 

@@ -4,7 +4,7 @@
         <StyledInput class="inputFile" type="file" :accept="`${inputType}/*`" @change=uploadImage />
         <img v-if="inputType == 'image'" :src="previewImage" class="uploading-media" />
         <video v-if="inputType == 'video'" :src="previewImage" class="uploading-media" controls />
-        <audio v-if="inputType == 'audio'" :src="previewImage" class="uploading-media" controls></audio>
+        <video v-if="inputType == 'audio'" :src="previewImage" class="uploading-media" controls></video>
     </div>
  </template>
  
