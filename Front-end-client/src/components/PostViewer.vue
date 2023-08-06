@@ -55,7 +55,7 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
         <div class="media">
             <img v-if="postProperties.mediaType == 'image'" :src="mediaLocation" />
             <video v-if="postProperties.mediaType == 'video'" :src="mediaLocation" controls />
-            <video v-if="postProperties.mediaType == 'audio'" :src="mediaLocation" controls class="audio"/>
+            <video v-if="postProperties.mediaType == 'audio'" :src="mediaLocation" controls class="audio" />
         </div>
         
         

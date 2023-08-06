@@ -121,8 +121,8 @@ export const useCentralStore = defineStore('centralStore', () => {
         }
     }
     
-    const setPosts = (action) => {
-        posts.value = action.payload.posts;
+    const setPosts = (posts) => {
+        posts.value = posts;
     }
 
     const setPost = (action) => {

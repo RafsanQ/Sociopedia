@@ -67,7 +67,7 @@ const getPosts = async () => {
                 }
     })
     posts.value = await response.json();
-    console.log(posts.value);
+    store.setPosts(posts.value);
   }catch(error){
     console.log(error);
   }
@@ -169,7 +169,7 @@ onBeforeMount(getPosts);
 
 
 .leftColumn, .rightColumn{
-  max-width: 20%;
+  max-width: 25%;
 }
 
 
