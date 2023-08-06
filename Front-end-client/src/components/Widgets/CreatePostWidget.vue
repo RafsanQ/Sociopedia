@@ -47,7 +47,7 @@ let text = "";
 // To catch the uploaded media
 let media = null;
 function getMedia(value){
-    media.value = value;
+    media = value;
 }
 
 // Input Type selector
@@ -79,7 +79,7 @@ async function handlePost(){
             const delay = ms => new Promise(res => setTimeout(res, ms));
             await delay(100);
 
-            // Refresh
+            Refresh
             router.go();
         }
 

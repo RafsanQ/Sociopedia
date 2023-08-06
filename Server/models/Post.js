@@ -11,6 +11,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userEmail: {
+        type: String,
+        required: true
+    },
     firstName: {
         type: String,
         required: true
@@ -22,7 +26,6 @@ const PostSchema = new mongoose.Schema({
     location: String,
     text: String,
     mediaPath: String,
-    userPicturePath: String,
     likes: {
         type: Map,
         of: Boolean

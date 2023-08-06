@@ -36,18 +36,30 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
+const props = defineProps({
+    post: {
+        Type: Object
+    }
+})
+
+console.log(props.foo)
+
 
 </script>
 
 
 <template>
     <CentralCard>
-        <div class="container">
+        <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="user.email" size="30px"/>
-            <h3 class="username">{{ user.firstName + ' ' + user.lastName }}</h3>
+            <h3 class="username"> dummy First name dummy last Name </h3>
+        </div>
+        <br>
+        <div class="postText">
+            <p>Dummy Text</p>
         </div>
         <div>
-            
+
         </div>
         
         
@@ -57,7 +69,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 
 <style scoped>
-.container {
+.userInfo {
     display: block;
     text-align: right;
     align-items: left;
@@ -70,7 +82,11 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 .username{
     float: left;
-    
+}
+
+.postText{
+    display: block;
+    padding: 3% 1%;
 }
 
 </style>
