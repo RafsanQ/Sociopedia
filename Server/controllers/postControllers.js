@@ -39,6 +39,7 @@ export const createPost = async (req, res) => {
             userLocation: user.location,
             text,
             mediaPath,
+            mediaType,
             likes: {},
             comments: []
         })
@@ -49,7 +50,7 @@ export const createPost = async (req, res) => {
             await writeFile(fileName, media);
             moveFile(fileName, mediaPath);
         }
-        
+
         const post = await Post.find();
         res.status(201).json(post);
     }catch(error) {

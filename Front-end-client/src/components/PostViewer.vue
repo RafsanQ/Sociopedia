@@ -1,12 +1,9 @@
 <script setup>
 
 import { ref } from "vue";
-import { themeSettings } from '../theme.js';
 import { useCentralStore } from '../stores';
-import { useToast } from 'vue-toast-notification';
 
 import ProfileImageWidget from "./Widgets/ProfileImageWidget.vue";
-import MediaUploadFieldInput from "./Forms/MediaUploadFieldInput.vue";
 
 import {
     CentralCard
@@ -17,23 +14,6 @@ import {
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
-const toast = useToast();
-
-// Store
-const store = useCentralStore();
-const user = store.user;
-
-// Theme settings
-const themeProperties = ref(themeSettings(store.mode));
-let neutralLight = themeProperties.value.pallete.neutral.light;
-let neutralDark = themeProperties.value.pallete.neutral.dark;
-let primaryLight = themeProperties.value.pallete.primary.light;
-let primary = themeProperties.value.pallete.primary.main;
-let primaryDark = themeProperties.value.pallete.primary.dark;
-let background = themeProperties.value.pallete.background.default;
-let alt = themeProperties.value.pallete.background.alt;
-
-let fontColor = themeProperties.value.pallete.fontColor;
 
 
 const props = defineProps({
@@ -43,6 +23,21 @@ const props = defineProps({
 })
 
 
+// Store
+const store = useCentralStore();
+const user = store.user;
+
+
+
+let mediaLocation = props.postProperties.mediaPath;
+
+if (mediaLocation.startsWith("public/")) {
+    mediaLocation = mediaLocation.slice(7, mediaLocation.length).trimLeft();
+}
+
+mediaLocation = 'http://localhost:3001/' + mediaLocation;
+
+
 
 </script>
 
@@ -50,15 +45,17 @@ const props = defineProps({
 <template>
     <CentralCard>
         <div class="userInfo">
-            <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="40px"/>
+            <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="45px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
         </div>
         <br>
         <div class="postText">
-            <p>Dummy Text</p>
+            <p>{{ postProperties.text }}</p>
         </div>
-        <div>
-
+        <div class="media">
+            <img v-if="postProperties.mediaType == 'image'" :src="mediaLocation" />
+            <video v-if="postProperties.mediaType == 'video'" :src="mediaLocation" controls />
+            <video v-if="postProperties.mediaType == 'audio'" :src="mediaLocation" controls class="audio"/>
         </div>
         
         
@@ -68,6 +65,21 @@ const props = defineProps({
 
 
 <style scoped>
+
+.media {
+    text-align: center;
+}
+
+.media img, video {
+    width: 100%;
+    
+}
+
+.media .audio{
+    width: 90%;
+    height: 2rem;
+}
+
 .userInfo {
     display: block;
     text-align: right;
@@ -85,7 +97,7 @@ const props = defineProps({
 
 .postText{
     display: block;
-    padding: 3% 1%;
+    padding: 5% 1%;
 }
 
 </style>

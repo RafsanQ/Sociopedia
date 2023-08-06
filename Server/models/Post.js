@@ -26,6 +26,7 @@ const PostSchema = new mongoose.Schema({
     userLocation: String,
     text: String,
     mediaPath: String,
+    mediaType: String,
     likes: {
         type: Map,
         of: Boolean

@@ -67,6 +67,7 @@ const getPosts = async () => {
                 }
     })
     posts.value = await response.json();
+    console.log(posts.value);
   }catch(error){
     console.log(error);
   }
