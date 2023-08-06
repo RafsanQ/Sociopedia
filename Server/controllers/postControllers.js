@@ -34,9 +34,9 @@ export const createPost = async (req, res) => {
             _id,
             userId, 
             userEmail: user.email,
-            firstName: user.firstName,
-            lastName: user.location,
-            location: user.location,
+            userFirstName: user.firstName,
+            userLastName: user.lastName,
+            userLocation: user.location,
             text,
             mediaPath,
             likes: {},
@@ -50,7 +50,6 @@ export const createPost = async (req, res) => {
             moveFile(fileName, mediaPath);
         }
         
-
         const post = await Post.find();
         res.status(201).json(post);
     }catch(error) {

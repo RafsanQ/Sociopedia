@@ -50,8 +50,8 @@ const props = defineProps({
 <template>
     <CentralCard>
         <div class="userInfo">
-            <ProfileImageWidget class="profilePicture" :email="user.email" size="30px"/>
-            <h3 class="username"> dummy First name dummy last Name </h3>
+            <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="40px"/>
+            <h3 class="username"> {{ postProperties.firstName + ' ' + postProperties.lastName }}</h3>
         </div>
         <br>
         <div class="postText">

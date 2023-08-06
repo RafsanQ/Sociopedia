@@ -15,15 +15,15 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    firstName: {
+    userFirstName: {
         type: String,
         required: true
     },
-    lastName: {
+    userLastName: {
         type: String,
         required: true
     },
-    location: String,
+    userLocation: String,
     text: String,
     mediaPath: String,
     likes: {
