@@ -13,7 +13,6 @@ import CreatePostWidget from "../components/Widgets/CreatePostWidget.vue";
 import {
   Background,
   ColumnDiv,
-  CentralCard
 } from '../components/stylizedComponents.js';
 
 import {
@@ -57,7 +56,8 @@ if(!user && !token){
 }
 
 // Get posts for feed
-onBeforeMount(async () => {
+let posts = ref([]);
+const getPosts = async () => {
   try{
     const response = await fetch("http://localhost:3001/posts/",{
             method: 'GET',
@@ -66,14 +66,15 @@ onBeforeMount(async () => {
                     "Authorization": `Bearer ${store.token}`
                 }
     })
-    const posts = await response.json();
-    console.log(posts);
-    
-          
+    posts.value = await response.json();
   }catch(error){
     console.log(error);
   }
-})
+}
+
+onBeforeMount(getPosts);
+
+
 
 </script>
 
@@ -90,7 +91,6 @@ onBeforeMount(async () => {
   }">
     <Background>
       <div class="container">
-
 
 <!-- left column - Profile Section -->
         <ColumnDiv class="leftColumn">
@@ -128,11 +128,17 @@ onBeforeMount(async () => {
           </WidgetWrapper>
         </ColumnDiv>
         
-        
         <ColumnDiv class="centreColumn">
           <CreatePostWidget />
+          <br>
+          <Suspense>
             
-          <PostViewer></PostViewer>
+            <PostViewer v-for="post in posts" :postProperties="post" />
+          
+          </Suspense>
+           
+           
+          
           
         </ColumnDiv>
 

@@ -140,4 +140,4 @@ export const useCentralStore = defineStore('centralStore', () => {
     return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, setPosts, setPost };
 },{
     persist: true,
-  },)
+  })

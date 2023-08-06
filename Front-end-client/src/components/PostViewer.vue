@@ -37,7 +37,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 
 const props = defineProps({
-    post: {
+    postProperties: {
         Type: Object
     }
 })
