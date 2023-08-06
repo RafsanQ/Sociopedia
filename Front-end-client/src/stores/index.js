@@ -112,9 +112,9 @@ export const useCentralStore = defineStore('centralStore', () => {
         
     }
 
-    const setFriends = (action) => {
+    const setFriends = (newFriednsList) => {
         if(user.value){
-            user.value.friends = action.payload.friends;
+            user.value.friends = newFriednsList;
         }
         else{
             console.error("User Friends non-existent");

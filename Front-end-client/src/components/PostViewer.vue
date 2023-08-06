@@ -35,7 +35,6 @@ else{
 }
 
 async function handleLike(){
-    
     try{
     const response = await fetch("http://localhost:3001/posts/" + props.postProperties._id + '/like', {
         method: 'PATCH',
@@ -77,8 +76,20 @@ function showAddFriendButton(){
     return true;
 }
 
-function handleAddFriend(){
-    
+async function handleAddFriend(){
+    try{
+        const response = await fetch('http://localhost:3001/users/' + user._id + '/' + props.postProperties.userId, {
+            method: 'PATCH',
+            headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${store.token}`
+                },
+        })
+        store.setFriends(await response.json());
+        
+    }catch(error){
+        console.log(error);
+    }
 }
 
 </script>
@@ -89,7 +100,7 @@ function handleAddFriend(){
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="45px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
-            <v-btn icon="md:add" v-show="showAddFriendButton()"/>
+            <v-btn icon="md:add" v-show="showAddFriendButton()" @click="handleAddFriend"/>
         </div>
         <br>
         <div class="postText">

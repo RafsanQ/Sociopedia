@@ -32,9 +32,21 @@ export const getUserFriends = async (req, res) => {
 export const addRemoveFriend = async (req, res) => {
     try{
         const { id, friendId } = req.params;
+        console.log({ id, friendId });
         const user = await User.findById(id);
-        const friend = await User.findById(friendId);
 
+        if(!user){
+            res.status(400).json({message:'user not found'});
+            return;
+        }
+
+        const friend = await User.findById(friendId);
+        if(!friend){
+            res.status(400).json({message:'target user not found'});
+            return;
+        }
+        
+        
         if(user.friends.includes(friendId)){
             user.friends = user.friends.filter((id) => id !== friendId);
             friend.friends = friend.friends.filter((id) => id !== id)
@@ -58,6 +70,6 @@ export const addRemoveFriend = async (req, res) => {
 
         res.status(200).json(formattedFriends);
     }catch(error){
-        res.status(404).json({message: error.message});
+        res.status(501).json({message: error.message});
     }
 }
