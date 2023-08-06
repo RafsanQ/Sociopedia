@@ -26,9 +26,13 @@ import PostViewer from '../components/PostViewer.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
-
 // Store
 const store = useCentralStore();
+
+
+// Media query to check screen size
+const isLargeScreen = useMediaQuery('(min-width: 1577px)')
+
 
 
 // Theme settings
@@ -93,8 +97,8 @@ onBeforeMount(getPosts);
     <Background>
       <div class="container">
 
-<!-- left column - Profile Section -->
-        <ColumnDiv class="leftColumn">
+        <!-- left column - Profile Section -->
+        <ColumnDiv v-show="isLargeScreen" class="leftColumn" >
           <WidgetWrapper>
             <div>
               <ProfileImageWidget :email="user.email" size="50px"/>
@@ -129,6 +133,7 @@ onBeforeMount(getPosts);
           </WidgetWrapper>
         </ColumnDiv>
         
+        <!-- Center column - feed and post section -->
         <ColumnDiv class="centreColumn">
           <CreatePostWidget />
           <br>
@@ -143,7 +148,8 @@ onBeforeMount(getPosts);
           
         </ColumnDiv>
 
-        <ColumnDiv class="rightColumn">
+        <!-- Right column - friend List section  -->
+        <ColumnDiv v-show="isLargeScreen" class="rightColumn">
           <WidgetWrapper>
             right
           </WidgetWrapper>
@@ -193,5 +199,4 @@ onBeforeMount(getPosts);
   text-align: justify;
   margin: 8%;
 }
-
 </style>

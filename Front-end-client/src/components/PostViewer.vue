@@ -43,7 +43,7 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
 
 
 <template>
-    <CentralCard>
+    <CentralCard class="card">
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="45px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
@@ -57,6 +57,10 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
             <video v-if="postProperties.mediaType == 'video'" :src="mediaLocation" controls />
             <video v-if="postProperties.mediaType == 'audio'" :src="mediaLocation" controls class="audio" />
         </div>
+        <br>
+        <div>
+            <icon>letter</icon>
+        </div>
         
         
     </CentralCard>
@@ -65,6 +69,9 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
 
 
 <style scoped>
+.card{
+    margin: 2% 1%;
+}
 
 .media {
     text-align: center;
