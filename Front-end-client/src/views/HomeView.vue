@@ -153,8 +153,10 @@ onBeforeMount(getPosts);
         <!-- Right column - friend List section  -->
         <ColumnDiv v-show="isLargeScreen" class="rightColumn">
           <WidgetWrapper>
-            right
+            <img class="ad" src="/generic add.jpg">
           </WidgetWrapper>
+
+          <br>
 
           <WidgetWrapper>
             right
@@ -204,5 +206,9 @@ onBeforeMount(getPosts);
   display: inline;
   text-align: justify;
   margin: 8%;
+}
+
+.ad{
+  width: 100%;
 }
 </style>

@@ -95,7 +95,7 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
 
 <style scoped>
 .card{
-    margin: 2% 1%;
+    margin: 2% 0%;
 }
 
 .media {
