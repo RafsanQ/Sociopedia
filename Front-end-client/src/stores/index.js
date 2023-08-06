@@ -125,19 +125,8 @@ export const useCentralStore = defineStore('centralStore', () => {
         posts.value = posts;
     }
 
-    const setPost = (action) => {
-        const updatedPosts = posts.value.map((post) => {
-            if(post._id === action.payload.post_id) {
-                return action.payload.post;
-            }
-            return post;
-        })
 
-        posts.value = updatedPosts;
-    }
-
-
-    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, setPosts, setPost };
+    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, setPosts };
 },{
     persist: true,
   })

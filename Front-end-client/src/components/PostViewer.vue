@@ -63,6 +63,23 @@ if (mediaLocation.startsWith("public/")) {
 mediaLocation = 'http://localhost:3001/' + mediaLocation;
 
 
+// For the Add friend Button
+function showAddFriendButton(){
+    if(user._id == props.postProperties.userId){
+        return false;
+    }
+
+    const friends = user.friends;
+    if(props.postProperties.userId in friends){
+        return false;
+    }
+
+    return true;
+}
+
+function handleAddFriend(){
+    
+}
 
 </script>
 
@@ -72,6 +89,7 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="45px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
+            <v-btn icon="md:add" v-show="showAddFriendButton()"/>
         </div>
         <br>
         <div class="postText">
