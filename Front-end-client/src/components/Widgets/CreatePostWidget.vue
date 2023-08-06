@@ -11,9 +11,8 @@ import MediaUploadFieldInput from "../Forms/MediaUploadFieldInput.vue";
 
 
 import {
-    WidgetWrapper,
-    StyledInput
-} from './stylizedComponents.js';
+    CentralCard
+} from '../stylizedComponents.js';
 
 import {
     StyledSubmitButton
@@ -97,28 +96,30 @@ async function handlePost(){
 
 
 <template>
-    <div class="container">
-        <ProfileImageWidget :email="user.email" size="60px"/>
-        <textarea class="postText" v-model="text" placeholder="What's on your mind..." ></textarea>
-    </div>
-    <br>
-    <div class="mediaInput">
-        <MediaUploadFieldInput :inputType="inputType" width="95%" @inputMedia="getMedia" />
-    </div>
-    <div class="buttons">
-        <v-btn id="imageButton" prepend-icon="image" :variant="inputType == 'image' ? 'tonal':'plain'" @click="selectInputType('image')">
-            Image
-        </v-btn>
-        <v-btn id="videoButton" prepend-icon="movie" :variant="inputType == 'video' ? 'tonal':'plain'" @click="selectInputType('video')">
-            Video
-        </v-btn>
-        <v-btn id="audioButton" prepend-icon="mic" :variant="inputType == 'audio' ? 'tonal':'plain'" @click="selectInputType('audio')">
-            Audio
-        </v-btn>
-        <StyledSubmitButton class="submitButton" @click="handlePost">
-            Post
-        </StyledSubmitButton>
-    </div>
+    <CentralCard>
+        <div class="container">
+            <ProfileImageWidget class="profilePicture" :email="user.email" size="80px"/>
+            <textarea class="postText" v-model="text" placeholder="What's on your mind..." ></textarea>
+        </div>
+        <br>
+        <div class="mediaInput">
+            <MediaUploadFieldInput :inputType="inputType" width="95%" @inputMedia="getMedia" />
+        </div>
+        <div class="buttons">
+            <v-btn id="imageButton" prepend-icon="image" :variant="inputType == 'image' ? 'tonal':'plain'" @click="selectInputType('image')">
+                Image
+            </v-btn>
+            <v-btn id="videoButton" prepend-icon="movie" :variant="inputType == 'video' ? 'tonal':'plain'" @click="selectInputType('video')">
+                Video
+            </v-btn>
+            <v-btn id="audioButton" prepend-icon="mic" :variant="inputType == 'audio' ? 'tonal':'plain'" @click="selectInputType('audio')">
+                Audio
+            </v-btn>
+            <StyledSubmitButton class="submitButton" @click="handlePost">
+                Post
+            </StyledSubmitButton>
+        </div>
+    </CentralCard>
 </template>
 
 
@@ -140,6 +141,11 @@ async function handlePost(){
 
 .container{
     text-align: left;
+    padding-top: 2%;
+}
+
+.profilePicture{
+    margin: 1% 2%;
 }
 
 .postText{

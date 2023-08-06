@@ -6,7 +6,7 @@ import { varifyToken } from "../middleware/auth.js";
 const router = express.Router();
 
 // Read
-router.get("/", varifyToken, getFeedPosts);
+router.get("/", varifyToken, ()=>{console.log("Extra ger")});
 router.get("/:userId/posts", varifyToken, getUserPosts);
 
 //Post

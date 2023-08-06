@@ -7,8 +7,7 @@ import { themeSettings } from '../theme.js';
 import { useCentralStore } from '../stores';
 
 
-import RegisterForm from "../components/Forms/RegisterForm.vue";
-import LoginForm from "../components/Forms/LoginForm.vue";
+
 import CreatePostWidget from "../components/Widgets/CreatePostWidget.vue";
 
 import {
@@ -22,6 +21,7 @@ import {
 } from '../components/Widgets/stylizedComponents';
 
 import ProfileImageWidget from '../components/Widgets/ProfileImageWidget.vue'
+import PostViewer from '../components/PostViewer.vue';
 
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
@@ -73,6 +73,7 @@ if(!user && !token){
       <div class="container">
 
 
+<!-- left column - Profile Section -->
         <ColumnDiv class="leftColumn">
           <WidgetWrapper>
             <div>
@@ -110,13 +111,10 @@ if(!user && !token){
         
         
         <ColumnDiv class="centreColumn">
-          <CentralCard>
-            <CreatePostWidget />
-          </CentralCard>
+          <CreatePostWidget />
             
-          <CentralCard>
-            centre
-          </CentralCard>
+          <PostViewer></PostViewer>
+          
         </ColumnDiv>
 
         <ColumnDiv class="rightColumn">
