@@ -15,7 +15,6 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 
-
 const props = defineProps({
     postProperties: {
         Type: Object
@@ -27,6 +26,33 @@ const props = defineProps({
 const store = useCentralStore();
 const user = store.user;
 
+let isLiked = ref(false);
+if(props.postProperties.likes[user._id]){
+    isLiked.value = true;
+}
+else{
+    isLiked.value = false;
+}
+
+async function handleLike(){
+    
+    try{
+    const response = await fetch("http://localhost:3001/posts/" + props.postProperties._id + '/like', {
+        method: 'PATCH',
+        headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${store.token}`
+            },
+        body: JSON.stringify({
+            userId: user._id
+        })
+    })
+    console.log(await response.json());
+    isLiked.value = !isLiked.value;
+  }catch(error){
+    console.log(error);
+  }
+}
 
 
 let mediaLocation = props.postProperties.mediaPath;
@@ -59,7 +85,7 @@ mediaLocation = 'http://localhost:3001/' + mediaLocation;
         </div>
         <br>
         <div>
-            <icon>letter</icon>
+            <v-btn icon="md:thumb_up" :color="isLiked ? 'light-blue-accent-4' : ''" variant="plain" @click="handleLike"/>
         </div>
         
         
