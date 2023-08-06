@@ -51,7 +51,7 @@ const props = defineProps({
     <CentralCard>
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="40px"/>
-            <h3 class="username"> {{ postProperties.firstName + ' ' + postProperties.lastName }}</h3>
+            <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
         </div>
         <br>
         <div class="postText">
