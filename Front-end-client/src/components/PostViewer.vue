@@ -42,7 +42,6 @@ const props = defineProps({
     }
 })
 
-console.log(props.foo)
 
 
 </script>

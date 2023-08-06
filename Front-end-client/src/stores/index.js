@@ -113,8 +113,8 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
     const setFriends = (action) => {
-        if(this.user.value){
-            this.user.value.friends = action.payload.friends;
+        if(user.value){
+            user.value.friends = action.payload.friends;
         }
         else{
             console.error("User Friends non-existent");
@@ -122,18 +122,18 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
     
     const setPosts = (action) => {
-        this.posts.value = action.payload.posts;
+        posts.value = action.payload.posts;
     }
 
     const setPost = (action) => {
-        const updatedPosts = this.posts.value.map((post) => {
+        const updatedPosts = posts.value.map((post) => {
             if(post._id === action.payload.post_id) {
                 return action.payload.post;
             }
             return post;
         })
 
-        this.post.value = updatedPosts;
+        posts.value = updatedPosts;
     }
 
 

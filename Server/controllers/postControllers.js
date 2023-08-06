@@ -30,8 +30,6 @@ export const createPost = async (req, res) => {
             mediaPath = 'public/assets/posts/' + mediaType + '/' + fileName;
         }
         
-
-        
         const newPost = new Post({
             _id,
             userId, 
@@ -63,7 +61,6 @@ export const createPost = async (req, res) => {
 
 // Read
 export const getFeedPosts = async (req, res) => {
-    console.log('here');
     try {
         const posts = await Post.find();
         res.status(200).json(posts);

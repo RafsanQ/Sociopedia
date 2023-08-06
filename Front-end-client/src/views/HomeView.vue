@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 
 import { ThemeProvider } from 'vue3-styled-components'
@@ -55,6 +55,25 @@ const token = store.token;
 if(!user && !token){
   router.push('/')    // If not redirect to login page
 }
+
+// Get posts for feed
+onBeforeMount(async () => {
+  try{
+    const response = await fetch("http://localhost:3001/posts/",{
+            method: 'GET',
+            headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${store.token}`
+                }
+    })
+    const posts = await response.json();
+    console.log(posts);
+    
+          
+  }catch(error){
+    console.log(error);
+  }
+})
 
 </script>
 
