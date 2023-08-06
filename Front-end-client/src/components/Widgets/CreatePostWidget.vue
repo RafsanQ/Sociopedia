@@ -154,11 +154,11 @@ async function handlePost(){
     border-radius: 9px;
     gap: 3rem;
     
-    margin: 0 1rem 0 1rem;
+    margin: 0.5rem 1rem 0 1rem;
     float: left;
     text-align: left;
     padding: clamp(0.4rem, 0.4rem, 0.1rem);
-    padding-top: 2%; 
+    padding-top: 3%; 
     padding-left: 2%;
     width: clamp(80%, 80%, 30%);
     color: v-bind(fontColor);

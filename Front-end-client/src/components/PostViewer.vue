@@ -46,6 +46,9 @@ let fontColor = themeProperties.value.pallete.fontColor;
             <ProfileImageWidget class="profilePicture" :email="user.email" size="30px"/>
             <h3 class="username">{{ user.firstName + ' ' + user.lastName }}</h3>
         </div>
+        <div>
+            
+        </div>
         
         
     </CentralCard>
@@ -55,7 +58,8 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 <style scoped>
 .container {
-    text-align: left;
+    display: block;
+    text-align: right;
     align-items: left;
 }
 
@@ -66,6 +70,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 .username{
     float: left;
+    
 }
 
 </style>
