@@ -47,7 +47,6 @@ async function handleLike(){
             userId: user._id
         })
     })
-    console.log(await response.json());
     isLiked.value = !isLiked.value;
   }catch(error){
     console.log(error);

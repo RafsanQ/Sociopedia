@@ -62,9 +62,6 @@ if(!user && !token){
 // Get posts for feed
 let posts = ref(store.posts);
 const getPosts = async () => {
-  if(posts.value){
-    return ;
-  }
   try{
     const response = await fetch("http://localhost:3001/posts/",{
             method: 'GET',
@@ -137,7 +134,9 @@ onBeforeMount(getPosts);
         </ColumnDiv>
         
         <!-- Center column - feed and post section -->
-        <ColumnDiv class="centreColumn">
+        <ColumnDiv class="centreColumn" v-bind:class="{
+          'largeWidth': !isLargeScreen
+        }">
           <CreatePostWidget />
           <br>
           <Suspense>
@@ -184,6 +183,10 @@ onBeforeMount(getPosts);
 
 .centreColumn{
   min-width: 50%;
+}
+
+.largeWidth{
+  min-width: 90%;
 }
 
 .inline{
