@@ -62,9 +62,6 @@ if (mediaLocation.startsWith("public/")) {
 mediaLocation = 'http://localhost:3001/' + mediaLocation;
 
 
-
-
-
 async function handleAddFriend(){
     try{
         const response = await fetch('http://localhost:3001/users/' + user._id + '/' + props.postProperties.userId, {
@@ -75,15 +72,9 @@ async function handleAddFriend(){
                 },
         })
         const newFriend = await response.json();
-        console.log(newFriend[0]);
         if(newFriend[0]){
             store.addFriend(newFriend[0]._id);
-        }
-        
-
-        
-        
-            
+        }      
         
     }catch(error){
         console.log(error);
@@ -131,7 +122,6 @@ async function handleAddFriend(){
 
 .media img, video {
     width: 100%;
-    
 }
 
 .media .audio{

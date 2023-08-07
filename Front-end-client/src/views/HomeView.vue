@@ -24,6 +24,7 @@ import PostViewer from '../components/PostViewer.vue';
 
 // For Routing stuff and refresh
 import { useRouter } from 'vue-router';
+import FriendsListWidget from "../components/Widgets/FriendsListWidget.vue";
 const router = useRouter()
 
 // Store
@@ -159,7 +160,7 @@ onBeforeMount(getPosts);
           <br>
 
           <WidgetWrapper>
-            right
+            <FriendsListWidget />
           </WidgetWrapper>
         </ColumnDiv>
 
