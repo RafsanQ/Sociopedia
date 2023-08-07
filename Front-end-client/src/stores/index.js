@@ -120,13 +120,23 @@ export const useCentralStore = defineStore('centralStore', () => {
             console.error("User Friends non-existent");
         }
     }
+
+    const addFriend = (newFriendId) => {
+        if(user.value){
+            console.log(user.value.friends);
+            user.value.friends.push(newFriendId);
+        }
+        else{
+            console.error("User Friends non-existent");
+        }
+    }
     
     const setPosts = (posts) => {
         posts.value = posts;
     }
 
 
-    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, setPosts };
+    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, addFriend, setPosts };
 },{
     persist: true,
   })

@@ -62,19 +62,8 @@ if (mediaLocation.startsWith("public/")) {
 mediaLocation = 'http://localhost:3001/' + mediaLocation;
 
 
-// For the Add friend Button
-function showAddFriendButton(){
-    if(user._id == props.postProperties.userId){
-        return false;
-    }
 
-    const friends = user.friends;
-    if(props.postProperties.userId in friends){
-        return false;
-    }
 
-    return true;
-}
 
 async function handleAddFriend(){
     try{
@@ -85,7 +74,16 @@ async function handleAddFriend(){
                     "Authorization": `Bearer ${store.token}`
                 },
         })
-        store.setFriends(await response.json());
+        const newFriend = await response.json();
+        console.log(newFriend[0]);
+        if(newFriend[0]){
+            store.addFriend(newFriend[0]._id);
+        }
+        
+
+        
+        
+            
         
     }catch(error){
         console.log(error);
@@ -100,7 +98,7 @@ async function handleAddFriend(){
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="45px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
-            <v-btn icon="md:add" v-show="showAddFriendButton()" @click="handleAddFriend"/>
+            <v-btn icon="md:add" v-show="user._id != postProperties.userId && !user.friends.includes(postProperties.userId)" @click="handleAddFriend"/>
         </div>
         <br>
         <div class="postText">
