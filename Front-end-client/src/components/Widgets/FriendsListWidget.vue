@@ -1,8 +1,9 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue';
+import { ref, onBeforeMount, getCurrentInstance  } from 'vue';
 import { useCentralStore } from '../../stores';
 import ProfileImageWidget from './ProfileImageWidget.vue'
 import { useToast } from 'vue-toast-notification';
+import { routerKey } from 'vue-router';
 
 
 const store = useCentralStore();
@@ -10,6 +11,10 @@ const user = store.user;
 
 // For toast Notifications and messages
 const toast = useToast();
+
+
+
+let friends = ref(store.getFriends());
 
 
 async function handleRemoveFriend(friendId){
@@ -23,17 +28,14 @@ async function handleRemoveFriend(friendId){
                 },
         })
 
-        if(response.json() == null){
-            toast.warning("Friend Removed")
-        }
+        toast.warning("Friend Removed");
         
+        location.reload();
     }catch(error){
         console.log(error);
     }
 }
 
-
-let friends = ref([]);
 
 async function getFriends() {
     try{

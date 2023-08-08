@@ -79,6 +79,7 @@ async function handleAddFriend(){
         if(newFriend[0]){
             store.addFriend(newFriend[0]._id);
             toast.success("Friend Added successfully");
+            location.reload();
         }      
         
     }catch(error){
@@ -93,7 +94,7 @@ async function handleAddFriend(){
 <template>
     <CentralCard class="card">
         <div class="userInfo">
-            <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="45px"/>
+            <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="50px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
             <v-btn icon="md:add" v-show="user._id != postProperties.userId && !user.friends.includes(postProperties.userId)" @click="handleAddFriend"/>
         </div>

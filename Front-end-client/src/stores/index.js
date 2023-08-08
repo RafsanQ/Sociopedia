@@ -121,6 +121,15 @@ export const useCentralStore = defineStore('centralStore', () => {
         }
     }
 
+    const getFriends = () => {
+        if(user.value){
+            return user.value.friends;
+        }
+        else{
+            toast.error('User not signed in');
+        }
+    }
+
     const addFriend = (newFriendId) => {
         if(user.value){
             console.log(user.value.friends);
@@ -134,9 +143,7 @@ export const useCentralStore = defineStore('centralStore', () => {
     const removeFriend = (friendId) => {
         if(user.value.friends.includes(friendId)){
             user.value.friends = user.value.friends.filter(
-                (id) => {
-                    return id != friendId;
-                }
+                (id) => id !== friendId
             )
         }
         else{
@@ -149,7 +156,7 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
 
-    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, addFriend, removeFriend, setPosts };
+    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, getFriends, addFriend, removeFriend, setPosts };
 },{
     persist: true,
   })
