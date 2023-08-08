@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { useCentralStore } from '../stores';
 import { useToast } from 'vue-toast-notification';
 import ProfileImageWidget from "./Widgets/ProfileImageWidget.vue";
+import CommentSection from './CommentSection.vue'
 
 import {
     CentralCard
@@ -107,10 +108,11 @@ async function handleAddFriend(){
             <video v-if="postProperties.mediaType == 'video'" :src="mediaLocation" controls />
             <video v-if="postProperties.mediaType == 'audio'" :src="mediaLocation" controls class="audio" />
         </div>
-        <br>
-        <div>
+        <div class="actions">
             <v-btn icon="md:thumb_up" :color="isLiked ? 'light-blue-accent-4' : ''" variant="plain" @click="handleLike"/>
         </div>
+        <br>
+        <CommentSection />
         
         
     </CentralCard>
@@ -128,7 +130,7 @@ async function handleAddFriend(){
 }
 
 .media img, video {
-    width: 100%;
+    width: 90%;
 }
 
 .media .audio{

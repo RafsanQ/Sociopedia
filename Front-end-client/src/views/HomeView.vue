@@ -47,7 +47,6 @@ let primary = themeProperties.value.pallete.primary.main;
 let primaryDark = themeProperties.value.pallete.primary.dark;
 let background = themeProperties.value.pallete.background.default;
 let alt = themeProperties.value.pallete.background.alt;
-
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
