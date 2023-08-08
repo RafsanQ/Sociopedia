@@ -39,7 +39,6 @@ async function getFriends(userId) {
         });
         
         friends.value = await response.json();
-        console.log(friends);
     }catch(error){
         console.error(error);
     }
@@ -51,11 +50,13 @@ onBeforeMount(getFriends);
 </script>
 
 <template>
+    <h3 class="widgetTitle">Friends</h3>
+    <br>
     <Suspense>
         <div v-for="friend in friends" class="slot">
             <div class="info">
                 <ProfileImageWidget :email="friend.email" size="50px" />
-                <h2>{{ friend.firstName }} {{ friend.lastName  }}</h2>
+                <h3>{{ friend.firstName }} {{ friend.lastName  }}</h3>
                 <p>{{ friend.occupation }}</p>
             </div>
             <div class="button">
@@ -69,6 +70,10 @@ onBeforeMount(getFriends);
 
 
 <style scoped>
+
+.widgetTitle{
+    margin: 1% 4%;
+}
 .slot{
     overflow: auto;
     text-align: left;
