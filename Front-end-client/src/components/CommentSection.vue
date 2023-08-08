@@ -5,6 +5,8 @@ import { useToast } from 'vue-toast-notification';
 import { themeSettings } from '../theme.js';
 import ProfileImageWidget from "./Widgets/ProfileImageWidget.vue";
 
+// For toast Notifications and messages
+const toast = useToast();
 
 // Store
 const store = useCentralStore();
@@ -22,9 +24,36 @@ let background = themeProperties.value.pallete.background.default;
 let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
-
+// Props
+const props = defineProps(['postId'])
 
 let text = "";
+
+async function handleSendComment(){
+    try{
+        let response = await fetch("http://localhost:3001/posts/" + props.postId+ '/comment', {
+                method: 'PATCH',
+                headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${store.token}`
+                    },
+                body: JSON.stringify({
+                    userId: user._id,
+                    text
+                })
+            }
+        );
+
+        response = await response.json();
+        console.log(response);
+
+        
+    }catch(error){
+        console.log(error);
+        toast.error(error);
+    }
+
+}
 
 </script>
 
@@ -32,7 +61,7 @@ let text = "";
     <div class="commentSection">
         <ProfileImageWidget class="profilePicture" :email="user.email" size="40px"/>
         <input class="text" v-model="text" placeholder="Write your comment">
-        <v-btn @click="console.log(text)" class="sendButton" rounded="xl" :color="primary">
+        <v-btn @click="handleSendComment" class="sendButton" rounded="xl" :color="primary">
             Send
         </v-btn>
     </div>

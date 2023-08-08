@@ -97,6 +97,31 @@ export const likePost = async (req, res) => {
         const updatedPost = await Post.findByIdAndUpdate(id, {likes: post.likes}, {new: true});
         res.status(200).json(updatedPost);
     }catch(error) {
-        res.status(404).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 }
+
+export const sendComment = async (req, res) => {
+    try{
+        const id = req.params.id;
+        const { userId, text } = req.body;
+
+        
+        console.log( { id, userId, text, updated: new Date().toString() } );
+
+        const post = await Post.findById(id);
+
+        if(!post){
+            res.status(404).json({ message: 'Post does not exist' });
+        }
+
+        post.comments.push({ userId, text, updated: new Date().toString() });
+
+        const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments}, {new: true});
+
+        res.status(200).json({ message: 'Comment posted successfully', updatedPost});
+
+    }catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+} 
