@@ -89,6 +89,9 @@ async function handleAddFriend(){
     }
 }
 
+
+let showCommentBox = ref(false);
+
 </script>
 
 
@@ -108,11 +111,12 @@ async function handleAddFriend(){
             <video v-if="postProperties.mediaType == 'video'" :src="mediaLocation" controls />
             <video v-if="postProperties.mediaType == 'audio'" :src="mediaLocation" controls class="audio" />
         </div>
-        <div class="actions">
-            <v-btn icon="md:thumb_up" :color="isLiked ? 'light-blue-accent-4' : ''" variant="plain" @click="handleLike"/>
+        <div>
+            <v-btn class="actions" icon="md:thumb_up" :color="isLiked ? 'light-blue-accent-4' : ''" variant="plain" @click="handleLike"/>
+            <v-btn class="actions" icon="md:chat_bubble" :color="showCommentBox ? 'light-blue-accent-4' : ''" variant="plain" @click="showCommentBox = !showCommentBox"/>
         </div>
         <br>
-        <CommentSection />
+        <CommentSection v-if="showCommentBox"/>
         
         
     </CentralCard>
@@ -122,7 +126,8 @@ async function handleAddFriend(){
 
 <style scoped>
 .card{
-    margin: 2% 0%;
+    margin: 2% 0% 0% 0%;
+    overflow: auto;
 }
 
 .media {
@@ -155,7 +160,7 @@ async function handleAddFriend(){
 
 .postText{
     display: block;
-    padding: 5% 1%;
+    padding: 7% 1% 2% 1%;
 }
 
 </style>

@@ -31,8 +31,8 @@ let text = "";
 <template>
     <div class="commentSection">
         <ProfileImageWidget class="profilePicture" :email="user.email" size="40px"/>
-        <input class="text" v-model="text">
-        <v-btn class="sendButton" rounded="xl" :color="primary">
+        <input class="text" v-model="text" placeholder="Write your comment">
+        <v-btn @click="console.log(text)" class="sendButton" rounded="xl" :color="primary">
             Send
         </v-btn>
     </div>
@@ -60,5 +60,6 @@ let text = "";
     padding: 2%;
     float: center;
     margin: 0% 1% 0% 1%;
+    padding-left: 3%;
 }
 </style>
