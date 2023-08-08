@@ -4,7 +4,7 @@
         <StyledInput class="inputFile" type="file" :accept="`${inputType}/*`" @change=uploadImage />
         <img v-if="inputType == 'image'" :src="previewImage" class="uploading-media" />
         <video v-if="inputType == 'video'" :src="previewImage" class="uploading-media" controls />
-        <video v-if="inputType == 'audio'" :src="previewImage" class="uploading-media" controls />
+        <video v-if="inputType == 'audio'" :src="previewImage" class="uploading-media-audio" controls />
     </div>
  </template>
  
@@ -80,6 +80,13 @@
         display: block;
         width: 90%;
         height: auto;
+        margin: auto;
+    }
+
+    .body .uploading-media-audio{
+        display: block;
+        width: 90%;
+        height: 5rem;
         margin: auto;
     }
   </style>
