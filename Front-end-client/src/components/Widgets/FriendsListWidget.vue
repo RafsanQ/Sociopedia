@@ -48,6 +48,7 @@ async function getFriends() {
         });
         
         friends.value = await response.json();
+        console.log(friends.value);
     }catch(error){
         console.error(error);
     }
@@ -64,7 +65,7 @@ onBeforeMount(getFriends);
     <Suspense>
         <div v-for="friend in friends" class="slot">
             <div class="info">
-                <ProfileImageWidget :email="friend.email" size="50px" />
+                <ProfileImageWidget v-if="friend.email" :email="friend.email" size="50px" />
                 <h3>{{ friend.firstName }} {{ friend.lastName  }}</h3>
                 <p>{{ friend.occupation }}</p>
             </div>
