@@ -2,33 +2,40 @@
 import { ref, onBeforeMount } from 'vue';
 import { useCentralStore } from '../../stores';
 import ProfileImageWidget from './ProfileImageWidget.vue'
+import { useToast } from 'vue-toast-notification';
 
 
 const store = useCentralStore();
 const user = store.user;
 
+// For toast Notifications and messages
+const toast = useToast();
+
 
 async function handleRemoveFriend(friendId){
     try{
-        const response = await fetch("http://localhost:3001/users/" + user._id + "/friends",{
-            method: 'GET',
+        store.removeFriend(friendId);
+        const response = await fetch('http://localhost:3001/users/' + user._id + '/' + friendId, {
+            method: 'PATCH',
             headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${store.token}`
-                    }
-        });
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${store.token}`
+                },
+        })
 
-        friends.value = await response.json();
-        console.log(friends);
+        if(response.json() == null){
+            toast.warning("Friend Removed")
+        }
+        
     }catch(error){
-        console.error(error);
+        console.log(error);
     }
 }
 
 
 let friends = ref([]);
 
-async function getFriends(userId) {
+async function getFriends() {
     try{
         const response = await fetch("http://localhost:3001/users/" + user._id + "/friends",{
             method: 'GET',
@@ -60,7 +67,7 @@ onBeforeMount(getFriends);
                 <p>{{ friend.occupation }}</p>
             </div>
             <div class="button">
-                <v-btn density="compact" icon="md:remove" />
+                <v-btn density="compact" icon="md:remove" @click="handleRemoveFriend(friend._id)"/>
             </div>
         
         </div>

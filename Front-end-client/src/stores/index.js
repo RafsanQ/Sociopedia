@@ -130,13 +130,26 @@ export const useCentralStore = defineStore('centralStore', () => {
             console.error("User Friends non-existent");
         }
     }
+
+    const removeFriend = (friendId) => {
+        if(user.value.friends.includes(friendId)){
+            user.value.friends = user.value.friends.filter(
+                (id) => {
+                    return id != friendId;
+                }
+            )
+        }
+        else{
+            toast.error("Sync with database failure. Please log out and try again");
+        }
+    }
     
     const setPosts = (posts) => {
         posts.value = posts;
     }
 
 
-    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, addFriend, setPosts };
+    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, addFriend, removeFriend, setPosts };
 },{
     persist: true,
   })

@@ -45,6 +45,7 @@ export const addRemoveFriend = async (req, res) => {
             res.status(400).json({message:'target user not found'});
             return;
         }
+
         
         
         if(user.friends.includes(friendId)){

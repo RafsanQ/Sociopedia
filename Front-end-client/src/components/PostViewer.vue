@@ -2,12 +2,15 @@
 
 import { ref } from "vue";
 import { useCentralStore } from '../stores';
-
+import { useToast } from 'vue-toast-notification';
 import ProfileImageWidget from "./Widgets/ProfileImageWidget.vue";
 
 import {
     CentralCard
 } from './stylizedComponents.js';
+
+// For toast Notifications and messages
+const toast = useToast();
 
 
 // For Routing stuff and refresh
@@ -47,8 +50,9 @@ async function handleLike(){
         })
     })
     isLiked.value = !isLiked.value;
+    
   }catch(error){
-    console.log(error);
+    toast.error(error);
   }
 }
 
@@ -74,10 +78,12 @@ async function handleAddFriend(){
         const newFriend = await response.json();
         if(newFriend[0]){
             store.addFriend(newFriend[0]._id);
+            toast.success("Friend Added successfully");
         }      
         
     }catch(error){
         console.log(error);
+        toast.error("Failed to add friend");
     }
 }
 
