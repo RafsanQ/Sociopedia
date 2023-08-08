@@ -116,7 +116,7 @@ let showCommentBox = ref(false);
             <v-btn class="actions" icon="md:chat_bubble" :color="showCommentBox ? 'light-blue-accent-4' : ''" variant="plain" @click="showCommentBox = !showCommentBox"/>
         </div>
         <br>
-        <CommentSection v-if="showCommentBox" :postId="postProperties._id" />
+        <CommentSection v-if="showCommentBox" :postId="postProperties._id" :comments="postProperties.comments" />
         
         
     </CentralCard>

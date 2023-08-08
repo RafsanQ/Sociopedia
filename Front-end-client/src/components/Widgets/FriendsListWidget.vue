@@ -48,7 +48,6 @@ async function getFriends() {
         });
         
         friends.value = await response.json();
-        console.log(friends.value);
     }catch(error){
         console.error(error);
     }

@@ -106,8 +106,9 @@ export const sendComment = async (req, res) => {
         const id = req.params.id;
         const { userId, text } = req.body;
 
+        const user = await User.findById(userId);
         
-        console.log( { id, userId, text, updated: new Date().toString() } );
+        // console.log( { id, userId, text, updated: new Date().toString() } );
 
         const post = await Post.findById(id);
 
@@ -115,11 +116,12 @@ export const sendComment = async (req, res) => {
             res.status(404).json({ message: 'Post does not exist' });
         }
 
-        post.comments.push({ userId, text, updated: new Date().toString() });
+
+        post.comments.unshift({ userId, userEmail: user.email, description: text, updated: new Date().toString() });
 
         const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments}, {new: true});
 
-        res.status(200).json({ message: 'Comment posted successfully', updatedPost});
+        res.status(200).json({ userId, userEmail: user.email, description: text, updated: new Date().toString() });
 
     }catch(error) {
         res.status(500).json({ message: error.message });

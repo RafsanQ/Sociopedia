@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, getCurrentInstance  } from "vue";
 import { useCentralStore } from '../stores';
 import { useToast } from 'vue-toast-notification';
 import { themeSettings } from '../theme.js';
@@ -25,9 +25,20 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 // Props
-const props = defineProps(['postId'])
+const props = defineProps({
+    postId: {
+        type: String
+    },
+    comments: {
+        type: Array
+    }
+})
 
-let text = "";
+
+let inputText = "";
+
+let comments = ref(props.comments);
+
 
 async function handleSendComment(){
     try{
@@ -39,31 +50,55 @@ async function handleSendComment(){
                     },
                 body: JSON.stringify({
                     userId: user._id,
-                    text
+                    text: inputText
                 })
             }
         );
 
-        response = await response.json();
-        console.log(response);
+        if(response.status != 200){
+            toast.error("There was an error");
+            return;
+        }
+
+        // // Wait 1s
+        // const delay = ms => new Promise(res => setTimeout(res, ms));
+        // await delay(1000);
+
+        const newComment = await response.json();
+        console.log(newComment);
+        comments.value.unshift(newComment)
+        
+        inputText = '';
+
+        console.log(comments.value);
 
         
     }catch(error){
         console.log(error);
         toast.error(error);
     }
-
 }
+
 
 </script>
 
 <template>
     <div class="commentSection">
         <ProfileImageWidget class="profilePicture" :email="user.email" size="40px"/>
-        <input class="text" v-model="text" placeholder="Write your comment">
+        <input class="text" v-model="inputText" placeholder="Write your comment">
+
+        
         <v-btn @click="handleSendComment" class="sendButton" rounded="xl" :color="primary">
             Send
         </v-btn>
+
+        <Suspense>
+            <div v-for="(thisComment) in comments">
+                <h3 v-if="thisComment.userEmail">{{ thisComment.userEmail }}</h3>
+                <h4 v-if="thisComment.description">{{ thisComment.description }}</h4>
+            </div>
+        </Suspense>
+        
     </div>
 </template>
 
