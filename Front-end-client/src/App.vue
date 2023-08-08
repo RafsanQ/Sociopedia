@@ -28,8 +28,6 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 
 
 
-
-
 </script>
 
 <template>

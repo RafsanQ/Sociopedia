@@ -153,9 +153,13 @@ onBeforeMount(getPosts);
 
         <!-- Right column - friend List section  -->
         <ColumnDiv v-show="isLargeScreen" class="rightColumn">
-          <WidgetWrapper>
-            <img class="ad" src="/generic add.jpg">
-          </WidgetWrapper>
+            <WidgetWrapper>
+
+              <a  target="_blank" href="https://stock.adobe.com/images/red-sale-banner-50-percent-off-discount-offer-promotion-weekend-or-season-special-offer-poster-with-price-tag-design-for-marketing-vector-illustration-christmas-stock-blowout-advertisement/525289733?as_campaign=ftmigration2&as_channel=dpcft&as_campclass=brand&as_source=ft_web&as_camptype=acquisition&as_audience=users&as_content=closure_asset-detail-page">
+                <img class="ad" src="/generic add.jpg">
+              </a>
+              
+            </WidgetWrapper>
 
           <br>
 
