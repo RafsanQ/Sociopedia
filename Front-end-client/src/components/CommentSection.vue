@@ -151,6 +151,7 @@ function getTimeDifference(updatedTime){
     padding: 2%;
     margin: 0% 1% 0% 1%;
     padding-left: 3%;
+    color: v-bind(fontColor)
 }
 .commentText{
     background-color: v-bind(neutralLight);
