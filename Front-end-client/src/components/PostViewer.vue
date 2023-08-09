@@ -100,9 +100,9 @@ let showCommentBox = ref(false);
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="50px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
-            <v-btn icon="md:add" v-show="user._id != postProperties.userId && !user.friends.includes(postProperties.userId)" @click="handleAddFriend"/>
+            <v-btn icon="md:add" class="addFriendButton" v-show="user._id != postProperties.userId && !user.friends.includes(postProperties.userId)" @click="handleAddFriend"/>
         </div>
-        <br>
+
         <div class="postText">
             <p>{{ postProperties.text }}</p>
         </div>
@@ -147,6 +147,8 @@ let showCommentBox = ref(false);
     display: block;
     text-align: right;
     align-items: left;
+    margin-bottom: 2%;
+    padding-bottom: 2%;
 }
 
 .profilePicture{
@@ -160,7 +162,12 @@ let showCommentBox = ref(false);
 
 .postText{
     display: block;
-    padding: 7% 1% 2% 1%;
+    padding: 6% 1% 3% 3%;
+}
+
+.addFriendButton{
+    display: inline;
+    float: right;
 }
 
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, getCurrentInstance  } from "vue";
+import { ref  } from "vue";
 import { useCentralStore } from '../stores';
 import { useToast } from 'vue-toast-notification';
 import { themeSettings } from '../theme.js';
@@ -77,6 +77,26 @@ async function handleSendComment(){
     }
 }
 
+function getTimeDifference(updatedTime){
+    var date1 = new Date();
+    var date2 = new Date(updatedTime);
+
+    console.log({ date1, date2})
+    var Difference_In_Time = Math.abs(date1.getTime() - date2.getTime());
+
+    const differenceInSeconds = Math.ceil(Difference_In_Time / (1000));
+    
+    const differenceInMinutes = Math.ceil(differenceInSeconds / (60))
+    
+    const differenceInHours = Math.ceil(differenceInMinutes / (60))
+
+    const differenceInDays = Math.ceil(differenceInHours / (24))
+
+    if(differenceInDays > 1) return differenceInDays.toString() + " days ago";
+    if(differenceInHours > 1) return differenceInHours.toString() + " hours ago";
+    if(differenceInMinutes > 1) return differenceInMinutes.toString() + " minutes ago";
+    return differenceInSeconds.toString() + " seconds ago";
+}
 
 </script>
 
@@ -97,10 +117,7 @@ async function handleSendComment(){
             <div c v-for="(thisComment) in comments" :key="thisComment._id">
                 <ProfileImageWidget class="profilePicture" :email="thisComment.userEmail" size="40px"/>
                 <p class="commentText">{{ thisComment.text }}</p>
-                
-
-                
-
+                <p class="time" v-if="thisComment.updated">{{ getTimeDifference(thisComment.updated) }}</p>
             </div>
         </Suspense>
         
@@ -145,8 +162,9 @@ async function handleSendComment(){
     padding-left: 4%;
 }
 
-
-
+.time{
+    margin: 0.2% 2% 0.5% 11%;
+}
 
 
 </style>
