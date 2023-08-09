@@ -54,17 +54,15 @@ async function handleSendComment(){
                 })
             }
         );
-
+        const newComment = await response.json();
         if(response.status != 200){
+        
             toast.error("There was an error");
+            console.log(newComment);
             return;
         }
 
-        // // Wait 1s
-        // const delay = ms => new Promise(res => setTimeout(res, ms));
-        // await delay(1000);
-
-        const newComment = await response.json();
+        
         console.log(newComment);
         comments.value.unshift(newComment)
         
@@ -84,18 +82,25 @@ async function handleSendComment(){
 
 <template>
     <div class="commentSection">
-        <ProfileImageWidget class="profilePicture" :email="user.email" size="40px"/>
-        <input class="text" v-model="inputText" placeholder="Write your comment">
+        <div class="slot">
+            <ProfileImageWidget class="profilePicture" :email="user.email" size="40px"/>
+            <input class="commentTextInput" v-model="inputText" placeholder="Write your comment">
+            
+            <v-btn @click="handleSendComment" class="sendButton" rounded="xl" :color="primary">
+                Send
+            </v-btn>
+        </div>
 
         
-        <v-btn @click="handleSendComment" class="sendButton" rounded="xl" :color="primary">
-            Send
-        </v-btn>
+        <Suspense class="slot">
+            
+            <div c v-for="(thisComment) in comments" :key="thisComment._id">
+                <ProfileImageWidget class="profilePicture" :email="thisComment.userEmail" size="40px"/>
+                <p class="commentText">{{ thisComment.text }}</p>
+                
 
-        <Suspense>
-            <div v-for="(thisComment) in comments">
-                <h3 v-if="thisComment.userEmail">{{ thisComment.userEmail }}</h3>
-                <h4 v-if="thisComment.description">{{ thisComment.description }}</h4>
+                
+
             </div>
         </Suspense>
         
@@ -104,6 +109,10 @@ async function handleSendComment(){
 
 
 <style scoped>
+.slot{
+    display: block;
+    margin: 2% 1%;
+}
 .profilePicture{
     margin: 0.5% 2%;
     float: left;
@@ -115,15 +124,29 @@ async function handleSendComment(){
     float: right;
     color: white;
 }
-.text{
+
+.commentTextInput{
     background-color: v-bind(neutralLight);
     width: 70%;
     height: 3rem;
     resize: none;
     border-radius: 1.5rem;
     padding: 2%;
-    float: center;
     margin: 0% 1% 0% 1%;
     padding-left: 3%;
 }
+.commentText{
+    background-color: v-bind(neutralLight);
+    width: clamp(80%, 70%, 60%);
+    height: 3.5rem;
+    border-radius: 1.5rem;
+    padding: 2%;
+    margin: 3% 5% 1% 9%;
+    padding-left: 4%;
+}
+
+
+
+
+
 </style>

@@ -4,6 +4,7 @@ import Post from "../models/Post.js";
 import User from "../models/User.js";
 
 import crypto from 'crypto';
+import { Timestamp } from 'mongodb';
 
 
 
@@ -114,14 +115,17 @@ export const sendComment = async (req, res) => {
 
         if(!post){
             res.status(404).json({ message: 'Post does not exist' });
+            return;
         }
 
+        const totalComments = post.comments.length;
+        const timestamp = new Date().toString();
 
-        post.comments.unshift({ userId, userEmail: user.email, description: text, updated: new Date().toString() });
+        post.comments.unshift({ _id: totalComments+1, userId, userEmail: user.email, text, updated: timestamp });
 
-        const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments}, {new: true});
+        const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments});
 
-        res.status(200).json({ userId, userEmail: user.email, description: text, updated: new Date().toString() });
+        res.status(200).json({ _id: totalComments+1, userId, userEmail: user.email, text, updated: timestamp });
 
     }catch(error) {
         res.status(500).json({ message: error.message });
