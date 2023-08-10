@@ -143,9 +143,10 @@ export const deleteComment = async (req, res) => {
             return;
         }
 
-
+        console.log({post});
+        console.log({commentId});
         post.comments = post.comments.filter(
-            comment => comment._id !== commentId
+            comment => comment._id != commentId
         )
 
         const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments});
