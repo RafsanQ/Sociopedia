@@ -118,6 +118,7 @@ function getTimeDifference(updatedTime){
                 <ProfileImageWidget class="profilePicture" :email="thisComment.userEmail" size="40px"/>
                 <p class="commentText">{{ thisComment.text }}</p>
                 <p class="time" v-if="thisComment.updated">{{ getTimeDifference(thisComment.updated) }}</p>
+                <p v-if="thisComment.userId === user._id" class="deleteButton">Delete</p>
             </div>
         </Suspense>
         
@@ -165,6 +166,15 @@ function getTimeDifference(updatedTime){
 
 .time{
     margin: 0.2% 2% 0.5% 11%;
+    display: inline;
+}
+.deleteButton{
+    display: inline;
+    font-weight: bold;
+    &:hover{
+        cursor: pointer;
+        text-decoration: underline;
+    }
 }
 
 
