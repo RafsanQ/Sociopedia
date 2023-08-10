@@ -92,6 +92,27 @@ async function handleAddFriend(){
 
 let showCommentBox = ref(false);
 
+function getTimeDifference(updatedTime){
+    var date1 = new Date();
+    var date2 = new Date(updatedTime);
+
+    console.log({ date1, date2})
+    var Difference_In_Time = Math.abs(date1.getTime() - date2.getTime());
+
+    const differenceInSeconds = Math.ceil(Difference_In_Time / (1000));
+    
+    const differenceInMinutes = Math.ceil(differenceInSeconds / (60))
+    
+    const differenceInHours = Math.ceil(differenceInMinutes / (60))
+
+    const differenceInDays = Math.ceil(differenceInHours / (24))
+
+    if(differenceInDays > 1) return differenceInDays.toString() + " days ago";
+    if(differenceInHours > 1) return differenceInHours.toString() + " hours ago";
+    if(differenceInMinutes > 1) return differenceInMinutes.toString() + " minutes ago";
+    return differenceInSeconds.toString() + " seconds ago";
+}
+
 </script>
 
 
@@ -100,9 +121,11 @@ let showCommentBox = ref(false);
         <div class="userInfo">
             <ProfileImageWidget class="profilePicture" :email="postProperties.userEmail" size="50px"/>
             <h3 class="username"> {{ postProperties.userFirstName + ' ' + postProperties.userLastName }}</h3>
+            <br>
+            
             <v-btn icon="md:add" class="addFriendButton" v-show="user._id != postProperties.userId && !user.friends.includes(postProperties.userId)" @click="handleAddFriend"/>
         </div>
-
+        <p class="time">{{ getTimeDifference(postProperties.createdAt) }}</p>
         <div class="postText">
             <p>{{ postProperties.text }}</p>
         </div>
@@ -147,8 +170,7 @@ let showCommentBox = ref(false);
     display: block;
     text-align: right;
     align-items: left;
-    margin-bottom: 2%;
-    padding-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 .profilePicture{
@@ -168,6 +190,10 @@ let showCommentBox = ref(false);
 .addFriendButton{
     display: inline;
     float: right;
+}
+
+.time{
+    margin: 0% 1% 0% 5%;
 }
 
 </style>
