@@ -1,4 +1,8 @@
+import bcrypt from "bcrypt";
 import User from "../models/User.js"
+
+
+import { writeFile, moveFile } from "./fileInputOutput.js";
 
 export const getUser = async (req, res) => {
     try{
@@ -32,7 +36,6 @@ export const getUserFriends = async (req, res) => {
 export const addRemoveFriend = async (req, res) => {
     try{
         const { id, friendId } = req.params;
-        console.log({ id, friendId });
         const user = await User.findById(id);
 
         if(!user){
@@ -72,5 +75,61 @@ export const addRemoveFriend = async (req, res) => {
         res.status(200).json(formattedFriends);
     }catch(error){
         res.status(501).json({message: error.message});
+    }
+}
+
+export const changeAccountsettings = async (req, res) => {
+    let {
+        userId,
+        firstName, 
+        lastName,
+        password,
+        picturePath,
+        picture,
+        friends,
+        location,
+        occupation
+    } = req.body;
+    
+    const id = req.params.id;
+
+    // If email already Registered
+    let user = await User.findOne({ _id: userId });
+    if (!user) return res.status(400).send("User does not exist")
+    console.log({user});
+    res.status(500);
+    
+
+    try{
+        user = await User.findByIdAndUpdate(userId, {
+            firstName, 
+            lastName,
+            location,
+            occupation},
+            {new: true}
+        );
+
+        if(password){
+            // Encrypt the password with salt
+            const salt = await bcrypt.genSalt();
+            const passwordHash = await bcrypt.hash(password, salt);
+
+            user = await User.findByIdAndUpdate(userId, {password: passwordHash}, {new: true});
+        }
+
+        if(picture){
+            // Picture Name and path
+            const pictureName = user.email + '.png';
+            picturePath = 'public/assets/profilepictures/' + pictureName;
+
+            console.log({picturePath, pictureName});
+
+            await writeFile(pictureName, picture);
+            moveFile(pictureName, picturePath);
+        }
+
+        res.status(201).json(user);
+    }catch(error){
+        res.status(500).json({ error: error.message });
     }
 }

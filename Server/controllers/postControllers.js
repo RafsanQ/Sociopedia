@@ -108,9 +108,6 @@ export const sendComment = async (req, res) => {
         const { userId, text } = req.body;
 
         const user = await User.findById(userId);
-        
-        // console.log( { id, userId, text, updated: new Date().toString() } );
-
         const post = await Post.findById(id);
 
         if(!post){

@@ -2,6 +2,9 @@
 <script setup>
 import { ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
+import { useToast } from 'vue-toast-notification';
+
+
 
 import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../theme.js';
@@ -31,6 +34,9 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 
+// For toast Notifications and messages
+const toast = useToast();
+
 // Media query to check screen size
 const isLargeScreen = useMediaQuery('(min-width: 800px)')
 
@@ -58,6 +64,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 
 // The user object that will be sent on login
 const userForm = {
+  userId: user._id,
   firstName: user.firstName,
   lastName: user.lastName,
   location: user.location,
@@ -68,8 +75,45 @@ const userForm = {
 };
 
 
+function getPicture(value){
+  userForm.picture = value;
+}
+
 async function handleSubmit(){
   
+  try{
+      const response = await fetch("http://localhost:3001/users/accountsettings", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${store.token}`
+          },
+          body: JSON.stringify(userForm)
+      });
+      
+      if(response.status == 200 || response.status == 201){
+          toast.success('Update Successful');
+          store.setUser(await response.json());
+          // Wait 0.1s
+          const delay = ms => new Promise(res => setTimeout(res, ms));
+          await delay(1000);
+
+          location.assign('/')
+      }
+
+      else if(response.status == 400){
+          console.log(response.json());
+          toast.error(response.message);
+      }
+
+      else{
+          toast.error('Server Error');
+      }
+
+  }catch(error){
+      toast.error(error.message);
+      return error;
+  }
 }
 
 
@@ -93,7 +137,7 @@ async function handleSubmit(){
           <StyledInput type="text" placeholder="Location" v-model="userForm.location" required />
           <StyledInput type="text" placeholder="Occupation" v-model="userForm.occupation" required />
           <StyledInput type="email" placeholder="Email" readonly v-model="userForm.email" required />
-          <StyledInput type="password" placeholder="New Password" v-model="userForm.password" required />
+          <StyledInput type="password" placeholder="New Password" v-model="userForm.password" />
           <MediaUploadFieldInput type="file" placeholder="Profile Picture" showText @inputMedia="getPicture" >Profile Picture:</MediaUploadFieldInput>
           <StyledSubmitButton variant="tonal">
             Make Changes

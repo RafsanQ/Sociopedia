@@ -70,6 +70,12 @@ export const useCentralStore = defineStore('centralStore', () => {
         // this.token.value = action.payload.token;
     }
 
+    const setUser = (newUser) => {
+        user.value = newUser;
+    }
+
+    
+
     const setLogout = () => {
         user.value = null;
         token.value = null;
@@ -156,7 +162,7 @@ export const useCentralStore = defineStore('centralStore', () => {
     }
 
 
-    return { mode, user, token, register, setMode, setLogin, setLogout, setFriends, getFriends, addFriend, removeFriend, setPosts };
+    return { mode, user, token, register, setUser, setMode, setLogin, setLogout, setFriends, getFriends, addFriend, removeFriend, setPosts };
 },{
     persist: true,
   })
