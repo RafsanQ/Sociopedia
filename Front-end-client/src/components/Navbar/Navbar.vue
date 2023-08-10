@@ -27,7 +27,6 @@ const store = useCentralStore();
 // Theme settings
 const themeProperties = ref(themeSettings(store.mode));
 
-
 let neutralLight = themeProperties.value.pallete.neutral.light;
 let dark = themeProperties.value.pallete.neutral.dark;
 let primaryLight = themeProperties.value.pallete.primary.light;
@@ -35,7 +34,6 @@ let primary = themeProperties.value.pallete.primary.main;
 let primaryDark = themeProperties.value.pallete.primary.dark;
 let background = themeProperties.value.pallete.background.default;
 let alt = themeProperties.value.pallete.background.alt;
-
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
