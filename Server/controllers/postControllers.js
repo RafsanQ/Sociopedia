@@ -118,14 +118,14 @@ export const sendComment = async (req, res) => {
             return;
         }
 
-        const totalComments = post.comments.length;
+        const commentId = crypto.randomBytes(32).toString('hex');
         const timestamp = new Date().toString();
 
-        post.comments.unshift({ _id: totalComments+1, userId, userEmail: user.email, text, updated: timestamp });
+        post.comments.unshift({ _id: commentId, userId, userEmail: user.email, text, updated: timestamp });
 
         const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments});
 
-        res.status(200).json({ _id: totalComments+1, userId, userEmail: user.email, text, updated: timestamp });
+        res.status(200).json({ _id: commentId, userId, userEmail: user.email, text, updated: timestamp });
 
     }catch(error) {
         res.status(500).json({ message: error.message });
