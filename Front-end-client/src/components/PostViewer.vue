@@ -25,6 +25,8 @@ const props = defineProps({
     }
 })
 
+let likes = ref(Object.keys(props.postProperties.likes).length)
+
 
 // Store
 const store = useCentralStore();
@@ -39,6 +41,12 @@ else{
 }
 
 async function handleLike(){
+    if(isLiked.value){
+        likes.value--;
+    }
+    else{
+        likes.value++;
+    }
     try{
     const response = await fetch("http://localhost:3001/posts/" + props.postProperties._id + '/like', {
         method: 'PATCH',
@@ -135,7 +143,9 @@ function getTimeDifference(updatedTime){
         </div>
         <div>
             <v-btn class="actions" icon="md:thumb_up" :color="isLiked ? 'light-blue-accent-4' : ''" variant="plain" @click="handleLike"/>
+            {{ likes }}
             <v-btn class="actions" icon="md:chat_bubble" :color="showCommentBox ? 'light-blue-accent-4' : ''" variant="plain" @click="showCommentBox = !showCommentBox"/>
+            {{ postProperties.comments.length }}
         </div>
         <br>
         <CommentSection v-if="showCommentBox" :postId="postProperties._id" :comments="postProperties.comments" />
@@ -193,6 +203,10 @@ function getTimeDifference(updatedTime){
 
 .time{
     margin: 0% 1% 0% 5%;
+}
+
+.actions{
+    margin-left: 2%;
 }
 
 </style>
