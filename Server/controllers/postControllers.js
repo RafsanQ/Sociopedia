@@ -131,3 +131,31 @@ export const sendComment = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 } 
+
+export const deleteComment = async (req, res) => {
+    try{
+        const { id, commentId } = req.params;
+        
+
+        // const user = await User.findById(userId);
+    
+        const post = await Post.findById(id);
+
+        if(!post){
+            res.status(404).json({ message: 'Post does not exist' });
+            return;
+        }
+
+
+        post.comments = post.comments.filter(
+            comment => comment._id !== commentId
+        )
+
+        const updatedPost = await Post.findByIdAndUpdate(id, {comments: post.comments});
+
+        res.status(200).json("Comment Deleted");
+
+    }catch(error) {
+        res.status(500).json({ message: error.message });
+    }
+}

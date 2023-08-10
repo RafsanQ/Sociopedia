@@ -1,5 +1,5 @@
 import express from 'express';
-import { createPost, getFeedPosts, getUserPosts, likePost, sendComment } from '../controllers/postControllers.js';
+import { createPost, getFeedPosts, getUserPosts, likePost, sendComment, deleteComment } from '../controllers/postControllers.js';
 
 import { varifyToken } from "../middleware/auth.js";
 
@@ -15,5 +15,7 @@ router.post('/create', varifyToken, createPost);
 // Update
 router.patch("/:id/like", varifyToken, likePost);
 router.patch("/:id/comment", varifyToken, sendComment);
+
+router.patch("/:id/comment/:commentId/delete", varifyToken, deleteComment);
 
 export default router;

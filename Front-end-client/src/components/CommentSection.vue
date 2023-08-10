@@ -42,6 +42,10 @@ let comments = ref(props.comments);
 
 async function handleSendComment(){
     try{
+        if(!inputText.replace(' ', '').length){
+            toast.error("Please write something first");
+            return;
+        }
         let response = await fetch("http://localhost:3001/posts/" + props.postId+ '/comment', {
                 method: 'PATCH',
                 headers: {
@@ -57,19 +61,49 @@ async function handleSendComment(){
         const newComment = await response.json();
         if(response.status != 200){
         
-            toast.error("There was an error");
+            toast.error("There was an error, Please try again");
             console.log(newComment);
             return;
         }
 
-        
-        console.log(newComment);
         comments.value.unshift(newComment)
         
         inputText = '';
 
-        console.log(comments.value);
 
+        
+    }catch(error){
+        console.log(error);
+        toast.error(error);
+    }
+}
+
+async function handleDeleteComment(commentId){
+    try{
+        console.log(props.postId);
+        let response = await fetch("http://localhost:3001/posts/" + props.postId + '/comment/' + commentId + '/delete', {
+                method: 'PATCH',
+                headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${store.token}`
+                    },
+            }
+        );
+        const responseMessage = await response.json();
+        if(response.status != 200){
+        
+            toast.error("There was an error, Please try again");
+            console.log(responseMessage);
+            return;
+        }
+
+
+        comments.value = comments.value.filter(
+            comment => comment._id !== commentId
+        )
+
+          
+        inputText = '';
         
     }catch(error){
         console.log(error);
@@ -81,7 +115,6 @@ function getTimeDifference(updatedTime){
     var date1 = new Date();
     var date2 = new Date(updatedTime);
 
-    console.log({ date1, date2})
     var Difference_In_Time = Math.abs(date1.getTime() - date2.getTime());
 
     const differenceInSeconds = Math.ceil(Difference_In_Time / (1000));
@@ -118,7 +151,7 @@ function getTimeDifference(updatedTime){
                 <ProfileImageWidget class="profilePicture" :email="thisComment.userEmail" size="40px"/>
                 <p class="commentText">{{ thisComment.text }}</p>
                 <p class="time" v-if="thisComment.updated">{{ getTimeDifference(thisComment.updated) }}</p>
-                <p v-if="thisComment.userId === user._id" class="deleteButton">Delete</p>
+                <p v-if="thisComment.userId === user._id" class="deleteButton" @click="handleDeleteComment(thisComment._id)">Delete</p>
             </div>
         </Suspense>
         

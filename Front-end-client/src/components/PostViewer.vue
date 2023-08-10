@@ -96,7 +96,6 @@ function getTimeDifference(updatedTime){
     var date1 = new Date();
     var date2 = new Date(updatedTime);
 
-    console.log({ date1, date2})
     var Difference_In_Time = Math.abs(date1.getTime() - date2.getTime());
 
     const differenceInSeconds = Math.ceil(Difference_In_Time / (1000));
