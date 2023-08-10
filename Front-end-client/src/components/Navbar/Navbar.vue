@@ -1,11 +1,16 @@
 <script setup>
 import { useCentralStore } from '../../stores';
+import { useToast } from 'vue-toast-notification';
 import { themeSettings } from '../../theme.js';
 import { ThemeProvider } from 'vue3-styled-components'
 import NavDrawerMobile from './navDrawerMobile.vue'
 import ProfileMenu from './profileMenu.vue';
 import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue';
+
+
+// For toast Notifications and messages
+const toast = useToast();
 
 import { 
   StyledNav,
@@ -89,8 +94,8 @@ function isSignedIn(){
         
             <RightPanel v-if="isSignedIn()" v-show="isLargeScreen">
               <!-- <v-btn icon="md: dark_mode" :color="fontColor" variant="plain" @click="changeTheme" font-size="25px">  </v-btn> -->
-              <v-btn icon="md: chat" :color="fontColor" variant="plain" />
-              <v-btn icon="md: notifications" :color="fontColor" variant="plain" />
+              <v-btn icon="md: chat" :color="fontColor" variant="plain" @click="toast.error('Not Implemented yet')"/>
+              <v-btn icon="md: notifications" :color="fontColor" variant="plain" @click="toast.error('Not Implemented yet')"/>
               <RouterLink :to="{ name: 'about' }">
                 <v-btn icon="md: info" :color="fontColor" variant="plain" />
               </RouterLink>

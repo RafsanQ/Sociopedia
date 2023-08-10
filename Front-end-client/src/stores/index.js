@@ -4,10 +4,6 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 import { ref } from "vue";
 
-// For Routing stuff and refresh
-import { useRouter } from 'vue-router';
-const router = useRouter()
-
 
 // For toast Notifications and messages
 const toast = useToast();

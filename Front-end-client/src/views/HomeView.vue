@@ -55,7 +55,7 @@ let fontColor = themeProperties.value.pallete.fontColor;
 const user = store.user;
 const token = store.token;
 
-if(!user && !token){
+if(!user || !token){
   router.push('/')    // If not redirect to login page
 }
 
