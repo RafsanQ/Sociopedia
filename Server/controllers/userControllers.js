@@ -91,13 +91,12 @@ export const changeAccountsettings = async (req, res) => {
         occupation
     } = req.body;
     
-    const id = req.params.id;
-
+    
+    
     // If email already Registered
     let user = await User.findOne({ _id: userId });
     if (!user) return res.status(400).send("User does not exist")
     console.log({user});
-    res.status(500);
     
 
     try{

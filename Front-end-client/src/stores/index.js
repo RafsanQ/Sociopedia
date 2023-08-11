@@ -59,7 +59,7 @@ export const useCentralStore = defineStore('centralStore', () => {
             location.reload();
         }
         else {
-            toast.error(responseData.message);
+            toast.error(await response.json().error);
         }
 
         // this.user.value = action.payload.user;
