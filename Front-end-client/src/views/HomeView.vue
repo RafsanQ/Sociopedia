@@ -61,9 +61,9 @@ if(!user || !token){
 
 // Get posts for feed
 let posts = ref(store.posts);
-const getPosts = async () => {
+const getPosts = async (skip = 0) => {
   try{
-    const response = await fetch("http://localhost:3001/posts/",{
+    const response = await fetch("http://localhost:3001/posts/" + skip,{
             method: 'GET',
             headers: {
                     "Content-Type": "application/json",
