@@ -1,6 +1,2 @@
 node_modules/
 .env
-public/assets/posts/image/*
-public/assets/posts/video/*
-public/assets/posts/audio/*
-public/assets/profilepictures/*
