@@ -104,7 +104,10 @@ function isSignedIn(){
 
             <RightPanel v-if="!isSignedIn()" class="themeChangerButton">
               <RouterLink style="text-decoration: none; color: inherit;" to="/themechanger">
-                <v-btn variant="plain" icon="md: display_settings" :color="fontColor">Theme</v-btn>
+                <v-btn variant="plain" icon="md: display_settings" :color="fontColor"></v-btn>
+              </RouterLink>
+              <RouterLink :to="{ name: 'about' }">
+                <v-btn icon="md: info" :color="fontColor" variant="plain" />
               </RouterLink>
               <br/>
             </RightPanel>
