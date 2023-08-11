@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Read
 router.get("/:skip", varifyToken, getFeedPosts);
-router.get("/:userId/posts", varifyToken, getUserPosts);
+router.get("/:userId/posts/:skip", varifyToken, getUserPosts);
 
 //Post
 router.post('/create', varifyToken, createPost);

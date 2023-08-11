@@ -15,15 +15,6 @@ const store = useCentralStore();
 
 const themeProperties = ref(themeSettings(store.mode));
 
-
-let neutralLight = themeProperties.value.pallete.neutral.light;
-let dark = themeProperties.value.pallete.neutral.dark;
-let primaryLight = themeProperties.value.pallete.primary.light;
-let primary = themeProperties.value.pallete.primary.main;
-let primaryDark = themeProperties.value.pallete.primary.dark;
-let background = themeProperties.value.pallete.background.default;
-let alt = themeProperties.value.pallete.background.alt;
-
 let fontColor = themeProperties.value.pallete.fontColor;
 
 let drawerVisible = ref(false);
@@ -66,7 +57,7 @@ const handleLogOut = () => {
 export default {
     data: () => ({
     items: [
-        { title: 'View Profile', routeName: 'profileView', routeParams: {userId: '12345'}, icon: 'md: person'},
+        { title: 'View Profile', routeName: 'profileView', routeParams: {}, icon: 'md: person'},
         { title: 'Change Theme', routeName: 'themeChanger', routeParams: {}, icon: 'md: display_settings' },
         { title: 'Account Settings', routeName: 'home', routeParams: {}, icon: 'md: settings' },
     ],
@@ -75,5 +66,10 @@ export default {
 </script>
 
 <style scoped>
+.right-drawer{
+    margin-right: 40%;
+    padding: 30% 0% 2% 1%;
+    width: max-content;
+}
 
 </style>
