@@ -28,7 +28,7 @@ const router = createRouter({
       component: LoginView
     },
     {
-      path: '/profileView/:userId',
+      path: '/profileView/',
       name: 'profileView',
       component: ProfileView
     },
