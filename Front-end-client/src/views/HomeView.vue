@@ -30,6 +30,13 @@ const router = useRouter()
 // Store
 const store = useCentralStore();
 
+// Check if Signed in
+const user = store.user;
+const token = store.token;
+
+if(user == null || token == null){
+  location.assign('/')  // If not signed in redirect to login page
+}
 
 // Media query to check screen size
 const isLargeScreen = useMediaQuery('(min-width: 1577px)')
@@ -50,14 +57,6 @@ let alt = themeProperties.value.pallete.background.alt;
 let fontColor = themeProperties.value.pallete.fontColor;
 
 
-
-// Check if Signed in
-const user = store.user;
-const token = store.token;
-
-if(!user || !token){
-  router.push('/')    // If not redirect to login page
-}
 
 // Get posts for feed
 let posts = ref(store.posts);
