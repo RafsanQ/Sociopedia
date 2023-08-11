@@ -43,10 +43,9 @@ export const useCentralStore = defineStore('centralStore', () => {
             },
             body: JSON.stringify(userForm)
         })
-
         const responseData = await response.json();
-
         if(response.status == 200 || response.status == 201){
+            
             user.value = responseData.user;
             token.value = responseData.token;
 
@@ -59,7 +58,7 @@ export const useCentralStore = defineStore('centralStore', () => {
             location.reload();
         }
         else {
-            toast.error(await response.json().error);
+            toast.error(responseData.message);
         }
 
         // this.user.value = action.payload.user;
