@@ -51,6 +51,3 @@ JWT_SECRET=
 ```
 $ chmod -R 0777 public
 ``` 
-
-
-
