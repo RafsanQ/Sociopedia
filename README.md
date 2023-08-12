@@ -5,8 +5,8 @@ Welcome to the Sociopedia repository! This web app brings the power of social ne
 * __User Authentication__: Secure user login and authentication system.
 * __Multimedia Sharing__: Post pictures, videos, and audio clips to express yourself.
 * __Interactive Feed__: Explore a dynamic feed of user-generated content.
-* __Likes and Comments__: Engag
-* __User-Friendly Interface__: ntuitive design for seamless navigation.
+* __Likes and Comments__: Engage with posts through likes and comments.
+* __User-Friendly Interface__: Intuitive  design for seamless navigation.
 
 ### Getting Started
 To get started with the Social Media Clone:
