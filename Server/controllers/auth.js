@@ -31,6 +31,10 @@ export const register = async (req, res) => {
     const pictureName = email + '.png';
     picturePath = 'public/assets/profilepictures/' + pictureName;
 
+    // Store the picture on to the disk
+    await writeFile(pictureName, picture);
+    moveFile(pictureName, picturePath);
+
     try{
         
         // Encrypt the password with salt
@@ -52,11 +56,6 @@ export const register = async (req, res) => {
         });
 
         const savedUser = await newUser.save();
-
-        // Store the picture on to the disk
-        
-        await writeFile(pictureName, picture);
-        moveFile(pictureName, picturePath);
 
         res.status(201).json(savedUser);
     }catch(error){

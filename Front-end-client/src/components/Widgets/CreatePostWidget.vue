@@ -1,7 +1,6 @@
 <script setup>
 
 import { ref } from "vue";
-import { ThemeProvider } from 'vue3-styled-components'
 import { themeSettings } from '../../theme.js';
 import { useCentralStore } from '../../stores';
 import { useToast } from 'vue-toast-notification';
@@ -31,12 +30,6 @@ const user = store.user;
 // Theme settings
 const themeProperties = ref(themeSettings(store.mode));
 let neutralLight = themeProperties.value.pallete.neutral.light;
-let neutralDark = themeProperties.value.pallete.neutral.dark;
-let primaryLight = themeProperties.value.pallete.primary.light;
-let primary = themeProperties.value.pallete.primary.main;
-let primaryDark = themeProperties.value.pallete.primary.dark;
-let background = themeProperties.value.pallete.background.default;
-let alt = themeProperties.value.pallete.background.alt;
 
 let fontColor = themeProperties.value.pallete.fontColor;
 
@@ -71,7 +64,7 @@ async function handlePost(){
                 media
             })
         })
-
+        
         if(response.status == 200 || response.status == 201){
             toast.success("Post Created");
 
@@ -85,6 +78,10 @@ async function handlePost(){
 
         else if(response.status == 403){
             toast.error("Invalid Token");
+        }
+        else{
+            
+            console.log("Error:" + responseData.message);
         }
 
     }catch(error){

@@ -43,18 +43,22 @@ export const createPost = async (req, res) => {
             mediaType,
             likes: {},
             comments: []
-        })
-        await newPost.save();
+        });
+
 
         // Store the media data
         if(media){
             await writeFile(fileName, media);
             moveFile(fileName, mediaPath);
+            console.log("File Written successfully");
         }
 
+        await newPost.save();
+        
         const post = await Post.find();
         res.status(201).json(post);
     }catch(error) {
+        console.log("Try Catcht Error");
         console.log(error);
         res.status(500).json({ message: error.message });
     }
