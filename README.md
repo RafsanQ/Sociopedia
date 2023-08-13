@@ -29,6 +29,14 @@ Next go into the `Server` director and do the same. First, to go into the direct
 cd ..
 cd Server
 ```
+ Do note that you have to change the permissions for the public directory and all its subdirectories so that anyone can read and write inside it. This is where all the users will store their media files. 
+ 
+ On windows, right click on the `public` directory and unselect the read-only attribute. Then go to the security tab and select 'Edit'. There, give the appropriate permissions. For testing purposes, you may simply give full control to all users.
+ 
+ For other linux based platforms, you may have to run specific commands set for your operating systems. For instance, for Ubuntu-based systems, you can run the following command and this should allow all users to read and write into the directory. 
+```
+$ chmod -R 0777 public
+``` 
 Do note that the above file permissions are only appropriate for testing purposes and should not used when deploying the application.
 
 Now as before, install the dependencies with the following command.
@@ -47,10 +55,3 @@ MONGO_URL=
 JWT_SECRET=
 ```
  An example file can be found [here](https://drive.google.com/file/d/1HgJ-6eKP3c--oKXvi6kXYWRFN9v7MShL/view?usp=sharing). Put it inside the `Server` directory and try to run it again. 
-* Do note that you have change the permissions for the public directory and all its subdirectories so that anyone can read and write inside it. This is where all the users will store their media files. On windows, right click on the `public` directory and unselect the read-only attribute. For other linux based platforms, you may have to run specific commands set for your operating systems. For instance, for Ubuntu-based systems, you can run the following command. 
-```
-$ chmod -R 0777 public
-``` 
-
-
-
